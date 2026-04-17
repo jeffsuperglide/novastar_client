@@ -1,0 +1,58 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run with Jython",
+            "type": "shell",
+            "command": "${config:jython.runtimePath}",
+            "args": [
+                "'${file}'"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run with RTS Jython",
+            "type": "shell",
+            "command": "${config:jython.runtimePath}",
+            "args": [
+                "'${file}'"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Start Jython Runtime",
+            "type": "shell",
+            "command": "${config:jython.runtimePath}",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Start RTS Jython Runtime",
+            "type": "shell",
+            "command": "${config:jython.runtimeRTSPath}",
+            "options": {
+                "cwd": "${config:jython.runtimeRTS}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+    ]
+}

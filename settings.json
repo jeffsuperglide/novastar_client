@@ -1,0 +1,10 @@
+{
+  "jython.runtimePath": "/c/Users/u4rs9jsg/AppData/Local/Programs/Common/hec/HEC-DSSVue/Jython.bat",
+  "jython.runtimeRTSPath": "C:/Users/u4rs9jsg/AppData/Local/Programs/Common/hec/HEC-RTS-3.5.0/common/exe/Jython.bat",
+  "jython.runtimeRTS": "C:/Users/u4rs9jsg/AppData/Local/Programs/Common/hec/HEC-RTS-3.5.0/common/exe",
+  "jython.runtimeCWD": "/c/Users/u4rs9jsg/AppData/Local/Programs/Common/hec/HEC-DSSVue",
+  "python.analysis.extraPaths": [
+    "c:\\Users\\u4rs9jsg\\.vscode\\extensions\\hydrologicengineeringcenter.hec-jython-0.0.2\\stubs",
+    "c:\\Users\\u4rs9jsg\\.vscode\\extensions\\hydrologicengineeringcenter.hec-jython-0.0.2\\jython_files"
+  ]
+}
