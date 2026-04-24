@@ -9,6 +9,7 @@ StationsResponse
 from dataclasses import dataclass
 from typing import Any, Dict
 
+from novastar_client.helpers import with_urlencoded_kwargs
 from novastar_client.session import NovaStarSession
 from novastar_client.models import StationsResponse
 
@@ -38,7 +39,10 @@ class StationsAPI:
         StationsResponse
             StationsResonse class from stations returned json
         """
-        params: Dict[str, str] = {**self.default_params, **kwargs}
+
+        params: Dict[str, str] = with_urlencoded_kwargs(
+            self.default_params, **kwargs
+        )
         data: Any = self.session.get(self.path, params=params)
 
         if raw:
