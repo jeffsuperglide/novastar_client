@@ -30,7 +30,7 @@ class StationsAPI:
             "xmlFormat": "full",
         }
 
-    def get(self, **kwargs) -> StationsResponse:
+    def get(self, *, raw: bool = False, **kwargs) -> StationsResponse:
         """get stations
 
         Returns
@@ -40,4 +40,8 @@ class StationsAPI:
         """
         params: Dict[str, str] = {**self.default_params, **kwargs}
         data: Any = self.session.get(self.path, params=params)
+
+        if raw:
+            return data
+
         return StationsResponse.from_api(data)
