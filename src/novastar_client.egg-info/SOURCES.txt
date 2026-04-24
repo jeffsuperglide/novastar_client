@@ -16,3 +16,4 @@ src/novastar_client/models/station.py
 src/novastar_client/models/stations_response.py
 src/novastar_client/services/__init__.py
 src/novastar_client/services/station.py
+src/novastar_client/tests/test_stations_api.py
