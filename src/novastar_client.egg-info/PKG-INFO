@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: novastar-client
+Version: 0.1.0
+Summary: Python client for NovaStar REST endpoints (Stations)
+Author: jeffsuperglide
+License-Expression: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.31.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: ruff>=0.4.0; extra == "dev"
+
+# Panama Canal Authority NovaStar API Scripting
+
+## Reference Links
+
+[API-UI](https://panama-cloud-ns5.trilynx-novastar.systems/novastar/data/api/v1/api-ui)
+
+[Operator Manual](https://panama-cloud-ns5.trilynx-novastar.systems/novastar/doc/operator/user/)
+
+[Operator Map](https://panama-cloud-ns5.trilynx-novastar.systems/novastar/operator/map)
+
+[Stations API Call - Simple](https://panama-cloud-ns5.trilynx-novastar.systems/novastar/data/api/v1/stations)
+
+[TriLynx NovaStar Web Services Docs Home](https://software.trilynx.systems/nsdataws/latest/doc-user/).
+
+[Jython.org](https://www.jython.org/)
+
+[Python 2.7](https://docs.python.org/2.7/)

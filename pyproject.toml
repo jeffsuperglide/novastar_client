@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novastar-client"
+version = "0.1.0"
+description = "Python client for NovaStar REST endpoints (Stations)"
+authors = [{ name = "jeffsuperglide" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["requests>=2.31.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "mypy>=1.0", "ruff>=0.4.0"]
+
+# version set at highest __init__.py
+[tool.setuptools.dynamic]
+version = { attr = "novastar_client.__version__" }
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

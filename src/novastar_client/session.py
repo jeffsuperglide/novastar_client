@@ -7,8 +7,8 @@ from __future__ import annotations
 from typing import Any, Dict, Optional
 
 import requests
-from novastar_client.config import NovaStarConfig
-from novastar_client.exceptions import NovaStarAPIError
+from src.novastar_client.config import NovaStarConfig
+from src.novastar_client.exceptions import NovaStarAPIError
 
 
 class NovaStarSession:
@@ -75,8 +75,22 @@ class NovaStarSession:
         try:
             response.raise_for_status()
         except requests.HTTPError as exc:
+            # Try to parse JSON if available
+            parsed = None
+            try:
+                parsed = response.json()
+            except ValueError:
+                pass
+
+            retryable = 500 <= response.status_code < 600
+
             raise NovaStarAPIError(
-                f"{response.status_code} error for {url}: {response.text}"
+                "NovaStar API request failed",
+                status_code=response.status_code,
+                url=url,
+                response_body=response.text,
+                parsed_body=parsed,
+                retryable=retryable,
             ) from exc
 
         return response.json()

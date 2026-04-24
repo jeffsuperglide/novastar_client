@@ -1,10 +1,25 @@
-# src/novastar_client/models/meta.py
+"""Collection of data classes for the metadata in the json return payload
+
+Returns
+-------
+Any
+    Metadata classes with classmethod 'from_api' loading json to classes
+"""
+
 from dataclasses import dataclass
 from typing import Optional
 
 
 @dataclass
 class ApiVersion:
+    """ApiVersion
+
+    Returns
+    -------
+    ApiVersion
+        dataclass for the NovaStar returned payload describing the API version
+    """
+
     api_version_major: str
     api_version_minor: str
     api_version_micro: str
@@ -15,6 +30,18 @@ class ApiVersion:
 
     @classmethod
     def from_api(cls, data: dict) -> "ApiVersion":
+        """from_api classmethod
+
+        Parameters
+        ----------
+        data : dict
+            returned json payload
+
+        Returns
+        -------
+        ApiVersion
+            dataclass
+        """
         return cls(
             api_version_major=data.get("apiVersionMajor", ""),
             api_version_minor=data.get("apiVersionMinor", ""),
@@ -28,6 +55,14 @@ class ApiVersion:
 
 @dataclass
 class AttributionAndUsage:
+    """AttributionAndUsage
+
+    Returns
+    -------
+    AttributionAndUsage
+         dataclass for the NovaStar returned payload describing the API attributes
+    """
+
     provider_organization_text: str
     provider_organization_uri: str
     data_policy_uri: str
@@ -41,6 +76,18 @@ class AttributionAndUsage:
 
     @classmethod
     def from_api(cls, data: dict) -> "AttributionAndUsage":
+        """from_api classmethod
+
+        Parameters
+        ----------
+        data : dict
+            returned json payload
+
+        Returns
+        -------
+        AttributionAndUsage
+            dataclass
+        """
         return cls(
             provider_organization_text=data.get("providerOrganizationText", ""),
             provider_organization_uri=data.get("providerOrganizationUri", ""),
@@ -57,6 +104,14 @@ class AttributionAndUsage:
 
 @dataclass
 class ResponseInfo:
+    """ResponseInfo
+
+    Returns
+    -------
+    ResponseInfo
+         dataclass for the NovaStar returned payload describing the API response information
+    """
+
     url_original: str
     url_original_encoded: str
     url: str
@@ -73,6 +128,18 @@ class ResponseInfo:
 
     @classmethod
     def from_api(cls, data: dict) -> "ResponseInfo":
+        """from_api classmethod
+
+        Parameters
+        ----------
+        data : dict
+            returned json payload
+
+        Returns
+        -------
+        ResponseInfo
+            dataclass
+        """
         return cls(
             url_original=data.get("urlOriginal", ""),
             url_original_encoded=data.get("urlOriginalEncoded", ""),
