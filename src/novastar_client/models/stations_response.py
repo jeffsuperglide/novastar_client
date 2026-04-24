@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from typing import List
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
+from novastar_client.models.normalize_payload import normalize_payload_with_sequence
 from novastar_client.models.station import Station
 
 
@@ -27,6 +28,7 @@ class StationsResponse:
     attribution_and_usage: AttributionAndUsage
     response_info: ResponseInfo
     stations: List[Station]
+    sequence_key: str = "stations"
 
     @classmethod
     def from_api(cls, data: dict) -> "StationsResponse":
@@ -42,11 +44,14 @@ class StationsResponse:
         StationsResponse
             class with attributes meta plus stations
         """
+
+        meta, data = normalize_payload_with_sequence(data, cls.sequence_key)
+
         return cls(
-            api_version=ApiVersion.from_api(data.get("apiVersion", {})),
+            api_version=ApiVersion.from_api(meta.get("apiVersion", {})),
             attribution_and_usage=AttributionAndUsage.from_api(
-                data.get("attributionAndUsage", {})
+                meta.get("attributionAndUsage", {})
             ),
-            response_info=ResponseInfo.from_api(data.get("responseInfo", {})),
-            stations=[Station.from_api(item) for item in data.get("stations", [])],
+            response_info=ResponseInfo.from_api(meta.get("responseInfo", {})),
+            stations=[Station.from_api(item) for item in data],
         )
