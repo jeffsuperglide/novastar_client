@@ -2,9 +2,9 @@
 NovaStarClient Class
 """
 
-from src.novastar_client.config import NovaStarConfig
-from src.novastar_client.services.station import StationsAPI
-from src.novastar_client.session import NovaStarSession
+from novastar_client.config import NovaStarConfig
+from novastar_client.services.station import StationsAPI
+from novastar_client.session import NovaStarSession
 
 
 class NovaStarClient:

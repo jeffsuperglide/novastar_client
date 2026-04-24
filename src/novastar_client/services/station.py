@@ -7,18 +7,28 @@ StationsResponse
 """
 
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Dict
 
-from src.novastar_client.models import StationsResponse
+from novastar_client.session import NovaStarSession
+from novastar_client.models import StationsResponse
 
 
 @dataclass
 class StationsAPI:
     """StationsAPI getting a list of StationsResponse classes"""
 
-    def __init__(self, session):
+    def __init__(self, session: NovaStarSession):
         self.session = session
         self.path = "stations"
+        self.default_params: Dict[str, Any] = {
+            "debug": str(False).lower(),
+            "format": "json",
+            "formatPrettyPrint": str(False).lower(),
+            "includeRetiredStations": str(False).lower(),
+            "includeTestStations": str(False).lower(),
+            "jsonFormat": "full",
+            "xmlFormat": "full",
+        }
 
     def get(self, **kwargs) -> StationsResponse:
         """get stations
@@ -28,6 +38,6 @@ class StationsAPI:
         StationsResponse
             StationsResonse class from stations returned json
         """
-
-        data: Any = self.session.get(self.path, params={**kwargs})
+        params: Dict[str, str] = {**self.default_params, **kwargs}
+        data: Any = self.session.get(self.path, params=params)
         return StationsResponse.from_api(data)

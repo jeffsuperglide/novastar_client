@@ -7,8 +7,8 @@ from __future__ import annotations
 from typing import Any, Dict, Optional
 
 import requests
-from src.novastar_client.config import NovaStarConfig
-from src.novastar_client.exceptions import NovaStarAPIError
+from novastar_client.config import NovaStarConfig
+from novastar_client.exceptions import NovaStarAPIError
 
 
 class NovaStarSession:
