@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional
 import requests
 from novastar_client.config import NovaStarConfig
 from novastar_client.exceptions import NovaStarAPIError
+from urllib.parse import quote_plus, urlencode
 
 
 class NovaStarSession:
@@ -66,9 +67,12 @@ class NovaStarSession:
             NovaStar Error
         """
         url = f"{self.api_root}/{path.lstrip('/')}"
+
+        _params = urlencode((params or {}), doseq=True)
+
         response = self.session.get(
             url,
-            params=params,
+            params=_params,
             timeout=self.config.timeout,
             verify=self.config.verify_ssl,
         )

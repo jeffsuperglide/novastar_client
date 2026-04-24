@@ -1,4 +1,4 @@
-"""StationsResponse class defining the class for the 'stations' endpoint returned json
+"""TsCatalogResponse class defining the class for the 'tscatalog' endpoint returned json
 
 Returns
 -------
@@ -11,27 +11,27 @@ from typing import List
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.normalize_payload import normalize_payload_with_sequence
-from novastar_client.models.station import Station
+from novastar_client.models.tscatalog import TsCatalogItem
 
 
 @dataclass
-class StationsResponse:
-    """StationsResponse class
+class TsCatalogResponse:
+    """TsCatalogResponse class
 
     Returns
     -------
     StationsRespnse class
-        dataclass with meta plus stations attributes
+        dataclass with meta plus tscatalog attributes
     """
 
     api_version: ApiVersion
     attribution_and_usage: AttributionAndUsage
     response_info: ResponseInfo
-    stations: List[Station]
-    sequence_key: str = "stations"
+    tscatalog: List[TsCatalogItem]
+    sequence_key: str = "tscatalog"
 
     @classmethod
-    def from_api(cls, data: dict) -> "StationsResponse":
+    def from_api(cls, data: dict) -> "TsCatalogResponse":
         """from_api convert json to class
 
         Parameters
@@ -41,8 +41,8 @@ class StationsResponse:
 
         Returns
         -------
-        StationsResponse
-            class with attributes meta plus stations
+        TsCatalogResponse
+            class with attributes meta plus tscatalog
         """
 
         meta, data = normalize_payload_with_sequence(data, cls.sequence_key)  # type: ignore
@@ -53,5 +53,5 @@ class StationsResponse:
                 meta.get("attributionAndUsage", {})
             ),
             response_info=ResponseInfo.from_api(meta.get("responseInfo", {})),
-            stations=[Station.from_api(item) for item in data],
+            tscatalog=[TsCatalogItem.from_api(item) for item in data],
         )
