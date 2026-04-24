@@ -1,36 +1,34 @@
-# src/novastar_client/services/stations.py
-from __future__ import annotations
-from typing import Any, Iterable, Optional
+"""NovaStar Stations API
+
+Returns
+-------
+StationsResponse
+    StationsResponse is a class
+"""
+
+from dataclasses import dataclass
+from typing import Any
+
+from novastar_client.models import StationsResponse
 
 
+@dataclass
 class StationsAPI:
+    """StationsAPI getting a list of StationsResponse classes"""
+
+    stations_path: str = "stations"
+
     def __init__(self, session):
         self.session = session
 
-    def list(
-        self,
-        *,
-        station_num_ids: Optional[Iterable[int]] = None,
-        station_name: Optional[str] = None,
-        include_retired_stations: bool = False,
-        include_test_stations: bool = False,
-        debug: bool = False,
-        json_format: str = "full",
-        xml_format: str = "full",
-        format_pretty_print: bool = True,
-    ) -> Any:
-        params = {
-            "debug": str(debug).lower(),
-            "format": "json",
-            "formatPrettyPrint": str(format_pretty_print).lower(),
-            "includeRetiredStations": str(include_retired_stations).lower(),
-            "includeTestStations": str(include_test_stations).lower(),
-            "jsonFormat": json_format,
-            "xmlFormat": xml_format,
-        }
-        if station_num_ids:
-            params["stationNumId"] = ",".join(str(x) for x in station_num_ids)
-        if station_name:
-            params["stationName"] = station_name
+    def get(self, **kwargs) -> StationsResponse:
+        """get stations
 
-        return self.session.get("stations", params=params)
+        Returns
+        -------
+        StationsResponse
+            StationsResonse class from stations returned json
+        """
+        params = {**kwargs}
+        data: Any = self.session.get(self.stations_path, params=params)
+        return StationsResponse.from_api(data)

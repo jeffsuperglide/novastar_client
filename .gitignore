@@ -25,3 +25,6 @@ replay_pid*
 
 # ignore DSS files
 *.dss
+
+# ignore venv
+*.venv
