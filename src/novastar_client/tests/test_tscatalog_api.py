@@ -6,8 +6,8 @@ from unittest.mock import MagicMock
 from novastar_client import NovaStarClient, NovaStarConfig
 from novastar_client.models import TsCatalogItem, TsCatalogResponse
 
-from novastar_client.tests.tscatalog_bare import tscatalog_bare
-from novastar_client.tests.tscatalog_full import tscatalog_full
+from novastar_client.tests.tscatalog_data_bare import tscatalog_bare
+from novastar_client.tests.tscatalog_data_full import tscatalog_full
 
 
 def make_client_with_mocked_session(bare_payload: Any = None, full_payload: Any = None):

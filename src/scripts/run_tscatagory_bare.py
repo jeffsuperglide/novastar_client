@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Manually test script: call the Stations endpoint with jsonFormat=full
+"""Manually test script: call the Time Series Catalog endpoint with jsonFormat=bare
 and print the basic information"""
 
 import os
@@ -18,13 +18,18 @@ def main():
     #     "NOVASTAR_AUTH_TOKEN"
     # )  # not needed but here for example if needed
 
-    config = NovaStarConfig(base_url=base_url, api_version=api_version)
+    config = NovaStarConfig(base_url=base_url, api_version=api_version, timeout=60)
 
     client = NovaStarClient(config=config)
 
-    resp = client.stations.get(stationNumId="54")
-    # resp = client.stations.get(jsonFormat="bare", name="AAA ESTACION DE PRUEBA")
-    print(resp.stations)
+    # resp = client.stations.get(stationNumId="1")
+    resp = client.tscatalog.get(jsonFormat="bare", stationNumId="54")
+    # resp = client.tscatalog.get(
+    #     jsonFormat="bare", dataType="Precip*", stationName="AAA ESTACION DE PRUEBA"
+    # )
+    # get the TSIDs
+    for tsid in resp.get_tsids():
+        print(tsid)
 
 
 if __name__ == "__main__" or __name__ == "main":

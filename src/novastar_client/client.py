@@ -5,6 +5,7 @@ NovaStarClient Class
 from novastar_client.config import NovaStarConfig
 from novastar_client.services.station import StationsAPI
 from novastar_client.services.tscatalog import TimeSeriesCatalogAPI
+from novastar_client.services.timeseries import TimeSeriesAPI
 from novastar_client.session import NovaStarSession
 
 
@@ -20,3 +21,4 @@ class NovaStarClient:
 
         self.stations = StationsAPI(self.session)
         self.tscatalog = TimeSeriesCatalogAPI(self.session)
+        self.timeseries = TimeSeriesAPI(self.session)

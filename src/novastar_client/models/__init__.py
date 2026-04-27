@@ -5,6 +5,8 @@ from novastar_client.models.station import Station
 from novastar_client.models.stations_response import StationsResponse
 from novastar_client.models.tscatalog import TsCatalogItem
 from novastar_client.models.tscatalog_response import TsCatalogResponse
+from novastar_client.models.timeseries import TimeSeries
+from novastar_client.models.timeseries_response import TimeSeriesResponse
 
 __all__ = [
     "ApiVersion",
@@ -14,4 +16,6 @@ __all__ = [
     "StationsResponse",
     "TsCatalogItem",
     "TsCatalogResponse",
+    "TimeSeries",
+    "TimeSeriesResponse",
 ]

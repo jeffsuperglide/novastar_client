@@ -2,7 +2,7 @@
 
 Returns
 -------
-StationsResonse
+TsCatalogResponse
     json to class return
 """
 
@@ -55,3 +55,6 @@ class TsCatalogResponse:
             response_info=ResponseInfo.from_api(meta.get("responseInfo", {})),
             tscatalog=[TsCatalogItem.from_api(item) for item in data],
         )
+
+    def get_tsids(self) -> list[str]:
+        return [item.time_series_identifier for item in self.tscatalog]
