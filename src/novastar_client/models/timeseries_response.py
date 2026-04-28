@@ -1,10 +1,4 @@
-"""TimeSeriesResponse class defining the class for the 'tscatalog' endpoint returned json
-
-Returns
--------
-TimeSeriesResponse
-    json to class return
-"""
+"""TimeSeriesResponse"""
 
 from dataclasses import asdict, dataclass, fields
 from typing import List, Dict, Any, Tuple
@@ -16,12 +10,9 @@ from novastar_client.models.timeseries import TimeSeries
 
 @dataclass
 class TimeSeriesResponse:
-    """TimeSeriesResponse class
-
-    Returns
-    -------
-    StationsRespnse class
-        dataclass with meta plus timeseries attributes
+    """TimeSeriesResponse dataclass handling multiple parts of the NovaStar
+    Time Series (ts) returned payload.  Differences returned when 'jsonFormat' query parameter
+    set to 'bare' or 'named'.
     """
 
     api_version: ApiVersion
@@ -38,18 +29,18 @@ class TimeSeriesResponse:
     }
 
     @classmethod
-    def from_api(cls, data: dict) -> "TimeSeriesResponse":
+    def from_api(cls, data: Dict) -> "TimeSeriesResponse":
         """from_api convert json to class
 
         Parameters
         ----------
-        data : dict
-            input json as a dict
+        data : Dict
+            NovaStar json payload described by Time Series (TS) (see NovaStar API Schemas).
 
         Returns
         -------
-        TimeSeriesResponse
-            class with attributes meta plus timeseries
+        TimeSeriesResponse class
+            ApiVersion, AttributionAndUsage, ResponseInfo, and TimeSeries dataclasses.
         """
 
         return cls(
@@ -123,7 +114,10 @@ class TimeSeriesResponse:
         if not field_names:
             field_names = self.default_values
 
-        invalid_fields = [name for name in field_names if name not in self.default_values.keys()]
+        invalid_fields = [
+            name for name in field_names if name not in self.default_values.keys()
+        ]
+
         if invalid_fields:
             raise NovaStarAPIError(
                 f"Invalid field name(s): {invalid_fields}.  "

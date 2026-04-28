@@ -1,13 +1,8 @@
-"""TsCatalogResponse class defining the class for the 'tscatalog' endpoint returned json
+"""TsCatalogResponse class defining the class for the 'tscatalog' endpoint returned json"""
 
-Returns
--------
-TsCatalogResponse
-    json to class return
-"""
-
+from collections import defaultdict
 from dataclasses import dataclass
-from typing import List
+from typing import Dict, List
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.normalize_payload import normalize_payload_with_sequence
@@ -16,12 +11,9 @@ from novastar_client.models.tscatalog import TsCatalogItem
 
 @dataclass
 class TsCatalogResponse:
-    """TsCatalogResponse class
-
-    Returns
-    -------
-    StationsRespnse class
-        dataclass with meta plus tscatalog attributes
+    """TsCatalogResponse dataclass handling multiple parts of the NovaStar
+    Time Series Catalog (tscatalog) returned payload.  Differences returned
+    when 'jsonFormat' query parameter set to 'bare' or 'named'.
     """
 
     api_version: ApiVersion
@@ -31,18 +23,18 @@ class TsCatalogResponse:
     sequence_key: str = "tscatalog"
 
     @classmethod
-    def from_api(cls, data: dict) -> "TsCatalogResponse":
+    def from_api(cls, data: Dict) -> "TsCatalogResponse":
         """from_api convert json to class
 
         Parameters
         ----------
-        data : dict
-            input json as a dict
+        data : Dict
+            NovaStar json payload described by tscatalog endpoint (see NovaStar API Schemas).
 
         Returns
         -------
         TsCatalogResponse
-            class with attributes meta plus tscatalog
+            ApiVersion, AttributionAndUsage, ResponseInfo, and TsCatalogItem dataclasses.
         """
 
         meta, data = normalize_payload_with_sequence(data, cls.sequence_key)  # type: ignore
@@ -56,5 +48,27 @@ class TsCatalogResponse:
             tscatalog=[TsCatalogItem.from_api(item) for item in data],
         )
 
-    def get_tsids(self) -> list[str]:
+    def get_tsids(self) -> List[str]:
+        """get_tsids class method
+
+        Returns
+        -------
+        List[str]
+            List of Time Series IDs.
+        """
         return [item.time_series_identifier for item in self.tscatalog]
+
+    def get_catalog_by_id(self) -> List[List[TsCatalogItem]]:
+        """get_catalog_by_id class method
+
+        Returns
+        -------
+        List[List[TsCatalogItem]]
+            List of Time Series Catalogs grouped by station.
+        """
+        groups: dict[str, List[TsCatalogItem]] = defaultdict(list)
+
+        for cat in self.tscatalog:
+            groups[cat.loc_id].append(cat)
+
+        return [groups[k] for k in sorted(groups)]

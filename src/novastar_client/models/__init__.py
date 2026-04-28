@@ -2,7 +2,7 @@
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.station import Station
-from novastar_client.models.stations_response import StationsResponse
+from novastar_client.models.station_response import StationResponse
 from novastar_client.models.tscatalog import TsCatalogItem
 from novastar_client.models.tscatalog_response import TsCatalogResponse
 from novastar_client.models.timeseries import TimeSeries
@@ -13,7 +13,7 @@ __all__ = [
     "AttributionAndUsage",
     "ResponseInfo",
     "Station",
-    "StationsResponse",
+    "StationResponse",
     "TsCatalogItem",
     "TsCatalogResponse",
     "TimeSeries",

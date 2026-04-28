@@ -1,21 +1,15 @@
-"""NovaStar Stations API
+"""Stations Service API"""
 
-Returns
--------
-StationsResponse
-    StationsResponse is a class
-"""
-
-from dataclasses import dataclass
+import dataclasses
 from typing import Any, Dict
 
+from novastar_client.models import StationResponse
 from novastar_client.session import NovaStarSession
-from novastar_client.models import StationsResponse
 
 
-@dataclass
+@dataclasses.dataclass
 class StationsAPI:
-    """StationsAPI getting a list of StationsResponse classes"""
+    """StationsAPI dataclass"""
 
     def __init__(self, session: NovaStarSession):
         self.session = session
@@ -26,17 +20,20 @@ class StationsAPI:
             "formatPrettyPrint": str(False).lower(),
             "includeRetiredStations": str(False).lower(),
             "includeTestStations": str(False).lower(),
-            "jsonFormat": "full",
+            "jsonFormat": "bare",
             "xmlFormat": "full",
         }
 
-    def get(self, *, raw: bool = False, **kwargs) -> StationsResponse:
-        """get stations
+    def get(self, *, raw: bool = False, **kwargs) -> StationResponse | Dict:
+        """NovaStarSession GET method providing raw json or StationResponse
 
         Returns
         -------
-        StationsResponse
-            StationsResponse class from stations returned json
+        StationResponse
+            StationResponse dataclass defined in the models module.
+
+        Dict
+            Raw JSON.
         """
 
         params: Dict[str, str] = {**self.default_params, **kwargs}
@@ -45,4 +42,4 @@ class StationsAPI:
         if raw:
             return data
 
-        return StationsResponse.from_api(data)
+        return StationResponse.from_api(data)

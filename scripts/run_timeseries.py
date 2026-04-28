@@ -27,7 +27,9 @@ def main():
     client = NovaStarClient(config=config)
 
     resp: TimeSeriesResponse = client.timeseries.get(
-        tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour"
+        tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour",
+        periodStart="2026-04-27T13:00:00-05:00",
+        periodEnd="2026-04-28T13:00:00-05:00"
     )
 
     # TimeSeries

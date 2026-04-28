@@ -23,13 +23,21 @@ def main():
     client = NovaStarClient(config=config)
 
     # resp = client.stations.get(stationNumId="1")
-    resp = client.tscatalog.get(jsonFormat="bare", stationNumId="54")
+    resp = client.tscatalog.get(jsonFormat="bare", stationNumId="2,3")
     # resp = client.tscatalog.get(
     #     jsonFormat="bare", dataType="Precip*", stationName="AAA ESTACION DE PRUEBA"
     # )
+
+    # for cat in resp.tscatalog:
+    #     print(cat)
+
     # get the TSIDs
-    for tsid in resp.get_tsids():
-        print(tsid)
+    # for tsid in resp.get_tsids():
+    #     print(tsid)
+
+    # catalog by ID
+    for cat in resp.get_catalog_by_id():
+        print(cat[0].loc_id)
 
 
 if __name__ == "__main__" or __name__ == "main":

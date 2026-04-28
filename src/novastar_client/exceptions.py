@@ -1,5 +1,7 @@
 """NovaStar API Exception"""
 
+from typing import Dict
+
 
 class NovaStarAPIError(Exception):
     """Raised when the NovaStar API returns an error response."""
@@ -36,13 +38,13 @@ class NovaStarAPIError(Exception):
         self.parsed_body = parsed_body
         self.retryable = retryable
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict:
         """to_dict convert to dict
 
         Returns
         -------
-        dict
-            return a dict
+        Dict
+            Dictionary representation of the Exception.
         """
         return {
             "message": self.message,

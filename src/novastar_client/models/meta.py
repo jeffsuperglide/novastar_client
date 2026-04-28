@@ -1,23 +1,18 @@
-"""Collection of data classes for the metadata in the json return payload
-
-Returns
--------
-Any
-    Metadata classes with classmethod 'from_api' loading json to classes
-"""
+"""Collection of data classes for the metadata in the json return payload"""
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Dict, Optional
 
 
 @dataclass
 class ApiVersion:
-    """ApiVersion
+    """ApiVersion dataclass representing the NovaStar ApiVersion
 
     Returns
     -------
     ApiVersion
-        dataclass for the NovaStar returned payload describing the API version
+        dataclass for the NovaStar returned payload describing the API version section.  
+        This section is returned when 'jsonFormat' set to 'full'.
     """
 
     api_version_major: str
@@ -29,13 +24,13 @@ class ApiVersion:
     api_dot_delimited_version: str
 
     @classmethod
-    def from_api(cls, data: dict) -> "ApiVersion":
-        """from_api classmethod
+    def from_api(cls, data: Dict) -> "ApiVersion":
+        """from_api classmethod parsing json to this dataclass
 
         Parameters
         ----------
-        data : dict
-            returned json payload
+        data : Dict
+            NovaStar json payload described by ApiVersion (see NovaStar API Schemas).
 
         Returns
         -------
@@ -60,7 +55,8 @@ class AttributionAndUsage:
     Returns
     -------
     AttributionAndUsage
-         dataclass for the NovaStar returned payload describing the API attributes
+        dataclass for the NovaStar returned payload describing the Attribution and Usage section.  
+        This section is returned when 'jsonFormat' set to 'full'.
     """
 
     provider_organization_text: str
@@ -81,7 +77,7 @@ class AttributionAndUsage:
         Parameters
         ----------
         data : dict
-            returned json payload
+            NovaStar json payload described by AttributionAndUsage (see NovaStar API Schemas).
 
         Returns
         -------
@@ -109,7 +105,8 @@ class ResponseInfo:
     Returns
     -------
     ResponseInfo
-         dataclass for the NovaStar returned payload describing the API response information
+        dataclass for the NovaStar returned payload describing the Response Info section.  
+        This section is returned when 'jsonFormat' set to 'full'.
     """
 
     url_original: str
@@ -133,7 +130,7 @@ class ResponseInfo:
         Parameters
         ----------
         data : dict
-            returned json payload
+            NovaStar json payload described by ResponseInfo (see NovaStar API Schemas).
 
         Returns
         -------

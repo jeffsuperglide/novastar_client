@@ -1,10 +1,4 @@
-"""Stations dataclass
-
-Returns
--------
-Stations
-    dataclass for the NovaStar stations endpoint return json payload
-"""
+"""Stations dataclass"""
 
 from dataclasses import dataclass
 from typing import Optional
@@ -12,13 +6,7 @@ from typing import Optional
 
 @dataclass
 class Station:
-    """Station
-
-    Returns
-    -------
-    Station
-        dataclass for the NovaStar stations returned endpoint json payload
-    """
+    """Station dataclass representing the NovaStar Station"""
 
     id: int
     num_id: int
@@ -46,17 +34,17 @@ class Station:
 
     @classmethod
     def from_api(cls, data: dict) -> "Station":
-        """from_api convert json to class
+        """from_api classmethod parsing json to this dataclass
 
         Parameters
         ----------
         data : dict
-            input json as a dict
+            NovaStar json payload described by Station (see NovaStar API Schemas).
 
         Returns
         -------
         Station
-            station class
+            dataclass for the NovaStar returned payload describing the API Station section.
         """
 
         return cls(

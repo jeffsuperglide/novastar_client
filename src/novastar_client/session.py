@@ -1,6 +1,4 @@
-"""
-NovaStarSession Class
-"""
+"""NovaStarSession Class"""
 
 from __future__ import annotations
 
@@ -48,12 +46,12 @@ class NovaStarSession:
         )
 
     def get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
-        """get API call to NovaStar
+        """NovaStar Session GET method API call to NovaStar
 
         Parameters
         ----------
         path : str
-            endpoint path
+            Endpoint path.
         params : Optional[Dict[str, Any]], optional
             API call query parameters, by default None
 

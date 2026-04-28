@@ -1,21 +1,15 @@
-"""NovaStar Time Series API
+"""Time Series Service API"""
 
-Returns
--------
-TimeSeriesResponse
-    TimeSeriesResponse is a class
-"""
-
-from dataclasses import dataclass
+import dataclasses
 from typing import Any, Dict
 
-from novastar_client.session import NovaStarSession
 from novastar_client.models import TimeSeriesResponse
+from novastar_client.session import NovaStarSession
 
 
-@dataclass
+@dataclasses.dataclass
 class TimeSeriesAPI:
-    """TimeSeriesCatalogAPI getting a list of Response classes"""
+    """TimeSeriesAPI dataclass"""
 
     def __init__(self, session: NovaStarSession):
         self.session = session
@@ -33,12 +27,12 @@ class TimeSeriesAPI:
         }
 
     def get(self, *, raw: bool = False, **kwargs) -> TimeSeriesResponse:
-        """get timeseries
+        """NovaStarSession GET method
 
         Returns
         -------
         TimeSeriesResponse
-            TimeSeriesResponse class from timeseries returned json
+            TimeSeriesResponse dataclass defined in the models module.
         """
 
         params: Dict[str, str] = {**self.default_params, **kwargs}

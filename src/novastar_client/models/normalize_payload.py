@@ -1,26 +1,21 @@
-"""Normalize the payload dealing with {} or []
+"""Normalize the payload dealing with {} or []"""
 
-Returns
--------
-tuple[dict,list]
-    returning a tuple with a dictionary and list
-"""
-
-from typing import Any, Tuple, Dict, List
+from typing import Any, Dict, List, Tuple
 
 
 def normalize_payload_with_sequence(
     data: Any,
     sequence_key: str,
 ) -> Tuple[Dict, List]:
-    """normalize_payload_with_sequence returning (meta_dict, sequence_list)
+    """normalize_payload_with_sequence Normalize the payload dealing
+    with {} or [] (meta_dict, sequence_list)
 
     Parameters
     ----------
     data : Any
-        json payload from NovaStar
+        NovaStar json payload that may return a dictionary or list.
     sequence_key : str
-        NovaStar endpoint
+        NovaStar endpoint (e.g., ts, tscatalog, stations)
 
     Returns
     -------
@@ -29,6 +24,7 @@ def normalize_payload_with_sequence(
     sequence_list : List
         Sequence entries extracted from the payload.
     """
+
     if isinstance(data, Dict):
         return data, data.get(sequence_key, [])
     if isinstance(data, List):

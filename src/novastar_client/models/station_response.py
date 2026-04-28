@@ -1,13 +1,7 @@
-"""StationsResponse class defining the class for the 'stations' endpoint returned json
-
-Returns
--------
-StationsResonse
-    json to class return
-"""
+"""StationResponse"""
 
 from dataclasses import dataclass
-from typing import List
+from typing import Dict, List
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.normalize_payload import normalize_payload_with_sequence
@@ -15,13 +9,11 @@ from novastar_client.models.station import Station
 
 
 @dataclass
-class StationsResponse:
-    """StationsResponse class
+class StationResponse:
+    """StationResponse dataclass handling multiple parts of the NovaStar
+    Station returned payload.  Differences returned when 'jsonFormat' query parameter
+    set to 'bare' or 'named'.
 
-    Returns
-    -------
-    StationsRespnse class
-        dataclass with meta plus stations attributes
     """
 
     api_version: ApiVersion
@@ -31,18 +23,18 @@ class StationsResponse:
     sequence_key: str = "stations"
 
     @classmethod
-    def from_api(cls, data: dict) -> "StationsResponse":
-        """from_api convert json to class
+    def from_api(cls, data: Dict) -> "StationResponse":
+        """from_api classmethod parsing json to this dataclass
 
         Parameters
         ----------
-        data : dict
-            input json as a dict
+        data : Dict
+            NovaStar json payload described by Station (see NovaStar API Schemas).
 
         Returns
         -------
-        StationsResponse
-            class with attributes meta plus stations
+        StationResponse
+            ApiVersion, AttributionAndUsage, ResponseInfo, and Station dataclasses.
         """
 
         meta, data = normalize_payload_with_sequence(data, cls.sequence_key)  # type: ignore

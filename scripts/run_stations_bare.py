@@ -22,9 +22,11 @@ def main():
 
     client = NovaStarClient(config=config)
 
-    resp = client.stations.get(stationNumId="54")
+    resp = client.stations.get(stationNumId="2,54")
     # resp = client.stations.get(jsonFormat="bare", name="AAA ESTACION DE PRUEBA")
-    print(resp.stations)
+
+    for station in resp.stations:
+        print(station)
 
 
 if __name__ == "__main__" or __name__ == "main":

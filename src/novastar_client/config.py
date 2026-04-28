@@ -1,6 +1,4 @@
-"""
-src/novastar_client/config.py
-"""
+"""NovaStarConfig Class"""
 
 from dataclasses import dataclass
 

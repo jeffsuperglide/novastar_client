@@ -1,10 +1,4 @@
-"""TimeSeries dataclass
-
-Returns
--------
-TimeSeries
-    dataclass for the NovaStar time series endpoint return json payload
-"""
+"""TimeSeries dataclass"""
 
 from dataclasses import dataclass
 from typing import List, Optional, Dict, Any
@@ -12,13 +6,7 @@ from typing import List, Optional, Dict, Any
 
 @dataclass
 class TimeSeriesPoint:
-    """Single data point in a NovaStar time series.
-
-    Returns
-    -------
-    TimeSeriesPoint
-        Time Series Point dataclass
-    """
+    """Single data point (TSData) in a NovaStar time series."""
 
     dt: str  # e.g. "2026-03-28T11:00:00-05:00"
     flag: str  # 'f' in payload
@@ -28,6 +16,18 @@ class TimeSeriesPoint:
 
     @classmethod
     def from_api(cls, data: Dict[str, Any]) -> "TimeSeriesPoint":
+        """from_api classmethod parsing json to this dataclass
+
+        Parameters
+        ----------
+        data : Dict[str, Any]
+            NovaStar json payload described by TSData (see NovaStar API Schemas).
+
+        Returns
+        -------
+        TimeSeriesPoint
+            dataclass for the NovaStar TSData.
+        """
         return cls(
             dt=data["dt"],
             flag=data["f"],
@@ -39,14 +39,10 @@ class TimeSeriesPoint:
 
 @dataclass
 class TimeSeries:
-    """TimeSeries dataclass for the NovaStar ts endpoint JSON payload.
+    """TimeSeries dataclass for the NovaStar Time Series (ts) endpoint JSON payload.
 
     Represents the 'ts' object (metadata + list of data points).
 
-    Returns
-    -------
-    TimeSeries
-        Time Series dataclass
     """
 
     format: str
@@ -67,7 +63,10 @@ class TimeSeries:
     def from_api(cls, payload: Dict[str, Any]) -> "TimeSeries":
         """Build a TimeSeries from the 'ts' section of the API response.
 
-        Expects to receive data = response_json["ts"].
+        Returns
+        -------
+        TimeSeries
+            dataclass for the NovaStar Time Series (ts) endpoint returned json payload
         """
 
         return cls(

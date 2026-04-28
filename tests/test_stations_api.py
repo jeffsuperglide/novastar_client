@@ -4,10 +4,9 @@ from typing import Any
 from unittest.mock import MagicMock
 
 from novastar_client import NovaStarClient, NovaStarConfig
-from novastar_client.models import Station, StationsResponse
-
-from tests.stations_data_full import stations_full
+from novastar_client.models import Station, StationResponse
 from tests.stations_data_bare import stations_bare
+from tests.stations_data_full import stations_full
 
 
 def make_client_with_mocked_session(bare_payload: Any = None, full_payload: Any = None):
@@ -37,7 +36,7 @@ def test_stations_list_bare_returns_station_models():
 
     result = client.stations.get(jsonFormat="bare")
 
-    assert isinstance(result, StationsResponse)
+    assert isinstance(result, StationResponse)
     assert isinstance(result.stations[0], Station)
     assert result.stations[0].num_id == 1
     assert result.stations[0].name == "AAA ESTACION DE PRUEBA"
@@ -57,7 +56,7 @@ def test_stations_list_full_returns_stations_response():
 
     result = client.stations.get(jsonFormat="full")
 
-    assert isinstance(result, StationsResponse)
+    assert isinstance(result, StationResponse)
     assert result.api_version.api_dot_delimited_version == "1.13.1"
     assert len(result.stations) == 1
     assert result.stations[0].name == "AAA ESTACION DE PRUEBA"

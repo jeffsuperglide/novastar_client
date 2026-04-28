@@ -1,24 +1,12 @@
-"""Time Series Catalog dataclass
-
-Returns
--------
-TsCatalogItem
-    dataclass for the NovaStar tscatalog endpoint return json payload
-"""
+"""TsCatalogItem dataclass"""
 
 from dataclasses import dataclass
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 
 @dataclass
 class TsCatalogItem:
-    """TsCatalogItem
-
-    Returns
-    -------
-    TsCatalogItem
-        dataclass for the NovaStar Time Series Catalog returned endpoint json payload
-    """
+    """TsCatalogItem dataclass representing the NovaStar TimeSeriesCatalog"""
 
     loc_id: str
     data_type: str
@@ -75,6 +63,19 @@ class TsCatalogItem:
 
     @classmethod
     def from_api(cls, data: Dict[str, Any]) -> "TsCatalogItem":
+        """from_api classmethod parsing json to this dataclass
+
+        Parameters
+        ----------
+        data : Dict[str, Any]
+            NovaStar json payload described by Time Series Catalog
+            (tscatalog) (see NovaStar API Schemas).
+
+        Returns
+        -------
+        TsCatalogItem
+            dataclass for the NovaStar returned payload describing the TimeSeriesCatalog.
+        """
         return cls(
             loc_id=data["locId"],
             data_type=data["dataType"],
