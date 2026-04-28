@@ -5,6 +5,7 @@ and print the basic information"""
 import os
 
 from novastar_client import NovaStarClient, NovaStarConfig
+from novastar_client.models.timeseries_response import TimeSeriesResponse
 
 
 def main():
@@ -22,7 +23,7 @@ def main():
 
     client = NovaStarClient(config=config)
 
-    resp = client.timeseries.get(tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour")
+    resp: TimeSeriesResponse = client.timeseries.get(tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour")
 
     # props = resp.get_properties()
 
