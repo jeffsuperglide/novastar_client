@@ -4,10 +4,10 @@ from typing import Any
 from unittest.mock import MagicMock
 
 from novastar_client import NovaStarClient, NovaStarConfig
-from novastar_client.models import TsCatalogItem, TsCatalogResponse
+from novastar_client.models import Station, StationsResponse
 
-from novastar_client.tests.tscatalog_data_bare import tscatalog_bare
-from novastar_client.tests.tscatalog_data_full import tscatalog_full
+from tests.stations_data_full import stations_full
+from tests.stations_data_bare import stations_bare
 
 
 def make_client_with_mocked_session(bare_payload: Any = None, full_payload: Any = None):
@@ -28,41 +28,41 @@ def make_client_with_mocked_session(bare_payload: Any = None, full_payload: Any 
     return client, mock_get
 
 
-def test_tscatalog_list_bare_returns_station_models():
-    bare_payload = tscatalog_bare
+def test_stations_list_bare_returns_station_models():
+    bare_payload = stations_bare
 
     client, mock_get = make_client_with_mocked_session(
         bare_payload=bare_payload, full_payload=None
     )
 
-    result = client.tscatalog.get(jsonFormat="bare")
+    result = client.stations.get(jsonFormat="bare")
 
-    assert isinstance(result, TsCatalogResponse)
-    assert isinstance(result.tscatalog[0], TsCatalogItem)
-    assert result.tscatalog[0].loc_id == "1"
-    assert result.tscatalog[0].point_name == "AAA ESTACION DE PRUEBA"
+    assert isinstance(result, StationsResponse)
+    assert isinstance(result.stations[0], Station)
+    assert result.stations[0].num_id == 1
+    assert result.stations[0].name == "AAA ESTACION DE PRUEBA"
 
     mock_get.assert_called_once()
     called_path, called_kwargs = mock_get.call_args
-    assert called_path[0] == "tscatalog"
+    assert called_path[0] == "stations"
     assert called_kwargs["params"]["jsonFormat"] == "bare"
 
 
-def test_tscatalog_list_full_returns_tscatalog_response():
-    full_payload = tscatalog_full
+def test_stations_list_full_returns_stations_response():
+    full_payload = stations_full
 
     client, mock_get = make_client_with_mocked_session(
         bare_payload=None, full_payload=full_payload
     )
 
-    result = client.tscatalog.get(jsonFormat="full")
+    result = client.stations.get(jsonFormat="full")
 
-    assert isinstance(result, TsCatalogResponse)
+    assert isinstance(result, StationsResponse)
     assert result.api_version.api_dot_delimited_version == "1.13.1"
-    assert len(result.tscatalog) == 20
-    assert result.tscatalog[0].point_name == "AAA ESTACION DE PRUEBA"
+    assert len(result.stations) == 1
+    assert result.stations[0].name == "AAA ESTACION DE PRUEBA"
 
     mock_get.assert_called_once()
     called_path, called_kwargs = mock_get.call_args
-    assert called_path[0] == "tscatalog"
+    assert called_path[0] == "stations"
     assert called_kwargs["params"]["jsonFormat"] == "full"

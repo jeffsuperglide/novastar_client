@@ -2,9 +2,12 @@
 """Manually test script: call the Time Series endpoint with jsonFormat=bare
 and print the basic information"""
 
+from dataclasses import asdict
 import os
+from typing import Dict, List
 
 from novastar_client import NovaStarClient, NovaStarConfig
+from novastar_client.models.timeseries import TimeSeries, TimeSeriesPoint
 from novastar_client.models.timeseries_response import TimeSeriesResponse
 
 
@@ -23,7 +26,23 @@ def main():
 
     client = NovaStarClient(config=config)
 
-    resp: TimeSeriesResponse = client.timeseries.get(tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour")
+    resp: TimeSeriesResponse = client.timeseries.get(
+        tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour"
+    )
+
+    # TimeSeries
+    ts: TimeSeries = resp.timeseries
+    print(type(ts))
+
+    # TimeSeries Data: a list of TimeSeriesPoint
+    ts_data: List = ts.data
+    print(type(ts_data), len(ts_data))
+
+    ts_data_point: TimeSeriesPoint = ts.data[0]
+    print(type(ts_data_point))
+
+    ts_point_asdict: Dict = asdict(ts_data_point)
+    print(ts_point_asdict)
 
     # props = resp.get_properties()
 
@@ -38,5 +57,6 @@ def main():
     # get the fields in a list
     # print(resp.get_fields("dt", "value"))
 
-if __name__ == "__main__" or __name__ == "main":
+
+if __name__ in ("__main__", "main"):
     main()

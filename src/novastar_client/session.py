@@ -5,11 +5,12 @@ NovaStarSession Class
 from __future__ import annotations
 
 from typing import Any, Dict, Optional
+from urllib.parse import urlencode
 
 import requests
+
 from novastar_client.config import NovaStarConfig
 from novastar_client.exceptions import NovaStarAPIError
-from urllib.parse import quote_plus, urlencode
 
 
 class NovaStarSession:

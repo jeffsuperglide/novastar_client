@@ -1,0 +1,37 @@
+site_name: novastar_client
+site_url: https://jeffsuperglide.github.io/novastar_client/
+repo_url: https://github.com/jeffsuperglide/novastar_client
+repo_name: jeffsuperglide/novastar_client
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - API Reference: reference/
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - section-index
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [ src ]
+          options:
+            docstring_style: numpy
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: false
+            show_signature_annotations: true
+            members_order: source
+            show_submodules: true
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true

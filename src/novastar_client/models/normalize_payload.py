@@ -6,13 +6,13 @@ tuple[dict,list]
     returning a tuple with a dictionary and list
 """
 
-from typing import Any
+from typing import Any, Tuple, Dict, List
 
 
 def normalize_payload_with_sequence(
     data: Any,
     sequence_key: str,
-) -> tuple[dict, list]:
+) -> Tuple[Dict, List]:
     """normalize_payload_with_sequence returning (meta_dict, sequence_list)
 
     Parameters
@@ -24,12 +24,14 @@ def normalize_payload_with_sequence(
 
     Returns
     -------
-    tuple[dict, list]
-        tuple of dict and list with data or empty
+    meta_dict : Dict
+        Metadata extracted from the payload.
+    sequence_list : List
+        Sequence entries extracted from the payload.
     """
-    if isinstance(data, dict):
+    if isinstance(data, Dict):
         return data, data.get(sequence_key, [])
-    if isinstance(data, list):
+    if isinstance(data, List):
         return {}, data
 
     return {}, []

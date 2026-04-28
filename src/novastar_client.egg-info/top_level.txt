@@ -1,1 +1,2 @@
 novastar_client
+scripts
