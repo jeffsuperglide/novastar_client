@@ -1,7 +1,7 @@
 """StationResponse"""
 
-from dataclasses import dataclass
-from typing import Dict, List
+from dataclasses import asdict, dataclass
+from typing import Any, Dict, List
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.normalize_payload import normalize_payload_with_sequence
@@ -47,3 +47,14 @@ class StationResponse:
             response_info=ResponseInfo.from_api(meta.get("responseInfo", {})),
             stations=[Station.from_api(item) for item in data],
         )
+
+    def to_dict(self) -> List[Dict[str,Any]]:
+        """to_dict converts the Stations dataclass to a dictionary
+
+        Returns
+        -------
+        List[Dict[str,Any]]
+            Stations dataclass converted to a dictionary and returned
+            in a list.
+        """
+        return [asdict(station) for station in self.stations]

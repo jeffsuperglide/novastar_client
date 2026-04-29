@@ -25,9 +25,9 @@ def main():
     resp = client.stations.get(stationNumId="2,54")
     # resp = client.stations.get(jsonFormat="bare", name="AAA ESTACION DE PRUEBA")
 
-    for station in resp.stations:
+    for station in resp.stations:  # type: ignore
         print(station)
 
 
-if __name__ == "__main__" or __name__ == "main":
+if __name__ in ("__main__", __name__):
     main()

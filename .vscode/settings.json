@@ -1,5 +1,9 @@
 {
   "editor.defaultFormatter": "ms-python.black-formatter",
   "notebook.defaultFormatter": "ms-python.black-formatter",
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*.yml",
+    "https://www.schemastore.org/github-workflow.json": "file:///Users/rdcrljsg/Documents/repositories/novastar_client/.github/workflows/makedocs.yml"
+  }
 }

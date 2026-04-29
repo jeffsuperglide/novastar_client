@@ -76,8 +76,8 @@ class TimeSeriesResponse:
         """
         return [asdict(item) for item in self.timeseries.data]
 
-    def get_field(self, field_name: str) -> list:
-        """get_field getting a specific field from the TimeSeries data field
+    def get_data_field(self, field_name: str) -> List:
+        """get_data_field getting a specific field from the TimeSeries data field
 
         Parameters
         ----------
@@ -102,20 +102,20 @@ class TimeSeriesResponse:
             getattr(item, field_name, default_value) for item in self.timeseries.data
         ]
 
-    def get_fields(self, *field_names) -> List[Tuple[Any]]:
-        """get_fields getting a specific set of fields from the TimeSeries data field
+    def get_data_fields(self, *field_names) -> List[Dict[str, Any]]:
+        """get_data_fields getting a specific set of fields from the TimeSeries data field
 
         Returns
         -------
-        List[Tuple[Any]]
-            _description_
+        List[Dict[str,Any]]
+            The return is a list of dictionary objects defined by the input field names.
         """
 
         if not field_names:
             field_names = self.default_values
 
         invalid_fields = [
-            name for name in field_names if name not in self.default_values.keys()
+            name for name in field_names if name not in self.default_values
         ]
 
         if invalid_fields:
@@ -125,6 +125,9 @@ class TimeSeriesResponse:
             ) from Exception()
 
         return [
-            tuple(getattr(item, name) for name in field_names)
+            {
+                name: getattr(item, name, self.default_values[name])
+                for name in field_names
+            }
             for item in self.timeseries.data
         ]

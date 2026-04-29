@@ -27,5 +27,5 @@ def main():
     print(resp.tscatalog)
 
 
-if __name__ == "__main__" or __name__ == "main":
+if __name__ in ("__main__", __name__):
     main()

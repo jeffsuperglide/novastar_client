@@ -46,19 +46,6 @@ def main():
     ts_point_asdict: Dict = asdict(ts_data_point)
     print(ts_point_asdict)
 
-    # props = resp.get_properties()
-
-    # print(props)
-
-    # get as a dictionary
-    # print(resp.get_data("dt"))
-
-    # get the field in a list
-    # print(resp.get_field("dt"))
-
-    # get the fields in a list
-    # print(resp.get_fields("dt", "value"))
-
 
 if __name__ in ("__main__", "main"):
     main()
