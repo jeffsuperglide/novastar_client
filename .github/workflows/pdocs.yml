@@ -13,6 +13,12 @@ on:
     # security: restrict permissions for CI jobs.
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   # Build the documentation and upload the static HTML files as an artifact.
@@ -28,12 +34,13 @@ jobs:
 
       # ADJUST THIS: install all dependencies (including pdoc)
       - run: |
-          pip install --upgrade pip
-          pip install pdoc
-          pip install -e ".[dev]"
+          python -m pip install --upgrade pip
+          pip install . pdoc
+          
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
-      - run: pdoc ./src/novastar_client --output-directory ./docs
+      - run: |
+          pdoc novastar_client --output-directory ./docs
 
       - uses: actions/upload-pages-artifact@v4
         with:
@@ -44,9 +51,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
