@@ -1,11 +1,11 @@
 """TimeSeriesResponse"""
 
 from dataclasses import asdict, dataclass, fields
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any
 
 from novastar_client.exceptions import NovaStarAPIError
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
-from novastar_client.models.timeseries import TimeSeries
+from novastar_client.models.timeseries import TimeSeries, TimeSeriesProperties
 
 
 @dataclass
@@ -52,19 +52,26 @@ class TimeSeriesResponse:
             timeseries=TimeSeries.from_api(data.get("ts", {})),
         )
 
-    def get_properties(self) -> Dict:
+    def get_properties(self) -> TimeSeriesProperties:
+        """get_properties TimeSeries dataclass properties
+
+        Returns
+        -------
+        TimeSeriesProperties
+            TimeSeriesProperties dataclass
+        """
+
+        return self.timeseries.properties
+
+    def get_properties_asdict(self) -> Dict[str, Any]:
         """get_properties TimeSeries dataclass properties
 
         Returns
         -------
         Dict
-            dictionary of TimeSeries dataclass properties
+            Dictionary of TimeSeries dataclass properties
         """
-        return {
-            f.name: getattr(self.timeseries, f.name)
-            for f in fields(self.timeseries)
-            if f.name != "data"
-        }
+        return asdict(self.timeseries.properties)
 
     def get_data(self) -> list:
         """get_data TimeSeriesResponse data
