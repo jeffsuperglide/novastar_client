@@ -29,7 +29,7 @@ jobs:
       - run: pip install -e ".[dev]"
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
-      - run: pdocs novastar_client -o ./docs
+      - run: pdocs ./src/novastar_client -o ./docs
 
       - uses: actions/upload-pages-artifact@v4
         with:
