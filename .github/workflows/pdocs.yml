@@ -29,10 +29,10 @@ jobs:
       # ADJUST THIS: install all dependencies (including pdoc)
       - run: |
           pip install --upgrade pip
-          pip install pdoc
+          pip install -e ".[dev]"
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
-      - run: pdoc ./src/novastar_client --output-directory ./docs
+      - run: pdoc novastar_client --output-directory ./docs
 
       - uses: actions/upload-pages-artifact@v4
         with:
