@@ -8,6 +8,7 @@ on:
     # Alternative: only build for tags.
     # tags:
     #   - '*'
+  workflow_dispatch:
 
     # security: restrict permissions for CI jobs.
 permissions:
@@ -29,7 +30,6 @@ jobs:
       - run: |
           pip install --upgrade pip
           pip install pdoc
-          pip install -e .
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
       - run: pdocs novastar_client --output-directory ./docs
