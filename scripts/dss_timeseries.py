@@ -14,10 +14,12 @@ from novastar_client.models.timeseries_response import TimeSeriesResponse
 
 # establish a client and query the NovaStar API
 client = NovaStarClient()
+# periodStart="2026-04-27T13:00:00-05:00",
+# periodEnd="2026-04-28T13:00:00-05:00",
 resp: TimeSeriesResponse = client.timeseries.get(
     tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour",
-    periodStart="2026-04-27T13:00:00-05:00",
-    periodEnd="2026-04-28T13:00:00-05:00",
+    periodStart="now_minus-1Hour",
+    periodEnd="now",
 )
 
 # get the station information to populate the path and units
@@ -45,6 +47,7 @@ df["dt"] = pd.to_datetime(df["dt"])
 df["dt"] = df["dt"].dt.tz_convert("UTC")
 
 print(df["dt"].to_list())
+print(df["value"].to_list())
 
 # open the dss file, make a regular time series and put the data
 # dss: HecDss = HecDss("timeseries.dss")
