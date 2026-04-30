@@ -9,7 +9,7 @@ on:
     # tags:
     #   - '*'
 
-# security: restrict permissions for CI jobs.
+    # security: restrict permissions for CI jobs.
 permissions:
   contents: read
 
@@ -26,7 +26,9 @@ jobs:
           python-version: '3.12'
 
       # ADJUST THIS: install all dependencies (including pdoc)
-      - run: pip install pdocs
+      - run: |
+          pip install --upgrade pip
+          pip install pdocs
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
       - run: pdocs ./src/novastar_client -o ./docs/
