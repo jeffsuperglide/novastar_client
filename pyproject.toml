@@ -13,7 +13,7 @@ requires-python = ">=3.10"
 dependencies = ["requests>=2.31.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0", "pytest-cov>=4.0", "mypy>=1.0", "ruff>=0.4.0"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "mypy>=1.0", "ruff>=0.4.0", "pdocs"]
 
 # version set at highest __init__.py
 [tool.setuptools.dynamic]

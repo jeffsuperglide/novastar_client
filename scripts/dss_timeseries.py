@@ -1,12 +1,12 @@
 """Read time series data from the NovaStar API and load the data into DSS"""
 
 # imports
-# from datetime import datetime
-# from typing import Any, Dict, List
+from datetime import datetime
+from typing import Any, Dict, List
 
 import pandas as pd
 
-# from hecdss.hecdss import HecDss, RegularTimeSeries
+from hecdss.hecdss import HecDss, RegularTimeSeries
 from novastar_client import NovaStarClient
 
 # from novastar_client.models.timeseries import TimeSeries, TimeSeriesPoint
@@ -18,7 +18,7 @@ client = NovaStarClient()
 # periodEnd="2026-04-28T13:00:00-05:00",
 resp: TimeSeriesResponse = client.timeseries.get(
     tsid="54-5400.NovaStar5.WaterLevelRiver-Mean.1Hour",
-    periodStart="now_minus-1Hour",
+    periodStart="now_minus_1Day",
     periodEnd="now",
 )
 
@@ -46,14 +46,17 @@ df["dt"] = pd.to_datetime(df["dt"])
 # convert datetime to UTC
 df["dt"] = df["dt"].dt.tz_convert("UTC")
 
-print(df["dt"].to_list())
-print(df["value"].to_list())
+# print(df["dt"].to_list())
+# print(df["value"].to_list())
 
 # open the dss file, make a regular time series and put the data
-# dss: HecDss = HecDss("timeseries.dss")
-# tsc = RegularTimeSeries()
-# tsc.id = PATH
-# # tsc.values = values
-# tsc.times = dates
-# tsc.units = "ft"
-# tsc.data_type = "INST-VAL"
+dss: HecDss = HecDss("timeseries.dss")
+tsc = RegularTimeSeries()
+tsc.id = PATH
+tsc.values = df["value"].to_list()  # type: ignore
+tsc.times = df["dt"].to_list()
+tsc.units = "ft"
+tsc.data_type = "INST-VAL"
+
+dss.put(tsc)
+dss.close()
