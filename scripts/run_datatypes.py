@@ -25,20 +25,28 @@ def main():
 
     client = NovaStarClient(config=config)
 
-    resp: DataTypeResponse = client.datatypes.get(
-        sort="-name",
-        shefPhysicalElement="H*",
-    )
+    # resp: DataTypeResponse = client.datatypes.get(
+    #     # sort="-name",
+    #     # shefPhysicalElement="H*",
+    #     name="WaterLevelRiver"
+    # )
+    resp = client.datatypes.get(
+        # sort="-name",
+        # shefPhysicalElement="H*",
+        name="WaterLevelRiver"
+    ).filter_shef_only().datatypes[0].shef_physical_element
 
+    print(resp)
+    
     # length of all datatypes
-    print(len(resp.datatypes))
+    # print(len(resp.datatypes))
 
     # length of on SHEF datatypes
-    print(len(resp.filter_shef_only().datatypes))
+    # print(len(resp.filter_shef_only().datatypes))
 
     pp = pprint.PrettyPrinter(indent=4)
 
-    pp.pprint(resp.to_dict())
+    # pp.pprint(resp.to_dict())
 
 
 if __name__ in ("__main__", "main"):

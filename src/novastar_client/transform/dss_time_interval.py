@@ -1,5 +1,6 @@
 """Transform lookup module for DSS time intervals"""
 
+from difflib import get_close_matches
 from dataclasses import dataclass
 
 
@@ -101,3 +102,17 @@ class DssTimeInterval:
             if n == name:
                 return cls(seconds=s, name=n)
         raise ValueError(f"Unknown interval name: {name}")
+
+    @classmethod
+    def validate_time_string(cls, input_str: str) -> str | None:
+        """
+        Validates if input_str is in allowed list or finds closest match.
+        Returns the matched string or None if no close match found.
+        """
+        # Exact match
+        if input_str in cls.time_string:
+            return input_str
+
+        # Find close matches (cutoff=0.6 means 60% similarity threshold)
+        matches = get_close_matches(input_str, cls.time_string, n=1, cutoff=0.6)
+        return matches[0] if matches else None

@@ -15,7 +15,7 @@ class DssDataType(str, Enum):
     CONST = "CONST"
 
 
-class NovaStarDataType(str, Enum):
+class NovaStarStatisticType(str, Enum):
     MEAN = "Mean"
     MAX = "Max"
     MIN = "Min"
@@ -26,15 +26,15 @@ class NovaStarDataType(str, Enum):
     TIME_WEIGHTED_MEAN = "TimeWeightedMean"
 
 
-NOVASTAR_TO_DSS_TYPE: Final[dict[NovaStarDataType, DssDataType]] = {
-    NovaStarDataType.MEAN: DssDataType.PER_AVER,
-    NovaStarDataType.TIME_WEIGHTED_MEAN: DssDataType.PER_AVER,
-    NovaStarDataType.MAX: DssDataType.PER_MAX,
-    NovaStarDataType.MIN: DssDataType.PER_MIN,
-    NovaStarDataType.COUNT: DssDataType.FREQ,
-    NovaStarDataType.TOTAL: DssDataType.PER_CUM,
-    NovaStarDataType.LAST: DssDataType.INST_VAL,
-    NovaStarDataType.NEAR: DssDataType.INST_VAL,
+NOVASTAR_TO_DSS_TYPE: Final[dict[NovaStarStatisticType, DssDataType]] = {
+    NovaStarStatisticType.MEAN: DssDataType.PER_AVER,
+    NovaStarStatisticType.TIME_WEIGHTED_MEAN: DssDataType.PER_AVER,
+    NovaStarStatisticType.MAX: DssDataType.PER_MAX,
+    NovaStarStatisticType.MIN: DssDataType.PER_MIN,
+    NovaStarStatisticType.COUNT: DssDataType.FREQ,
+    NovaStarStatisticType.TOTAL: DssDataType.PER_CUM,
+    NovaStarStatisticType.LAST: DssDataType.INST_VAL,
+    NovaStarStatisticType.NEAR: DssDataType.INST_VAL,
 }
 
 
@@ -43,7 +43,7 @@ def ns5_type_to_dss(api_type: str) -> DssDataType:
         return DssDataType.INST_VAL
 
     try:
-        api_enum = NovaStarDataType(api_type)
+        api_enum = NovaStarStatisticType(api_type)
     except ValueError:
         return DssDataType.INST_VAL
 

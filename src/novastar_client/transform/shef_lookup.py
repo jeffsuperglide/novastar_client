@@ -11,10 +11,10 @@ from typing import IO, Any, ClassVar, Iterator
 
 @dataclass(frozen=True)
 class ShefCodeInfo:
-    parameter: str
-    unit: str
-    data_type: str
-    conversion: Any
+    parameter: str = ""
+    unit: str = ""
+    data_type: str = ""
+    conversion: Any = ""
 
 
 def _data_lines(f: IO, skip: int) -> Iterator[str]:

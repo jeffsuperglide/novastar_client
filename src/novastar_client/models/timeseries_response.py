@@ -1,6 +1,6 @@
 """TimeSeriesResponse"""
 
-from dataclasses import asdict, dataclass, fields
+from dataclasses import asdict, dataclass
 from typing import List, Dict, Any
 
 from novastar_client.exceptions import NovaStarAPIError
