@@ -2,10 +2,12 @@
 
 from difflib import get_close_matches
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass(frozen=True, slots=True)
 class DssTimeInterval:
+    """DSS time intervals; E-part"""
     seconds: int
     name: str
 
@@ -86,11 +88,37 @@ class DssTimeInterval:
     ]
 
     @classmethod
-    def all(cls) -> list["DssTimeInterval"]:
+    def all(cls) -> List["DssTimeInterval"]:
+        """all All the times in seconds and times as string
+
+
+        Returns
+        -------
+        List["DssTimeInterval"]
+            List of DssTimeInterval dataclass, seconds and time as string
+        """
         return [cls(seconds=s, name=n) for s, n in zip(cls.time_sec, cls.time_string)]
 
     @classmethod
     def from_seconds(cls, seconds: int) -> "DssTimeInterval":
+        """from_seconds
+
+
+        Parameters
+        ----------
+        seconds : int
+            The seconds as an integer.
+
+        Returns
+        -------
+        DssTimeInterval
+            The DSS time interval dataclass with seconds as interger and time as string.
+
+        Raises
+        ------
+        ValueError
+            Raises error for unknown interval.
+        """
         for s, n in zip(cls.time_sec, cls.time_string):
             if s == seconds:
                 return cls(seconds=s, name=n)
@@ -98,6 +126,23 @@ class DssTimeInterval:
 
     @classmethod
     def from_name(cls, name: str) -> "DssTimeInterval":
+        """from_name
+
+        Parameters
+        ----------
+        name : str
+            DSS time as a string.
+
+        Returns
+        -------
+        DssTimeInterval
+            The DSS time interval dataclass with seconds as interger and time as string.
+
+        Raises
+        ------
+        ValueError
+            Raises error for unknown interval.
+        """
         for s, n in zip(cls.time_sec, cls.time_string):
             if n == name:
                 return cls(seconds=s, name=n)

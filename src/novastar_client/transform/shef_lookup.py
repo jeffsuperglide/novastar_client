@@ -6,11 +6,12 @@ from csv import DictReader
 from dataclasses import dataclass
 from functools import lru_cache
 from importlib.resources import files
-from typing import IO, Any, ClassVar, Iterator
+from typing import IO, Any, Iterator
 
 
 @dataclass(frozen=True)
 class ShefCodeInfo:
+    """Shef code info dataclass"""
     parameter: str = ""
     unit: str = ""
     data_type: str = ""
@@ -18,7 +19,6 @@ class ShefCodeInfo:
 
 
 def _data_lines(f: IO, skip: int) -> Iterator[str]:
-    # Skip header/metadata lines
     for _ in range(skip):
         next(f, None)
 
@@ -30,6 +30,13 @@ def _data_lines(f: IO, skip: int) -> Iterator[str]:
 
 @lru_cache(maxsize=1)
 def load_shef_map() -> dict[str, ShefCodeInfo]:
+    """load_shef_map method loading the shef_parameters data file.
+
+    Returns
+    -------
+    dict[str, ShefCodeInfo]
+        Dictionary of shef code to ShefCodeInfo dataclass relation.
+    """
     fieldnames: list[str] = [
         "code",
         "parameter",
@@ -59,6 +66,24 @@ def load_shef_map() -> dict[str, ShefCodeInfo]:
 
 
 def get_shef_info(code: str) -> ShefCodeInfo:
+    """get_shef_info method using the load_shef_map() method.
+
+
+    Parameters
+    ----------
+    code : str
+        The shef code to lookup.
+
+    Returns
+    -------
+    ShefCodeInfo
+        The shef code information dataclass.
+
+    Raises
+    ------
+    KeyError
+            Raises error for unknown shef code.
+    """
     try:
         return load_shef_map()[code]
     except KeyError as e:

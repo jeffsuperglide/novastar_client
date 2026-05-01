@@ -70,7 +70,7 @@ tsc = RegularTimeSeries()
 tsc.id = PATH
 tsc.values = df["value"].to_list()  # type: ignore
 tsc.times = df["dt"].to_list()
-tsc.units = "ft"
+tsc.units = timeseries.units # type: ignore
 tsc.data_type = stat_type_ns5
 
 dss.put(tsc)

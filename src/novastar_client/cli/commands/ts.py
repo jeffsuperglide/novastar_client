@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-import typing
 from pprint import pformat
 
 import click

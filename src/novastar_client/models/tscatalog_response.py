@@ -1,8 +1,8 @@
 """TsCatalogResponse class defining the class for the 'tscatalog' endpoint returned json"""
 
 from collections import defaultdict
-from dataclasses import dataclass
-from typing import Dict, List
+from dataclasses import asdict, dataclass
+from typing import Any, Dict, List
 
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.normalize_payload import normalize_payload_with_sequence
@@ -72,3 +72,20 @@ class TsCatalogResponse:
             groups[cat.loc_id].append(cat)
 
         return [groups[k] for k in sorted(groups)]
+
+    def get_catalog_by_name(self) -> dict[str, list[dict[str, Any]]]:
+        """get_catalog_by_name method returns a dictionary with station names
+        as the key and a list of catalog dictionaries as the value.
+
+
+        Returns
+        -------
+        dict[str, list[dict[str,Any]]]
+            List of catalogs grouped by station name.
+        """
+        groups = defaultdict(list)
+
+        for cat in self.tscatalog:
+            groups[cat.station_name].append(asdict(cat))
+
+        return dict(sorted(groups.items()))

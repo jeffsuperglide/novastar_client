@@ -5,6 +5,7 @@ from typing import Final
 
 
 class DssDataType(str, Enum):
+    """DSS data type enumerations"""
     PER_AVER = "PER-AVER"
     PER_CUM = "PER-CUM"
     INST_VAL = "INST-VAL"
@@ -16,6 +17,7 @@ class DssDataType(str, Enum):
 
 
 class NovaStarStatisticType(str, Enum):
+    """NovaStar statistic type enumerations"""
     MEAN = "Mean"
     MAX = "Max"
     MIN = "Min"
@@ -39,6 +41,18 @@ NOVASTAR_TO_DSS_TYPE: Final[dict[NovaStarStatisticType, DssDataType]] = {
 
 
 def ns5_type_to_dss(api_type: str) -> DssDataType:
+    """ns5_type_to_dss translates NovaStar statistic types to DSS data types
+
+    Parameters
+    ----------
+    api_type : str
+        The NovaStar statistic type input.
+
+    Returns
+    -------
+    DssDataType
+        The DSS data type returned.
+    """
     if not api_type:
         return DssDataType.INST_VAL
 

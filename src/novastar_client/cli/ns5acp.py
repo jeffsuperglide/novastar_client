@@ -7,7 +7,7 @@ import click
 from novastar_client.cli.commands.stations import stations
 from novastar_client.cli.commands.ts import ts
 
-# from novastar_client.cli.commands.tscatalog import tscatalog
+from novastar_client.cli.commands.tscatalog import tscatalog
 from novastar_client.cli.context import AppContext
 from novastar_client.cli.logging import configure_logging, logging_options
 from novastar_client.cli.settings import CONTEXT_SETTINGS
@@ -83,4 +83,4 @@ def cli(
 
 cli.add_command(ts)
 cli.add_command(stations)
-# cli.add_command(tscatalog)
+cli.add_command(tscatalog)
