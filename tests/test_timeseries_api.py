@@ -1,7 +1,5 @@
 """Test for Stations"""
 
-from dataclasses import asdict
-from typing import Dict, List
 from unittest.mock import MagicMock
 
 from novastar_client import NovaStarClient, NovaStarConfig

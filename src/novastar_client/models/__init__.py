@@ -7,6 +7,8 @@ from novastar_client.models.tscatalog import TsCatalogItem
 from novastar_client.models.tscatalog_response import TsCatalogResponse
 from novastar_client.models.timeseries import TimeSeries
 from novastar_client.models.timeseries_response import TimeSeriesResponse
+from novastar_client.models.datatype import DataType
+from novastar_client.models.datatype_response import DataTypeResponse
 
 __all__ = [
     "ApiVersion",
@@ -18,4 +20,6 @@ __all__ = [
     "TsCatalogResponse",
     "TimeSeries",
     "TimeSeriesResponse",
+    "DataType",
+    "DataTypeResponse",
 ]
