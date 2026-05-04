@@ -1,13 +1,18 @@
 """Transform lookup module for DSS time intervals"""
 
+import logging
+
 from difflib import get_close_matches
 from dataclasses import dataclass
 from typing import List
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True, slots=True)
 class DssTimeInterval:
     """DSS time intervals; E-part"""
+
     seconds: int
     name: str
 
@@ -100,7 +105,7 @@ class DssTimeInterval:
         return [cls(seconds=s, name=n) for s, n in zip(cls.time_sec, cls.time_string)]
 
     @classmethod
-    def from_seconds(cls, seconds: int) -> "DssTimeInterval":
+    def from_seconds(cls, seconds: int) -> "DssTimeInterval | None":
         """from_seconds
 
 
@@ -111,21 +116,18 @@ class DssTimeInterval:
 
         Returns
         -------
-        DssTimeInterval
+        DssTimeInterval | None
             The DSS time interval dataclass with seconds as interger and time as string.
-
-        Raises
-        ------
-        ValueError
-            Raises error for unknown interval.
         """
         for s, n in zip(cls.time_sec, cls.time_string):
             if s == seconds:
                 return cls(seconds=s, name=n)
-        raise ValueError(f"Unknown interval seconds: {seconds}")
+
+        logger.warning("Unknown interval seconds: %d", seconds)
+        return None
 
     @classmethod
-    def from_name(cls, name: str) -> "DssTimeInterval":
+    def from_name(cls, name: str) -> "DssTimeInterval | None":
         """from_name
 
         Parameters
@@ -135,18 +137,15 @@ class DssTimeInterval:
 
         Returns
         -------
-        DssTimeInterval
+        DssTimeInterval | None
             The DSS time interval dataclass with seconds as interger and time as string.
-
-        Raises
-        ------
-        ValueError
-            Raises error for unknown interval.
         """
         for s, n in zip(cls.time_sec, cls.time_string):
             if n == name:
                 return cls(seconds=s, name=n)
-        raise ValueError(f"Unknown interval name: {name}")
+
+        logger.warning("Unknown interval name: %s", name)
+        return None
 
     @classmethod
     def validate_time_string(cls, input_str: str) -> str | None:
@@ -156,8 +155,17 @@ class DssTimeInterval:
         """
         # Exact match
         if input_str in cls.time_string:
+            logger.info("Exact match found: %s", cls.time_string)
             return input_str
 
         # Find close matches (cutoff=0.6 means 60% similarity threshold)
         matches = get_close_matches(input_str, cls.time_string, n=1, cutoff=0.6)
-        return matches[0] if matches else None
+
+        close_match = matches[0] if matches else None
+
+        if close_match is None:
+            logger.warning("No match found")
+        else:
+            logger.info("Match found with 60%% similarity threashold: %s", close_match)
+
+        return close_match

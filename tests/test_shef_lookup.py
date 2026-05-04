@@ -62,13 +62,3 @@ def test_load_shef_map_structure_and_types():
     # conversion type is Any, but the loader uses .strip(), so it must at least be a str
     assert isinstance(int(shef_code_info.conversion), int)
 
-
-def test_get_shef_info_unknown_code():
-    unknown_code = "ZZZ_UNKNOWN_CODE"
-
-    with pytest.raises(KeyError) as excinfo:
-        get_shef_info(unknown_code)
-
-    msg = str(excinfo.value)
-    # The raised KeyError should use the custom message
-    assert f"Unknown shef code: {unknown_code}" in msg

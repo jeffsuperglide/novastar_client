@@ -33,7 +33,7 @@ class TimeSeriesCatalogAPI:
             "xmlFormat": "full",
         }
 
-    def get(self, *, raw: bool = False, **kwargs) -> TsCatalogResponse:
+    def get(self, *, raw: bool = False, **kwargs) -> TsCatalogResponse | None:
         """NovaStarSession GET method
 
         Returns
@@ -44,6 +44,9 @@ class TimeSeriesCatalogAPI:
 
         params: Dict[str, str] = {**self.default_params, **kwargs}
         data: Any = self.session.get(self.path, params=params)
+
+        if data is None:
+            return None
 
         if raw:
             return data

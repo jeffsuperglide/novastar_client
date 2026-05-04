@@ -40,7 +40,7 @@ jobs:
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
       - run: |
-          pdoc novastar_client --output-directory ./docs
+          pdoc --output-directory ./docs/ novastar_client novastar_client.cli
 
       - uses: actions/upload-pages-artifact@v4
         with:

@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import logging
 from typing import Any, Dict, Optional
 from urllib.parse import urlencode
 
 import requests
 
+import logging
 from novastar_client.config import NovaStarConfig
-from novastar_client.exceptions import NovaStarAPIError
+
+logger = logging.getLogger(__name__)
 
 
 class NovaStarSession:
@@ -65,35 +68,46 @@ class NovaStarSession:
         NovaStarAPIError
             NovaStar Error
         """
-        url = f"{self.api_root}/{path.lstrip('/')}"
 
+        url = f"{self.api_root}/{path.lstrip('/')}"
         _params = urlencode((params or {}), doseq=True)
 
-        response = self.session.get(
-            url,
-            params=_params,
-            timeout=self.config.timeout,
-            verify=self.config.verify_ssl,
-        )
         try:
-            response.raise_for_status()
-        except requests.HTTPError as exc:
-            # Try to parse JSON if available
-            parsed = None
-            try:
-                parsed = response.json()
-            except ValueError:
-                pass
+            response = self.session.get(
+                url,
+                params=_params,
+                timeout=self.config.timeout,
+                verify=self.config.verify_ssl,
+            )
 
-            retryable = 500 <= response.status_code < 600
+            if not response.ok:
+                parsed = None
+                try:
+                    parsed = response.json()
+                except ValueError:
+                    pass
 
-            raise NovaStarAPIError(
-                "NovaStar API request failed",
-                status_code=response.status_code,
-                url=url,
-                response_body=response.text,
-                parsed_body=parsed,
-                retryable=retryable,
-            ) from exc
+                logger.warning(
+                    "NovaStar API returned error status",
+                    extra={
+                        "status_code": response.status_code,
+                        "url": url,
+                        "parsed_body": parsed,
+                        "response_body": response.text[:500],
+                    },
+                )
+                return None
 
-        return response.json()
+            return response.json()
+
+        except requests.RequestException:
+            logger.exception(
+                "NovaStar HTTP request failed", extra={"url": url, "params": params}
+            )
+
+            return None
+
+        except ValueError:
+            logger.exception("NovaStar API returned invalid JSON", extra={"url": url})
+
+            return None

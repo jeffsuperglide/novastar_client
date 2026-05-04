@@ -3,18 +3,20 @@
 from __future__ import annotations
 
 import logging
-from pprint import pformat
+import pprint
 
 import click
 
-from novastar_client import NovaStarClient, NovaStarConfig
-from novastar_client.cli.context import AppContext
-from novastar_client.cli.settings import CONTEXT_SETTINGS
-from novastar_client.models.timeseries_response import TimeSeriesResponse
+from ...client import NovaStarClient
+from ...config import NovaStarConfig
+from ..context import AppContext
+from ..settings import CONTEXT_SETTINGS
 
 logger = logging.getLogger(__name__)
 
 pass_app = click.make_pass_decorator(AppContext)
+
+pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
@@ -35,14 +37,8 @@ pass_app = click.make_pass_decorator(AppContext)
     help="Period end date/time using format YYYY-MM-DDThh:mm:ss or "
     "YYYY-MM-DDThh:mm:ss-06:00 (default is the current time).",
 )
-@click.option(
-    "--pretty-print",
-    is_flag=True,
-)
-@click.option(
-    "--stream",
-    is_flag=True,
-)
+@click.option("--pretty-print", is_flag=True, help="Pretty print the json response.")
+@click.option("--stream", is_flag=True, help="Stream the json response per line.")
 @pass_app
 def ts(
     app: AppContext,
@@ -71,7 +67,11 @@ def ts(
     if period_end is not None:
         args["periodEnd"] = period_end
 
-    resp: TimeSeriesResponse = client.timeseries.get(**args)
+    resp = client.timeseries.get(**args)
+
+    if resp is None:
+        logger.warning("Timeseries command line interface returned %s", resp)
+        return None
 
     dt_values = resp.get_data_fields("dt", "value")
 
@@ -79,6 +79,6 @@ def ts(
         for item in dt_values:
             click.echo(item)
     elif pretty_print:
-        click.echo(pformat(dt_values))
+        click.echo(pp.pformat(dt_values))
     else:
         click.echo(dt_values)

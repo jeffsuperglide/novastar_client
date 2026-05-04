@@ -1,10 +1,13 @@
 """Time Series Service API"""
 
+import logging
 import dataclasses
 from typing import Any, Dict
 
 from novastar_client.models import TimeSeriesResponse
 from novastar_client.session import NovaStarSession
+
+logging.getLogger(__name__)
 
 
 @dataclasses.dataclass
@@ -26,7 +29,7 @@ class TimeSeriesAPI:
             "readData": str(True).lower(),
         }
 
-    def get(self, *, raw: bool = False, **kwargs) -> TimeSeriesResponse:
+    def get(self, *, raw: bool = False, **kwargs) -> TimeSeriesResponse | None:
         """NovaStarSession GET method
 
         Returns
@@ -37,6 +40,9 @@ class TimeSeriesAPI:
 
         params: Dict[str, str] = {**self.default_params, **kwargs}
         data: Any = self.session.get(self.path, params=params)
+
+        if data is None:
+            return None
 
         if raw:
             return data

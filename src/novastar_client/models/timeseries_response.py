@@ -1,11 +1,13 @@
 """TimeSeriesResponse"""
 
+import logging
 from dataclasses import asdict, dataclass
 from typing import List, Dict, Any
 
-from novastar_client.exceptions import NovaStarAPIError
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.timeseries import TimeSeries, TimeSeriesProperties
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -83,7 +85,7 @@ class TimeSeriesResponse:
         """
         return [asdict(item) for item in self.timeseries.data]
 
-    def get_data_field(self, field_name: str) -> List:
+    def get_data_field(self, field_name: str) -> List | None:
         """get_data_field getting a specific field from the TimeSeries data field
 
         Parameters
@@ -98,10 +100,8 @@ class TimeSeriesResponse:
         """
 
         if field_name not in self.default_values:
-            raise NovaStarAPIError(
-                f"Invalid field_name: {field_name}.  "
-                f"Expected one of: {', '.join(self.default_values)}"
-            ) from Exception()
+            logger.warning("Field name '%s' not valid.", field_name)
+            return None
 
         default_value = self.default_values[field_name]
 
@@ -118,23 +118,26 @@ class TimeSeriesResponse:
             The return is a list of dictionary objects defined by the input field names.
         """
 
+        # get field names if None.
         if not field_names:
             field_names = self.default_values
 
+        # Determine if there are any invalid field names.
         invalid_fields = [
             name for name in field_names if name not in self.default_values
         ]
+        # Get only the valid field names
+        valid_names = [name for name in field_names if name in self.default_values]
 
         if invalid_fields:
-            raise NovaStarAPIError(
-                f"Invalid field name(s): {invalid_fields}.  "
-                f"Expected one or more of: {self.default_values.keys()}"
-            ) from Exception()
+            logger.warning(
+                "Field name(s) are not valid", extra={"invalid": invalid_fields}
+            )
 
         return [
             {
                 name: getattr(item, name, self.default_values[name])
-                for name in field_names
+                for name in valid_names
             }
             for item in self.timeseries.data
         ]

@@ -24,7 +24,7 @@ class StationsAPI:
             "xmlFormat": "full",
         }
 
-    def get(self, *, raw: bool = False, **kwargs) -> StationResponse | Dict:
+    def get(self, *, raw: bool = False, **kwargs) -> StationResponse | Dict | None:
         """NovaStarSession GET method providing raw json or StationResponse
 
         Returns
@@ -39,7 +39,13 @@ class StationsAPI:
         params: Dict[str, str] = {**self.default_params, **kwargs}
         data: Any = self.session.get(self.path, params=params)
 
+        # Handle data problem.
+        if data is None:
+            return None
+
+        # Get the raw json.
         if raw:
             return data
 
+        # Get the StationResponse dataclass.
         return StationResponse.from_api(data)

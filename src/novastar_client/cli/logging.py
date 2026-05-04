@@ -38,13 +38,25 @@ def logging_options(func: F) -> F:
     return func
 
 
-def configure_logging(verbose: int, quiet: int) -> None:
-    """configure_logging logging configuration method.
+def _resolve_log_level(verbose: int, quiet: int) -> int:
+    delta = verbose - quiet
+
+    if delta <= -1:
+        return logging.ERROR
+    if delta == 0:
+        return logging.WARNING
+    if delta == 1:
+        return logging.INFO
+    return logging.DEBUG
+
+
+def configure_cli_logging(verbose: int, quiet: int) -> None:
+    """configure_cli_logging logging configuration method.
 
     The default logging level is logging.WARNING only showing warning
     and errors.  There is a delta determined between the verbose count (int)
     and the quiet count (int) that determines the logging level.  Adding
-    a verbose flag raises the count therefore raising the 
+    a verbose flag raises the count therefore raising the
 
     Parameters
     ----------
@@ -53,19 +65,16 @@ def configure_logging(verbose: int, quiet: int) -> None:
     quiet : int
         Setting the level of who quiet the logging should be.
     """
-    level = logging.WARNING
-    delta = verbose - quiet
 
-    if delta <= -1:
-        level = logging.ERROR
-    elif delta == 0:
-        level = logging.WARNING
-    elif delta == 1:
-        level = logging.INFO
-    elif delta >= 2:
-        level = logging.DEBUG
+    level = _resolve_log_level(verbose, quiet)
 
-    logging.basicConfig(
-        level=level,
-        format="%(levelname)s %(name)s: %(message)s",
+    root = logging.getLogger()
+    root.handlers.clear()
+
+    handler = logging.StreamHandler()
+    handler.setFormatter(
+        logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s")
     )
+
+    root.setLevel(level)
+    root.addHandler(handler)

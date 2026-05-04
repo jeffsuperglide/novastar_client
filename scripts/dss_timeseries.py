@@ -25,7 +25,11 @@ timeseries = resp.timeseries
 props = resp.get_properties()
 
 time_interval = timeseries.data_interval
-time_interval_match = DssTimeInterval.validate_time_string(time_interval)
+time_interval_match = (
+    "1Second"
+    if time_interval.endswith("IrregSecond")
+    else DssTimeInterval.validate_time_string(time_interval)
+)
 
 data_type, stat_type = timeseries.data_type.split("-")
 shef_code = props.point_type_shef_parameter_code
@@ -70,7 +74,7 @@ tsc = RegularTimeSeries()
 tsc.id = PATH
 tsc.values = df["value"].to_list()  # type: ignore
 tsc.times = df["dt"].to_list()
-tsc.units = timeseries.units # type: ignore
+tsc.units = timeseries.units  # type: ignore
 tsc.data_type = stat_type_ns5
 
 dss.put(tsc)
