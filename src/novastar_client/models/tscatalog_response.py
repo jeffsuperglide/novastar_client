@@ -39,16 +39,14 @@ class TsCatalogResponse:
 
         meta, data = normalize_payload_with_sequence(data, cls.sequence_key)  # type: ignore
 
-        if data is not None:
-            return cls(
-                api_version=ApiVersion.from_api(meta.get("apiVersion", {})),
-                attribution_and_usage=AttributionAndUsage.from_api(
-                    meta.get("attributionAndUsage", {})
-                ),
-                response_info=ResponseInfo.from_api(meta.get("responseInfo", {})),
-                tscatalog=[TsCatalogItem.from_api(item) for item in data],
-            )
-        
+        return cls(
+            api_version=ApiVersion.from_api(meta.get("apiVersion", {})),
+            attribution_and_usage=AttributionAndUsage.from_api(
+                meta.get("attributionAndUsage", {})
+            ),
+            response_info=ResponseInfo.from_api(meta.get("responseInfo", {})),
+            tscatalog=[TsCatalogItem.from_api(item) for item in data],
+        )
 
     def get_tsids(self) -> List[str]:
         """get_tsids class method

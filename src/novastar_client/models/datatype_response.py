@@ -54,7 +54,7 @@ class DataTypeResponse:
         """
         return [asdict(datatype) for datatype in self.datatypes]
 
-    def filter_shef_only(self) -> "DataTypeResponse":
+    def filter_shef_only(self) -> "DataTypeResponse | None":
         """filter_shef_only returns only data types SHEF.
 
         Returns
@@ -65,4 +65,4 @@ class DataTypeResponse:
         for i in range(len(self.datatypes) - 1, -1, -1):
             if self.datatypes[i].data_type_source_type != "SHEF":
                 self.datatypes.pop(i)
-        return self
+            return self

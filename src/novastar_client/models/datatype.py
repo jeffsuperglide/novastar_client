@@ -1,7 +1,6 @@
 """DataType dataclass"""
 
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -11,11 +10,11 @@ class DataType:
     name: str
     is_valid: bool
     include_in_operator_station_summary: bool
-    display_name: Optional[str] = None
-    description: Optional[str] = None
-    data_type_source_type: Optional[str] = None
-    is_valid_error: Optional[str] = None
-    shef_physical_element: Optional[str] = None
+    display_name: str = ""
+    description: str = ""
+    data_type_source_type: str = ""
+    is_valid_error: str = ""
+    shef_physical_element: str = ""
 
     @classmethod
     def from_api(cls, data: dict) -> "DataType":
@@ -39,6 +38,6 @@ class DataType:
             data_type_source_type=data["dataTypeSourceType"],
             include_in_operator_station_summary=data["includeInOperatorStationSummary"],
             is_valid=data["isValid"],
-            is_valid_error=data.get("isValidError"),
+            is_valid_error=data["isValidError"],
             shef_physical_element=data["shefPhysicalElement"],
         )

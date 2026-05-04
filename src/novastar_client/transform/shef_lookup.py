@@ -70,7 +70,7 @@ def load_shef_map() -> dict[str, ShefCodeInfo]:
         }
 
 
-def get_shef_info(code: str) -> ShefCodeInfo | None:
+def get_shef_info(code: str) -> ShefCodeInfo:
     """get_shef_info method using the load_shef_map() method.
 
 
@@ -93,4 +93,4 @@ def get_shef_info(code: str) -> ShefCodeInfo | None:
         return load_shef_map()[code]
     except KeyError:
         logger.warning("Unknown shef code: %s", code)
-        return None
+        return ShefCodeInfo()
