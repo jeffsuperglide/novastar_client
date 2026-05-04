@@ -9,14 +9,16 @@ import click
 
 import pprint
 
-from novastar_client.cli.settings import CONTEXT_SETTINGS
-from novastar_client.cli.context import AppContext
-from novastar_client.client import NovaStarClient
-from novastar_client.config import NovaStarConfig
+from ..settings import CONTEXT_SETTINGS
+from ..context import AppContext
+from ...client import NovaStarClient
+from ...config import NovaStarConfig
 
 logger = logging.getLogger(__name__)
 
 pass_app = click.make_pass_decorator(AppContext)
+
+pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
@@ -29,11 +31,10 @@ pass_app = click.make_pass_decorator(AppContext)
 @click.option(
     "--group-name",
     is_flag=True,
+    help="Group the output by station name returning a list of "
+    "each time series catalog description.",
 )
-@click.option(
-    "--pretty-print",
-    is_flag=True,
-)
+@click.option("--pretty-print", is_flag=True, help="Pretty print the json response.")
 @pass_app
 def tscatalog(
     app: AppContext,
@@ -71,7 +72,10 @@ def tscatalog(
 
     resp = client.tscatalog.get(stationNumId=station_numbers)
 
-    pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
+    if resp is None:
+        logger.warning("Timeseries command line interface returned %s", resp)
+        return None
+
     if group_name:
         cat_by_name = resp.get_catalog_by_name()
         if pretty_print:

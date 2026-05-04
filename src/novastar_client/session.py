@@ -68,47 +68,46 @@ class NovaStarSession:
         NovaStarAPIError
             NovaStar Error
         """
-        url = f"{self.api_root}/{path.lstrip('/')}"
 
+        url = f"{self.api_root}/{path.lstrip('/')}"
         _params = urlencode((params or {}), doseq=True)
 
-        response = self.session.get(
-            url,
-            params=_params,
-            timeout=self.config.timeout,
-            verify=self.config.verify_ssl,
-        )
         try:
-            response.raise_for_status()
-        except requests.HTTPError as exc:
-            # Try to parse JSON if available
-            parsed = None
-            try:
-                parsed = response.json()
-            except ValueError:
-                pass
-
-            retryable = 500 <= response.status_code < 600
-
-            # raise NovaStarAPIError(
-            #     "NovaStar API request failed",
-            #     status_code=response.status_code,
-            #     url=url,
-            #     response_body=response.text,
-            #     parsed_body=parsed,
-            #     retryable=retryable,
-            # ) from exc
-            logging.warning(
-                "NovaStar API request failed",
-                extra={
-                    "status_code": response.status_code,
-                    "url": url,
-                    "response_body": response.text,
-                    "parsed_body": parsed,
-                    "retryable": retryable,
-                    "original_exception": exc,
-                },
+            response = self.session.get(
+                url,
+                params=_params,
+                timeout=self.config.timeout,
+                verify=self.config.verify_ssl,
             )
-            return {}
 
-        return response.json()
+            if not response.ok:
+                parsed = None
+                try:
+                    parsed = response.json()
+                except ValueError:
+                    pass
+
+                logger.warning(
+                    "NovaStar API returned error status",
+                    extra={
+                        "status_code": response.status_code,
+                        "url": url,
+                        "parsed_body": parsed,
+                        "response_body": response.text[:500],
+                    },
+                )
+                return None
+
+            return response.json()
+
+        except requests.RequestException:
+            logger.exception(
+                "NovaStar HTTP request failed", extra={"url": url, "params": params}
+            )
+
+            return None
+
+        except ValueError:
+            logger.exception("NovaStar API returned invalid JSON", extra={"url": url})
+
+            return None

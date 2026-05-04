@@ -12,3 +12,6 @@ class NovaStarConfig:
     api_version: str = "v1"
     timeout: int = 30
     verify_ssl: bool = True
+
+    log_level: str = "INFO"
+    log_format: str = "%(asctime)s %(name)s %(levelname)s: %(message)s"

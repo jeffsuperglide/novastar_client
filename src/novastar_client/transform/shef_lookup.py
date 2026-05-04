@@ -2,16 +2,21 @@
 
 from __future__ import annotations
 
+import logging
+
 from csv import DictReader
 from dataclasses import dataclass
 from functools import lru_cache
 from importlib.resources import files
 from typing import IO, Any, Iterator
 
+logger = logging.getLogger(__name__)
+
 
 @dataclass(frozen=True)
 class ShefCodeInfo:
     """Shef code info dataclass"""
+
     parameter: str = ""
     unit: str = ""
     data_type: str = ""
@@ -65,7 +70,7 @@ def load_shef_map() -> dict[str, ShefCodeInfo]:
         }
 
 
-def get_shef_info(code: str) -> ShefCodeInfo:
+def get_shef_info(code: str) -> ShefCodeInfo | None:
     """get_shef_info method using the load_shef_map() method.
 
 
@@ -86,5 +91,6 @@ def get_shef_info(code: str) -> ShefCodeInfo:
     """
     try:
         return load_shef_map()[code]
-    except KeyError as e:
-        raise KeyError(f"Unknown shef code: {code}") from e
+    except KeyError:
+        logger.warning("Unknown shef code: %s", code)
+        return None
