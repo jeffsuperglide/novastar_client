@@ -21,6 +21,8 @@ client = NovaStarClient()
 
 
 def main():
+    # open the dss file, make a regular time series and put the data
+    dss: HecDss = HecDss("timeseries.dss")
 
     catalog = client.tscatalog.get(stationNumId="1")
 
@@ -93,8 +95,6 @@ def main():
                 # convert datetime to UTC
                 df["dt"] = df["dt"].dt.tz_convert("UTC")
 
-                # open the dss file, make a regular time series and put the data
-                dss: HecDss = HecDss("timeseries.dss")
                 tsc = RegularTimeSeries()
                 tsc.id = path
                 tsc.values = df["value"].to_list()  # type: ignore
@@ -103,7 +103,7 @@ def main():
                 tsc.data_type = stat_type_ns5
 
                 dss.put(tsc)
-                dss.close()
+    dss.close()
 
 
 if __name__ == "__main__":
