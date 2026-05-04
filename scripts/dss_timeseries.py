@@ -24,7 +24,7 @@ def main():
     # open the dss file, make a regular time series and put the data
     dss: HecDss = HecDss("timeseries.dss")
 
-    catalog = client.tscatalog.get(stationNumId="1")
+    catalog = client.tscatalog.get(stationNumId="2")
 
     if catalog is None:
         return None

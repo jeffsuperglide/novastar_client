@@ -38,6 +38,6 @@ class DataType:
             data_type_source_type=data["dataTypeSourceType"],
             include_in_operator_station_summary=data["includeInOperatorStationSummary"],
             is_valid=data["isValid"],
-            is_valid_error=data["isValidError"],
+            is_valid_error=data.get("isValidError", ""),
             shef_physical_element=data["shefPhysicalElement"],
         )
