@@ -71,13 +71,16 @@ def tscatalog(
 
     resp = client.tscatalog.get(stationNumId=station_numbers)
 
+    pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
     if group_name:
         cat_by_name = resp.get_catalog_by_name()
         if pretty_print:
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(cat_by_name)
-            click.echo(cat_by_name)
+            click.echo(pp.pformat(cat_by_name))
         else:
             click.echo(cat_by_name)
     else:
-        click.echo(resp.get_tsids())
+        tsids = resp.get_tsids()
+        if pretty_print:
+            click.echo(pp.pformat((tsids)))
+        else:
+            click.echo(resp.get_tsids())

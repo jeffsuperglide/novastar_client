@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import logging
 from typing import Any, Dict, Optional
 from urllib.parse import urlencode
 
 import requests
 
+import logging
 from novastar_client.config import NovaStarConfig
-from novastar_client.exceptions import NovaStarAPIError
+
+logger = logging.getLogger(__name__)
 
 
 class NovaStarSession:
@@ -87,13 +90,25 @@ class NovaStarSession:
 
             retryable = 500 <= response.status_code < 600
 
-            raise NovaStarAPIError(
+            # raise NovaStarAPIError(
+            #     "NovaStar API request failed",
+            #     status_code=response.status_code,
+            #     url=url,
+            #     response_body=response.text,
+            #     parsed_body=parsed,
+            #     retryable=retryable,
+            # ) from exc
+            logging.warning(
                 "NovaStar API request failed",
-                status_code=response.status_code,
-                url=url,
-                response_body=response.text,
-                parsed_body=parsed,
-                retryable=retryable,
-            ) from exc
+                extra={
+                    "status_code": response.status_code,
+                    "url": url,
+                    "response_body": response.text,
+                    "parsed_body": parsed,
+                    "retryable": retryable,
+                    "original_exception": exc,
+                },
+            )
+            return {}
 
         return response.json()

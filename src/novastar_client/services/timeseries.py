@@ -1,10 +1,13 @@
 """Time Series Service API"""
 
+import logging
 import dataclasses
 from typing import Any, Dict
 
 from novastar_client.models import TimeSeriesResponse
 from novastar_client.session import NovaStarSession
+
+logging.getLogger(__name__)
 
 
 @dataclasses.dataclass

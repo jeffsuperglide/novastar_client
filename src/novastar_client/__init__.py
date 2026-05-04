@@ -4,6 +4,8 @@ Importing all the modules
 
 __version__ = "0.1.0"
 
+import logging
+
 from novastar_client import models
 from novastar_client import services
 from novastar_client import transform
@@ -22,3 +24,8 @@ __all__ = [
     "NovaStarSession",
     "NovaStarAPIError",
 ]
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(name)s %(levelname)s: %(message)s",
+)

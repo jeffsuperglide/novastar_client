@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from pprint import pformat
+import sys
 
 import click
 
@@ -71,7 +72,11 @@ def ts(
     if period_end is not None:
         args["periodEnd"] = period_end
 
-    resp: TimeSeriesResponse = client.timeseries.get(**args)
+    try:
+        resp = client.timeseries.get(**args)
+    except Exception:
+        logging.warning("Timeseries issues")
+        sys.exit(0)
 
     dt_values = resp.get_data_fields("dt", "value")
 

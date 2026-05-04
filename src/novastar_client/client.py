@@ -1,11 +1,15 @@
 """NovaStarClient Class"""
 
+import logging
+
 from novastar_client.config import NovaStarConfig
 from novastar_client.services.station import StationsAPI
 from novastar_client.services.timeseries import TimeSeriesAPI
 from novastar_client.services.tscatalog import TimeSeriesCatalogAPI
 from novastar_client.services.datatype import DataTypesAPI
 from novastar_client.session import NovaStarSession
+
+logger = logging.getLogger(__name__)
 
 
 class NovaStarClient:
@@ -19,6 +23,14 @@ class NovaStarClient:
     ):
 
         self.config = config or NovaStarConfig()
+        logger.info(
+            "NovaStar configurations: base url=%s api root=%s api version=%s timeout=%s verify ssl=%s",
+            self.config.base_url,
+            self.config.api_root,
+            self.config.api_version,
+            self.config.timeout,
+            self.config.verify_ssl,
+        )
         self.session = NovaStarSession(self.config, auth_token=auth_token)
 
         self.stations = StationsAPI(self.session)

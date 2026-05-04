@@ -1,11 +1,14 @@
 """TimeSeriesResponse"""
 
+import logging
 from dataclasses import asdict, dataclass
 from typing import List, Dict, Any
 
 from novastar_client.exceptions import NovaStarAPIError
 from novastar_client.models.meta import ApiVersion, AttributionAndUsage, ResponseInfo
 from novastar_client.models.timeseries import TimeSeries, TimeSeriesProperties
+
+logging.getLogger(__name__)
 
 
 @dataclass
