@@ -37,6 +37,44 @@ jobs:
           git archive --format=tar --prefix="${VERSIONING}/" "${TAG}" | gzip > "out/${ARCHIVE_NAME}"
           ls -l out
 
+      - name: Compute SHA256
+        id: sha
+        shell: bash
+        run: |
+          FILE="out/${{ env.ARCHIVE_NAME }}"
+          SHA256="$(sha256sum "$FILE" | awk '{print $1}')"
+          echo "sha256=$SHA256" >> "$GITHUB_OUTPUT"
+
+     - name: Write release notes
+        shell: bash
+        run: |
+          FILE="${{ steps.vars.outputs.archive_name }}"
+          SHA256="${{ steps.sha.outputs.sha256 }}"
+
+          cat > release-notes.md <<EOF
+          ### Windows install
+
+          Verify the download before installing.
+
+          **PowerShell**
+          \`\`\`powershell
+          Get-FileHash ".\\$FILE" -Algorithm SHA256
+          \`\`\`
+
+          **CMD**
+          \`\`\`cmd
+          certutil -hashfile "$FILE" SHA256
+          \`\`\`
+
+          Expected SHA256:
+          \`$SHA256\`
+
+          Install:
+          \`\`\`powershell
+          pip install .\\$FILE
+          \`\`\`
+          EOF
+
       - name: Create/Update release and upload tarball
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
@@ -44,6 +82,7 @@ jobs:
           tag_name: ${{ env.TAG }} # defaults to github.ref_name but adding here
           name: ${{ env.TAG }} # release name
           body: Release ${{ env.TAG }}
+          body_path: release-notes.md
           files: out/${{ env.ARCHIVE_NAME }}
           overwrite_files: true # replaced if it already exists
           fail_on_unmatched_files: true
