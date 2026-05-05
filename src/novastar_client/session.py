@@ -42,11 +42,11 @@ class NovaStarSession:
         str
             api root path
         """
-        return (
-            f"{self.config.base_url.rstrip('/')}/"
-            f"{self.config.api_root.strip("/")}/"
-            f"{self.config.api_version.strip("/")}"
-        )
+        base = self.config.base_url.rstrip("/")
+        root = self.config.api_root.strip("/")
+        version = self.config.api_version.strip("/")
+
+        return "/".join([base, root, version])
 
     def get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         """NovaStar Session GET method API call to NovaStar

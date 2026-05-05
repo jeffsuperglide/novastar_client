@@ -9,7 +9,7 @@ description = "Python client for NovaStar REST endpoints (Stations)"
 authors = [{ name = "jeffsuperglide" }]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = ["requests>=2.31.0", "click", "pandas"]
 
 [project.optional-dependencies]
