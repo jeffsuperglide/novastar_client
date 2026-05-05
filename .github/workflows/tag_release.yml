@@ -1,0 +1,50 @@
+name: Tag Release and Upload Tarball
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # adjust pattern as needed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set tag variables
+        id: vars
+        run: |
+          TAG=${GITHUB_REF_NAME}
+          PLAIN=${TAG#v}
+          ARCHIVE_NAME="${{ github.repository }}-${PLAIN}.tar.gz"
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "PLAIN=$PLAIN" >> $GITHUB_ENV
+          echo "ARCHIVE_NAME=$ARCHIVE_NAME" >> $GITHUB_ENV
+
+      - name: Create release (if missing) and capture upload URL
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ env.TAG }}
+          release_name: ${{ env.TAG }}
+          body: Release ${{ env.TAG }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create source tarball
+        run: |
+          mkdir -p out
+          git archive --format=tar --prefix="${PLAIN}/" "${TAG}" | gzip > out/${ARCHIVE_NAME}
+          ls -l out
+
+      - name: Upload tarball to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: out/${{ env.ARCHIVE_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
