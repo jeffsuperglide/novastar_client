@@ -13,7 +13,7 @@ from novastar_client.transform.dss_data_type import ns5_type_to_dss
 from novastar_client.transform.dss_time_interval import DssTimeInterval
 from novastar_client.transform.shef_lookup import get_shef_info
 
-configure_package_logging(NovaStarConfig())
+configure_package_logging(NovaStarConfig(timeout=60))
 logger = logging.getLogger(__name__)
 
 # establish a client and query the NovaStar API
@@ -24,7 +24,7 @@ def main():
     # open the dss file, make a regular time series and put the data
     dss: HecDss = HecDss("timeseries.dss")
 
-    catalog = client.tscatalog.get(stationNumId="2")
+    catalog = client.tscatalog.get(stationNumId="54")
 
     if catalog is None:
         return None
@@ -32,6 +32,10 @@ def main():
     tsids = catalog.get_tsids()
 
     for tsid in tsids:
+        # Ignore IrregSecond TSIDs
+        if tsid.endswith("IrregSecond"):
+            continue
+
         logger.info("tscatalog returned TSID: %s", tsid)
 
         resp = client.timeseries.get(

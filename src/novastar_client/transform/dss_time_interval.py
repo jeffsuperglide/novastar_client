@@ -155,7 +155,7 @@ class DssTimeInterval:
         """
         # Exact match
         if input_str in cls.time_string:
-            logger.info("Exact match found: %s", cls.time_string)
+            logger.info("Exact match found: %s", input_str)
             return input_str
 
         # Find close matches (cutoff=0.6 means 60% similarity threshold)
