@@ -33,17 +33,7 @@ pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
 )
 @pass_app
 def stations(app: AppContext, station_numid: typing.Tuple, pretty_print: bool) -> None:
-    """Subcommand returning a list of station metadata.
-
-    Parameters
-    ----------
-    app : AppContext
-        Application context passed to subcommands.
-    station_numid : typing.Tuple
-        Tuple of station number IDs.
-    pretty_print : bool
-        Boolean to determine output printing.
-    """
+    """Subcommand returning a list of station metadata."""
 
     config = NovaStarConfig(base_url=app.api_url, api_version=app.api_version)
     client = NovaStarClient(config=config)

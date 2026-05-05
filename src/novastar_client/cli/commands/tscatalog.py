@@ -42,23 +42,7 @@ def tscatalog(
     group_name: bool,
     pretty_print: bool,
 ) -> None:
-    """Subcommand returning a list of station TSIDs.
-
-
-    Parameters
-    ----------
-    app : AppContext
-        Application context passed to subcommands.
-    station_numid : Tuple
-        Tuple of station number IDs.
-    group_id : bool
-        Boolean to determine if output should be grouped by id.
-
-    Returns
-    -------
-    List
-        List of time series IDS.
-    """
+    """Subcommand returning a list of station TSIDs."""
     config = NovaStarConfig(
         base_url=app.api_url,
         api_version=app.api_version,
