@@ -26,7 +26,7 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [tool.setuptools.package-data]
-"novastart_client.data" = ["*.csv"]
+"novastar_client.data" = ["*.csv"]
 
 [project.scripts]
 ns5acp = "novastar_client.cli.ns5acp:cli"
