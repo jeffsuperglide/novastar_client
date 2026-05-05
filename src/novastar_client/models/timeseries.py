@@ -62,39 +62,41 @@ class TimeSeriesProperties:
             Time Series properties dataclass
         """
         return cls(
-            point_compress_interval=payload["pointCompressInterval"],
+            point_compress_interval=payload.get("pointCompressInterval", 0),
             point_description=payload.get("pointDescription", ""),
-            point_id=payload["pointId"],
-            point_line=payload["pointLine"],
-            point_name=payload["pointName"],
-            point_no_report_interval=payload["pointNoReportInterval"],
-            point_num_id=payload["pointNumId"],
-            point_out_of_service=payload["pointOutOfService"],
-            point_plot_lower_limit=payload["pointPlotLowerLimit"],
-            point_plot_upper_limit=payload["pointPlotUpperLimit"],
-            point_point_type_id=payload["pointPointTypeId"],
-            point_rated=payload["pointRated"],
-            point_remote_id=payload["pointRemoteId"],
-            point_sensor_id=payload["pointSensorId"],
-            point_tag_name=payload["pointTagName"],
-            point_type_id=payload["pointTypeId"],
-            point_type_name=payload["pointTypeName"],
-            point_type_shef_parameter_code=payload["pointTypeShefParameterCode"],
-            station_num_id=payload["stationNumId"],
-            station_id=payload["stationId"],
-            station_name=payload["stationName"],
+            point_id=payload.get("pointId", 0),
+            point_line=payload.get("pointLine", 0),
+            point_name=payload.get("pointName", ""),
+            point_no_report_interval=payload.get("pointNoReportInterval", 0),
+            point_num_id=payload.get("pointNumId", 0),
+            point_out_of_service=payload.get("pointOutOfService", True),
+            point_plot_lower_limit=payload.get("pointPlotLowerLimit", 0.0),
+            point_plot_upper_limit=payload.get("pointPlotUpperLimit", 0.0),
+            point_point_type_id=payload.get("pointPointTypeId", 0),
+            point_rated=payload.get("pointRated", False),
+            point_remote_id=payload.get("pointRemoteId", 0),
+            point_sensor_id=payload.get("pointSensorId", 0),
+            point_tag_name=payload.get("pointTagName", ""),
+            point_type_id=payload.get("pointTypeId", 0),
+            point_type_name=payload.get("pointTypeName", ""),
+            point_type_shef_parameter_code=payload.get(
+                "pointTypeShefParameterCode", ""
+            ),
+            station_num_id=payload.get("stationNumId", 0),
+            station_id=payload.get("stationId", 0),
+            station_name=payload.get("stationName", ""),
             station_description=payload.get("stationDescription", ""),
-            station_tag_name=payload["stationTagName"],
-            station_remote_tag=payload["stationRemoteTag"],
-            station_out_of_service=payload["stationOutOfService"],
-            station_latitude=payload["stationLatitude"],
-            station_longitude=payload["stationLongitude"],
-            station_elevation=payload["stationElevation"],
+            station_tag_name=payload.get("stationTagName", ""),
+            station_remote_tag=payload.get("stationRemoteTag", ""),
+            station_out_of_service=payload.get("stationOutOfService", True),
+            station_latitude=payload.get("stationLatitude", 0.0),
+            station_longitude=payload.get("stationLongitude", 0.0),
+            station_elevation=payload.get("stationElevation", 0.0),
             station_type_description=payload.get("stationTypeDescription", ""),
-            station_type_id=payload["stationTypeId"],
-            station_type_line=payload["stationTypeLine"],
-            station_type_name=payload["stationTypeName"],
-            station_type_protocol=payload["stationTypeProtocol"],
+            station_type_id=payload.get("stationTypeId", 0),
+            station_type_line=payload.get("stationTypeLine", 0),
+            station_type_name=payload.get("stationTypeName", ""),
+            station_type_protocol=payload.get("stationTypeProtocol", ""),
         )
 
 
@@ -143,9 +145,9 @@ class TimeSeries:
     loc_id: str
     data_type: str
     data_interval: str
-    description: Optional[str]
-    units: Optional[str]
-    value_digits: Optional[int]
+    description: str
+    units: str
+    value_digits: int
 
     # All point and station metadata live under 'properties' in the payload.
     properties: TimeSeriesProperties
@@ -164,13 +166,13 @@ class TimeSeries:
         """
 
         return cls(
-            format=payload["format"],
-            loc_id=payload["locId"],
-            data_type=payload["dataType"],
-            data_interval=payload["dataInterval"],
-            description=payload.get("description"),
-            units=payload.get("units"),
-            value_digits=payload.get("valueDigits"),
+            format=payload.get("format", ""),
+            loc_id=payload.get("locId", ""),
+            data_type=payload.get("dataType", ""),
+            data_interval=payload.get("dataInterval", ""),
+            description=payload.get("description", ""),
+            units=payload.get("units", ""),
+            value_digits=payload.get("valueDigits", 0),
             properties=TimeSeriesProperties.from_api(payload.get("properties", {})),
             data=[TimeSeriesPoint.from_api(d) for d in payload.get("data", [])],
         )

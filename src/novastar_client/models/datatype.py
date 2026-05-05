@@ -8,11 +8,11 @@ class DataType:
     """DataType dataclass representing the NovaStar DataType"""
 
     name: str
-    is_valid: bool
-    include_in_operator_station_summary: bool
     display_name: str = ""
     description: str = ""
     data_type_source_type: str = ""
+    include_in_operator_station_summary: bool = False
+    is_valid: bool = False
     is_valid_error: str = ""
     shef_physical_element: str = ""
 
@@ -38,6 +38,6 @@ class DataType:
             data_type_source_type=data["dataTypeSourceType"],
             include_in_operator_station_summary=data["includeInOperatorStationSummary"],
             is_valid=data["isValid"],
-            is_valid_error=data.get("isValidError", ""),
+            is_valid_error=data["isValidError"],
             shef_physical_element=data["shefPhysicalElement"],
         )
