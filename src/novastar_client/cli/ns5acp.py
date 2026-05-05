@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import click
 
+from novastar_client import __version__
+
 from .commands.stations import stations
 from .commands.ts import ts
 
@@ -14,6 +16,7 @@ from .settings import CONTEXT_SETTINGS
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
+@click.version_option(__version__)
 @click.option(
     "--api-url",
     default="https://panama-cloud-ns5.trilynx-novastar.systems",
