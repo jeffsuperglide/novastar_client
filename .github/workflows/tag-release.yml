@@ -6,12 +6,15 @@ on:
       - 'v*.*.*' # adjust pattern as needed
     paths-ignore:
       - .github/workflows/**
-
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,32 +26,26 @@ jobs:
         run: |
           TAG=${GITHUB_REF_NAME}
           VERSIONING=${TAG#v}
-          ARCHIVE_NAME="${{ github.repository }}-${VERSIONING}.tar.gz"
+          ARCHIVE_NAME="${GITHUB_REPOSITORY##*/}-${VERSIONING}.tar.gz"
           echo "TAG=$TAG" >> $GITHUB_ENV
           echo "VERSIONING=$VERSIONING" >> $GITHUB_ENV
           echo "ARCHIVE_NAME=$ARCHIVE_NAME" >> $GITHUB_ENV
 
-      - name: Create release (if missing) and capture upload URL
-        id: create_release
-        uses: actions/create-release@v1
-        with:
-          tag_name: ${{ env.TAG }}
-          release_name: ${{ env.TAG }}
-          body: Release ${{ env.TAG }}
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create source tarball
         run: |
           mkdir -p out
-          git archive --format=tar --prefix="${VERSIONING}/" "${TAG}" | gzip > out/${ARCHIVE_NAME}
+          git archive --format=tar --prefix="${VERSIONING}/" "${TAG}" | gzip > "out/${ARCHIVE_NAME}"
           ls -l out
 
-      - name: Upload tarball to release
-        uses: softprops/action-gh-release@v1
+      - name: Create/Update release and upload tarball
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
+          tag_name: ${{ env.TAG }} # defaults to github.ref_name but adding here
+          name: ${{ env.TAG }} # release name
+          body: Release ${{ env.TAG }}
           files: out/${{ env.ARCHIVE_NAME }}
+          overwrite_files: true # replaced if it already exists
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
