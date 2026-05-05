@@ -32,12 +32,14 @@ class DataType:
         """
 
         return cls(
-            name=data["name"],
-            display_name=data["displayName"],
-            description=data["description"],
-            data_type_source_type=data["dataTypeSourceType"],
-            include_in_operator_station_summary=data["includeInOperatorStationSummary"],
-            is_valid=data["isValid"],
-            is_valid_error=data["isValidError"],
-            shef_physical_element=data["shefPhysicalElement"],
+            name=data.get("name", ""),
+            display_name=data.get("displayName", ""),
+            description=data.get("description", ""),
+            data_type_source_type=data.get("dataTypeSourceType", ""),
+            include_in_operator_station_summary=data.get(
+                "includeInOperatorStationSummary", False
+            ),
+            is_valid=data.get("isValid", False),
+            is_valid_error=data.get("isValidError", ""),
+            shef_physical_element=data.get("shefPhysicalElement", ""),
         )

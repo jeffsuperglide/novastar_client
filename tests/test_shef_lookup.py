@@ -1,16 +1,9 @@
 """Tests for SHEF lookup methods"""
 
-import builtins
-from importlib import resources
-
-import pytest
-
-import novastar_client.data  # adjust if your package path differs
 from novastar_client.transform.shef_lookup import (
     ShefCodeInfo,
     _data_lines,
     load_shef_map,
-    get_shef_info,
 )
 
 
@@ -61,4 +54,3 @@ def test_load_shef_map_structure_and_types():
     assert isinstance(shef_code_info.data_type, str)
     # conversion type is Any, but the loader uses .strip(), so it must at least be a str
     assert isinstance(int(shef_code_info.conversion), int)
-
