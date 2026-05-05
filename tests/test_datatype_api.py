@@ -19,12 +19,12 @@ def test_datatype_list_returns_datatype_models():
 
     client.session.get = mock_get  # type: ignore[attr-defined]
 
-    resp: DataTypeResponse = client.datatypes.get(
+    resp: DataTypeResponse | None = client.datatypes.get(
         sort="-name",
         shefPhysicalElement="H*",
     )
 
-    data: list = resp.datatypes
+    data: list[DataType] = resp.datatypes # type: ignore
 
     assert isinstance(resp, DataTypeResponse)
     assert isinstance(data[0], DataType)
