@@ -1,4 +1,4 @@
-name: Create Release and Upload Tarball
+name: Create Release and Upload Distributions
 
 on:
   push:
@@ -28,33 +28,72 @@ jobs:
           BRANCH_NAME="${GITHUB_REF_NAME}"
           TAG="${BRANCH_NAME#release/}"
           VERSIONING="${TAG#v}"
-          ARCHIVE_NAME="${GITHUB_REPOSITORY##*/}-${VERSIONING}.tar.gz"
 
           echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_ENV"
           echo "TAG=$TAG" >> "$GITHUB_ENV"
           echo "VERSIONING=$VERSIONING" >> "$GITHUB_ENV"
-          echo "ARCHIVE_NAME=$ARCHIVE_NAME" >> "$GITHUB_ENV"
 
-      - name: Create source tarball
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build + test dependencies
         shell: bash
         run: |
-          mkdir -p out
-          git archive --format=tar --prefix="${VERSIONING}/" HEAD | gzip > "out/${ARCHIVE_NAME}"
-          ls -l out
+          python -m pip install --upgrade pip
+          python -m pip install build pytest
+
+      - name: Build sdist and wheel
+        shell: bash
+        run: |
+          python -m build
+          ls -l dist
+
+      - name: Capture artifact names
+        id: files
+        shell: bash
+        run: |
+          SDIST_FILE="$(basename dist/*.tar.gz)"
+          WHEEL_FILE="$(basename dist/*.whl)"
+
+          echo "SDIST_FILE=$SDIST_FILE" >> "$GITHUB_ENV"
+          echo "WHEEL_FILE=$WHEEL_FILE" >> "$GITHUB_ENV"
+
+      - name: Test installed wheel with pytest
+        shell: bash
+        run: |
+          python -m venv .venv-test
+          source .venv-test/bin/activate
+          python -m pip install --upgrade pip
+          # Install the wheel that was just built
+          python -m pip install "dist/${WHEEL_FILE}"
+          # If your tests live in the repo, also install test deps here as needed
+          python -m pip install pytest
+          # Run tests against the installed package
+          pytest
 
       - name: Compute SHA256
         id: sha
         shell: bash
         run: |
-          FILE="out/${{ env.ARCHIVE_NAME }}"
-          SHA256="$(sha256sum "$FILE" | awk '{print $1}')"
-          echo "sha256=$SHA256" >> "$GITHUB_OUTPUT"
+          SDIST_PATH="dist/${SDIST_FILE}"
+          WHEEL_PATH="dist/${WHEEL_FILE}"
+
+          SDIST_SHA256="$(sha256sum "$SDIST_PATH" | awk '{print $1}')"
+          WHEEL_SHA256="$(sha256sum "$WHEEL_PATH" | awk '{print $1}')"
+
+          echo "sdist_sha256=$SDIST_SHA256" >> "$GITHUB_OUTPUT"
+          echo "wheel_sha256=$WHEEL_SHA256" >> "$GITHUB_OUTPUT"
 
       - name: Write release notes
         shell: bash
         run: |
-          FILE="${{ env.ARCHIVE_NAME }}"
-          SHA256="${{ steps.sha.outputs.sha256 }}"
+          SDIST_FILE="${{ env.SDIST_FILE }}"
+          WHEEL_FILE="${{ env.WHEEL_FILE }}"
+          SDIST_SHA256="${{ steps.sha.outputs.sdist_sha256 }}"
+          WHEEL_SHA256="${{ steps.sha.outputs.wheel_sha256 }}"
+          TAG="${{ env.TAG }}"
 
           cat > release-notes.md <<EOF
           ### Windows install
@@ -63,20 +102,41 @@ jobs:
 
           **PowerShell**
           \`\`\`powershell
-          Get-FileHash ".\\$FILE" -Algorithm SHA256
+          Get-FileHash ".\\$WHEEL_FILE" -Algorithm SHA256
+          Get-FileHash ".\\$SDIST_FILE" -Algorithm SHA256
           \`\`\`
 
           **CMD**
           \`\`\`cmd
-          certutil -hashfile "$FILE" SHA256
+          certutil -hashfile "$WHEEL_FILE" SHA256
+          certutil -hashfile "$SDIST_FILE" SHA256
           \`\`\`
 
           Expected SHA256:
-          \`$SHA256\`
 
-          Install:
+          - Wheel: \`$WHEEL_SHA256\`
+          - Source tarball: \`$SDIST_SHA256\`
+
+          Install wheel:
           \`\`\`powershell
-          pip install .\\$FILE
+          pip install .\\$WHEEL_FILE
+          \`\`\`
+
+          Install source tarball:
+          \`\`\`powershell
+          pip install .\\$SDIST_FILE
+          \`\`\`
+
+          ### Direct Pip Install
+
+          **Install wheel**
+          \`\`\`
+          pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/${TAG}/${WHEEL_FILE}"
+          \`\`\`
+
+          **Install source tarball**
+          \`\`\`
+          pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/${TAG}/${SDIST_FILE}"
           \`\`\`
           EOF
 
@@ -88,7 +148,9 @@ jobs:
           name: ${{ env.TAG }}
           body_path: release-notes.md
           generate_release_notes: true
-          files: out/${{ env.ARCHIVE_NAME }}
+          files: |
+            dist/${{ env.SDIST_FILE }}
+            dist/${{ env.WHEEL_FILE }}
           overwrite_files: true
           fail_on_unmatched_files: true
         env:
