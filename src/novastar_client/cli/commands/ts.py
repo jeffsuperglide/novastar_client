@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import pprint
 
 import click
+
+from novastar_client.cli.helpers import output_pretty_json
 
 from ...client import NovaStarClient
 from ...config import NovaStarConfig
@@ -77,8 +80,8 @@ def ts(
 
     if stream:
         for item in dt_values:
-            click.echo(item)
+            click.echo(json.dumps(item))
     elif pretty_print:
-        click.echo(pp.pformat(dt_values))
+        output_pretty_json(dt_values)
     else:
-        click.echo(dt_values)
+        click.echo(json.dumps(dt_values))

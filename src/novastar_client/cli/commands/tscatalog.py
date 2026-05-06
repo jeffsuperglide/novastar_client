@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+import json
 import logging
 from typing import Tuple
 
 import click
 
 import pprint
+
+from novastar_client.cli.helpers import output_pretty_json
 
 from ..settings import CONTEXT_SETTINGS
 from ..context import AppContext
@@ -63,12 +66,12 @@ def tscatalog(
     if group_name:
         cat_by_name = resp.get_catalog_by_name()
         if pretty_print:
-            click.echo(pp.pformat(cat_by_name))
+            output_pretty_json(cat_by_name)
         else:
-            click.echo(cat_by_name)
+            click.echo(json.dumps(cat_by_name))
     else:
         tsids = resp.get_tsids()
         if pretty_print:
-            click.echo(pp.pformat((tsids)))
+            output_pretty_json(tsids)
         else:
-            click.echo(resp.get_tsids())
+            click.echo(json.dumps(tsids))
