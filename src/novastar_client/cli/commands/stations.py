@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import typing
 import pprint
 
 import click
+
+from novastar_client.cli.helpers import output_pretty_json
 
 from ..context import AppContext
 from ..settings import CONTEXT_SETTINGS
@@ -51,6 +54,6 @@ def stations(app: AppContext, station_numid: typing.Tuple, pretty_print: bool) -
     resp_as_dict = resp.to_dict()  # type: ignore
 
     if pretty_print:
-        click.echo(pp.pformat(resp_as_dict))
+        click.echo(output_pretty_json(resp_as_dict))
     else:
-        click.echo(resp_as_dict)
+        click.echo(json.dumps(resp_as_dict))
