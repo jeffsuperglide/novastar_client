@@ -54,15 +54,7 @@ def cli(
     verbose: int,
     quiet: int,
 ) -> None:
-    """cli interface for the novastar_client
-
-    Parameters
-    ----------
-    verbose : int, optional
-        Verbose count, by default 0
-    quiet : int, optional
-        Quiet count, by default 0
-    """
+    """CLI interface for the novastar_client"""
     configure_cli_logging(verbose=verbose, quiet=quiet)
 
     ctx.obj = AppContext(
