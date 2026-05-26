@@ -19,7 +19,7 @@ class TimeSeriesCatalogAPI:
             "dataType": "*",
             "debug": str(False).lower(),
             "format": "json",
-            "formatPrettyPrint": str(True).lower(),
+            "formatPrettyPrint": str(False).lower(),
             "includeAlarmTs": str(True).lower(),
             "includeCalibrationTs": str(True).lower(),
             "includeNovaScoreTs": str(True).lower(),
