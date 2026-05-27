@@ -13,11 +13,12 @@ from novastar_client.transform.dss_data_type import ns5_type_to_dss
 from novastar_client.transform.dss_time_interval import DssTimeInterval
 from novastar_client.transform.shef_lookup import get_shef_info
 
-configure_package_logging(NovaStarConfig(timeout=60))
 logger = logging.getLogger(__name__)
 
 # establish a client and query the NovaStar API
-client = NovaStarClient()
+config = NovaStarConfig(timeout=60, log_level="DEBUG")
+client = NovaStarClient(config)
+configure_package_logging(config)
 
 
 def main():
