@@ -10,7 +10,7 @@ from typing import Union
 
 import pandas as pd
 
-# from hecdss.hecdss import HecDss, RegularTimeSeries
+from hecdss.hecdss import HecDss, RegularTimeSeries
 from novastar_client.config import NovaStarConfig
 from novastar_client.client import NovaStarClient
 from novastar_client.logging_utils import configure_package_logging
@@ -150,8 +150,8 @@ def main():
     configure_package_logging(ns_config)
 
     # open the DSS file to write to
-    # dssfile = _dss_file_path(cfg)
-    # dss = HecDss(dssfile.as_posix())
+    dssfile = _dss_file_path(cfg)
+    dss = HecDss(dssfile.as_posix())
 
     # NovaStar beginning and ending times
     cfg_period = cfg["period"]
@@ -263,31 +263,31 @@ def main():
             logger.info("TSID: '%s'; DSS: '%s'", ns_tsid, path)
 
             dt_value = response.get_data_fields("dt", "value")
-            # fraction = 0.75
-            # n = max(1, int(len(dt_value) * fraction))
-            # subset = random.sample(dt_value, n)
-            # logger.debug(
-            #     "Random sample of time/value (%d of %d): %s", n, len(dt_value), subset
-            # )
+            fraction = 0.75
+            n = max(1, int(len(dt_value) * fraction))
+            subset = random.sample(dt_value, n)
+            logger.debug(
+                "Random sample of time/value (%d of %d): %s", n, len(dt_value), subset
+            )
 
-            # if len(dt_value) > 0:
-            #     # load the DataFrame
-            #     df = pd.DataFrame(dt_value)
-            #     # convert dt to datetime
-            #     df["dt"] = pd.to_datetime(df["dt"])
-            #     # convert datetime to UTC
-            #     df["dt"] = df["dt"].dt.tz_convert("UTC")
+            if len(dt_value) > 0:
+                # load the DataFrame
+                df = pd.DataFrame(dt_value)
+                # convert dt to datetime
+                df["dt"] = pd.to_datetime(df["dt"])
+                # convert datetime to UTC
+                df["dt"] = df["dt"].dt.tz_convert("UTC")
 
-            #     tsc = RegularTimeSeries()
-            #     tsc.id = path
-            #     tsc.values = df["value"].to_list()  # type: ignore
-            #     tsc.times = df["dt"].to_list()
-            #     tsc.units = timeseries.units  # type: ignore
-            #     tsc.data_type = ns5_type_to_dss(statistic)
+                tsc = RegularTimeSeries()
+                tsc.id = path
+                tsc.values = df["value"].to_list()  # type: ignore
+                tsc.times = df["dt"].to_list()
+                tsc.units = timeseries.units  # type: ignore
+                tsc.data_type = ns5_type_to_dss(statistic)
 
-            #     dss.put(tsc)
+                dss.put(tsc)
 
-    # dss.close()
+    dss.close()
 
 
 if __name__ == "__main__":
