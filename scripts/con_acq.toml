@@ -1,0 +1,4245 @@
+# Continuous Acquisition Configurations
+[client]
+timeout = 60
+
+[logger]
+level = "DEBUG"
+format = "%(asctime)s %(name)s %(levelname)s: %(message)s"
+file = "ztest_con_acq.logs"
+
+[dss]
+file = "novastar.dss"
+
+[period]
+start = "now"
+end = "now_minus_1Day"
+
+# Generated NovaStar5 time series configuration
+
+[station."2"]
+network = "NovaStar5"
+description = "AMADOR"
+
+[[station."2".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = true
+
+[[station."2".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."2".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."2".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."2".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."3"]
+network = "NovaStar5"
+description = "ISLA BRUJA CHIQUITA RAIN AND WIND"
+
+[[station."3".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."3".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."3".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."4"]
+network = "NovaStar5"
+description = "BARRO COLORADO"
+
+[[station."4".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."4".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."4".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."6"]
+network = "NovaStar5"
+description = "DIABLO HEIGHTS"
+
+[[station."6".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."6".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."6".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."6".series]]
+tag = "610"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."6".series]]
+tag = "610"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."7"]
+network = "NovaStar5"
+description = "CANO QUEBRADO ABAJO"
+
+[[station."7".series]]
+tag = "711"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."7".series]]
+tag = "711"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."7".series]]
+tag = "799"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."7".series]]
+tag = "799"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."8"]
+network = "NovaStar5"
+description = "SANTA ROSA"
+
+[[station."8".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."8".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."8".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."8".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."8".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."9"]
+network = "NovaStar5"
+description = "GATUN WEST-CAMPBELL"
+
+[[station."9".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."9".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."9".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."10"]
+network = "NovaStar5"
+description = "CULEBRA"
+
+[[station."10".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."10".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."10".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."11"]
+network = "NovaStar5"
+description = "BOYA 199"
+
+[[station."11".series]]
+tag = "1185"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."11".series]]
+tag = "1185"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."11".series]]
+tag = "1189"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."11".series]]
+tag = "1189"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."13"]
+network = "NovaStar5"
+description = "GUARUMAL"
+
+[[station."13".series]]
+tag = "1310"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."13".series]]
+tag = "1310"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."13".series]]
+tag = "1311"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."13".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."13".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."14"]
+network = "NovaStar5"
+description = "ESCANDALOSA"
+
+[[station."14".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."14".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."14".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."16"]
+network = "NovaStar5"
+description = "GAMBOA"
+
+[[station."16".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."16".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."16".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."16".series]]
+tag = "1610"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."16".series]]
+tag = "1610"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."16".series]]
+tag = "1611"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."16".series]]
+tag = "1611"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."18"]
+network = "NovaStar5"
+description = "LOS CAÑONES"
+
+[[station."18".series]]
+tag = "1810"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."18".series]]
+tag = "1810"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."18".series]]
+tag = "1811"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."18".series]]
+tag = "1811"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."18".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."18".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."18".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."18".series]]
+tag = "1810"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."18".series]]
+tag = "1810"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."18".series]]
+tag = "1811"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."18".series]]
+tag = "1811"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."19"]
+network = "NovaStar5"
+description = "SANTA CLARA"
+
+[[station."19".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."19".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."19".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."20"]
+network = "NovaStar5"
+description = "CHICO CABECERA"
+
+[[station."20".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."20".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."20".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."22"]
+network = "NovaStar5"
+description = "GASPARILLAL"
+
+[[station."22".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."22".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."22".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."23"]
+network = "NovaStar5"
+description = "ZANGUENGA"
+
+[[station."23".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."23".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."23".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."24"]
+network = "NovaStar5"
+description = "GOLD HILL"
+
+[[station."24".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."24".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."24".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."25"]
+network = "NovaStar5"
+description = "ISLA BARBACOA RAIN AND WIND"
+
+[[station."25".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."25".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."25".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."29"]
+network = "NovaStar5"
+description = "RIO PIEDRAS ARRIBA"
+
+[[station."29".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."29".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."29".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."30"]
+network = "NovaStar5"
+description = "CASCADAS"
+
+[[station."30".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."30".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."30".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."34"]
+network = "NovaStar5"
+description = "PUNTA FRIJOLES RAIN AND WIND"
+
+[[station."34".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."34".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."34".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."42"]
+network = "NovaStar5"
+description = "MONTE LIRIO"
+
+[[station."42".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."42".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."42".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."43"]
+network = "NovaStar5"
+description = "HUMEDAD"
+
+[[station."43".series]]
+tag = "4312"
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."43".series]]
+tag = "4312"
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."43".series]]
+tag = "4312"
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."44"]
+network = "NovaStar5"
+description = "RAICES"
+
+[[station."44".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."44".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."44".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."44".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."44".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."45"]
+network = "NovaStar5"
+description = "PELUCA"
+
+[[station."45".series]]
+tag = "4510"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."45".series]]
+tag = "4510"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."45".series]]
+tag = "PEL WL"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."45".series]]
+tag = "PEL WL"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."45".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."45".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."45".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."45".series]]
+tag = "PEL WL"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."45".series]]
+tag = "PEL WL"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."46"]
+network = "NovaStar5"
+description = "GUACHA"
+
+[[station."46".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."46".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."46".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."46".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."46".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."47"]
+network = "NovaStar5"
+description = "SALAMANCA"
+
+[[station."47".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."47".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."47".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."48"]
+network = "NovaStar5"
+description = "CHORRO"
+
+[[station."48".series]]
+tag = "4811"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."48".series]]
+tag = "4811"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."48".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."48".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."48".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."48".series]]
+tag = "4810"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."48".series]]
+tag = "4810"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."48".series]]
+tag = "4811"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."48".series]]
+tag = "4811"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."49"]
+network = "NovaStar5"
+description = "SAN MIGUEL"
+
+[[station."49".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."49".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."49".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."50"]
+network = "NovaStar5"
+description = "AGUA CLARA"
+
+[[station."50".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."50".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."50".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."51"]
+network = "NovaStar5"
+description = "CANDELARIA Campbell scientific"
+
+[[station."51".series]]
+tag = "5110"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."51".series]]
+tag = "5110"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."51".series]]
+tag = "5111"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."51".series]]
+tag = "5111"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."51".series]]
+tag = "5112"
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."51".series]]
+tag = "5112"
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."51".series]]
+tag = "5112"
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."51".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."51".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."52"]
+network = "NovaStar5"
+description = "CIENTO"
+
+[[station."52".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."52".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."52".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."53"]
+network = "NovaStar5"
+description = "CHICO"
+
+[[station."53".series]]
+tag = "5310"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."53".series]]
+tag = "5310"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."53".series]]
+tag = "5311"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."53".series]]
+tag = "5311"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."53".series]]
+tag = "5350"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."53".series]]
+tag = "5350"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."53".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."53".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."53".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."54"]
+network = "NovaStar5"
+description = "GATUN LAKE"
+
+[[station."54".series]]
+tag = "5425"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5425"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5450"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5450"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5460"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5460"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5400"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5400"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5480"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5480"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."54".series]]
+tag = "5400"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."54".series]]
+tag = "5400"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."54".series]]
+tag = "5411"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."54".series]]
+tag = "5411"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."54".series]]
+tag = "5480"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."54".series]]
+tag = "5480"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."55"]
+network = "NovaStar5"
+description = "ALHAJUELA"
+
+[[station."55".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."55".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."55".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."55".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."55".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."55".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."55".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."56"]
+network = "NovaStar5"
+description = "PUNTA BOHIO RAIN AND WIND"
+
+[[station."56".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."56".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."56".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."57"]
+network = "NovaStar5"
+description = "MADDEN"
+
+[[station."57".series]]
+tag = "5710"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."57".series]]
+tag = "5710"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."57".series]]
+tag = "5711"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."57".series]]
+tag = "5711"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."57".series]]
+tag = "5717"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."57".series]]
+tag = "5717"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."58"]
+network = "NovaStar5"
+description = "MIRAFLORES"
+
+[[station."58".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."58".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."58".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."58".series]]
+tag = "5810"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."58".series]]
+tag = "5810"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."58".series]]
+tag = "5811"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."58".series]]
+tag = "5811"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."58".series]]
+tag = "PROFUNDIDAD DE SONDA SUPERFICIE"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."58".series]]
+tag = "PROFUNDIDAD DE SONDA SUPERFICIE"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."59"]
+network = "NovaStar5"
+description = "CANO"
+
+[[station."59".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."59".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."59".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."60"]
+network = "NovaStar5"
+description = "BALBOA_HEIGHTS_PREC_ALERT2"
+
+[[station."60".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."60".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."60".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."61"]
+network = "NovaStar5"
+description = "PEDRO MIGUEL METEREOLOGICA"
+
+[[station."61".series]]
+tag = "6112"
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."61".series]]
+tag = "6112"
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."61".series]]
+tag = "6112"
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."62"]
+network = "NovaStar5"
+description = "BUENOS AIRES"
+
+[[station."62".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."62".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."62".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."63"]
+network = "NovaStar5"
+description = "FAA"
+
+[[station."63".series]]
+tag = "6312"
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."63".series]]
+tag = "6312"
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."63".series]]
+tag = "6312"
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."64"]
+network = "NovaStar5"
+description = "EMPIRE HILL"
+
+[[station."64".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."64".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."64".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."67"]
+network = "NovaStar5"
+description = "JAGUA"
+
+[[station."67".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."67".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."67".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."68"]
+network = "NovaStar5"
+description = "VISTAMARES"
+
+[[station."68".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."68".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."68".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."69"]
+network = "NovaStar5"
+description = "FRIJOLITO"
+
+[[station."69".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."69".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."69".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."70"]
+network = "NovaStar5"
+description = "LIMON BAY"
+
+[[station."70".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."70".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."70".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."70".series]]
+tag = "7010"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."70".series]]
+tag = "7010"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."70".series]]
+tag = "7011"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."70".series]]
+tag = "7011"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."71"]
+network = "NovaStar5"
+description = "ESPERANZA"
+
+[[station."71".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."71".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."71".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."72"]
+network = "NovaStar5"
+description = "VALLE CENTRAL GATUN"
+
+[[station."72".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."72".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."72".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."74"]
+network = "NovaStar5"
+description = "COCOLI 326"
+
+[[station."74".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."74".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."74".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."75"]
+network = "NovaStar5"
+description = "AGUA SALUD"
+
+[[station."75".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."75".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."75".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."76"]
+network = "NovaStar5"
+description = "CHAGRECITO"
+
+[[station."76".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."76".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."76".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."77"]
+network = "NovaStar5"
+description = "ARCA SONIA"
+
+[[station."77".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."77".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."77".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."78"]
+network = "NovaStar5"
+description = "CERRO CAMA"
+
+[[station."78".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."78".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."78".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."79"]
+network = "NovaStar5"
+description = "CHAMON"
+
+[[station."79".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."79".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."79".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."80"]
+network = "NovaStar5"
+description = "TRANQUILLA"
+
+[[station."80".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."80".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."80".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."81"]
+network = "NovaStar5"
+description = "DOS BOCAS"
+
+[[station."81".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."81".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."81".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."90"]
+network = "NovaStar5"
+description = "Boya 221"
+
+[[station."90".series]]
+tag = "9085"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."90".series]]
+tag = "9085"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."94"]
+network = "NovaStar5"
+description = "BOYA D"
+
+[[station."94".series]]
+tag = "9485"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."94".series]]
+tag = "9485"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."94".series]]
+tag = "9489"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."94".series]]
+tag = "9489"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."95"]
+network = "NovaStar5"
+description = "BOYA E"
+
+[[station."95".series]]
+tag = "9585"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."95".series]]
+tag = "9585"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."96"]
+network = "NovaStar5"
+description = "BOYA 126"
+
+[[station."96".series]]
+tag = "9680"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."96".series]]
+tag = "9680"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."96".series]]
+tag = "9683"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."96".series]]
+tag = "9683"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."98"]
+network = "NovaStar5"
+description = "BOYA 23"
+
+[[station."98".series]]
+tag = "9885"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."98".series]]
+tag = "9885"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."98".series]]
+tag = "9889"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."98".series]]
+tag = "9889"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."99"]
+network = "NovaStar5"
+description = "TOMA DE AGUA DE PARAISO"
+
+[[station."99".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."99".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."110"]
+network = "NovaStar5"
+description = "BOYA 231"
+
+[[station."110".series]]
+tag = "11085"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."110".series]]
+tag = "11085"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."114"]
+network = "NovaStar5"
+description = "Virtual Madden Basin average"
+
+[[station."114".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."114".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."114".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."117"]
+network = "NovaStar5"
+description = "COROZAL OESTE Campbell Scientific"
+
+[[station."117".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."117".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."117".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."119"]
+network = "NovaStar5"
+description = "BOYA 44"
+
+[[station."119".series]]
+tag = "11985"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."119".series]]
+tag = "11985"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."119".series]]
+tag = "11989"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."119".series]]
+tag = "11989"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."120"]
+network = "NovaStar5"
+description = "BOYA 179"
+
+[[station."120".series]]
+tag = "12080"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."120".series]]
+tag = "12080"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."120".series]]
+tag = "12084"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."120".series]]
+tag = "12084"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."141"]
+network = "NovaStar5"
+description = "COCOLI_GUPC_LAKE"
+
+[[station."141".series]]
+tag = "14180"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."141".series]]
+tag = "14180"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."142"]
+network = "NovaStar5"
+description = "GUPC-OCEAN_COCOLI_CS"
+
+[[station."142".series]]
+tag = "14285"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."142".series]]
+tag = "14285"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."201"]
+network = "NovaStar5"
+description = "COCOLI_CAMARA_BAJA_TINAS"
+
+[[station."201".series]]
+tag = "20180"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."201".series]]
+tag = "20180"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."201".series]]
+tag = "20184"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."201".series]]
+tag = "20184"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."201".series]]
+tag = "20188"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."201".series]]
+tag = "20188"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."203"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA RIO GATUN"
+
+[[station."203".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."203".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."204"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA CHILIBRE"
+
+[[station."204".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."204".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."205"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA SABANITAS II"
+
+[[station."205".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."205".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."207"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA LAGUNA ALTA"
+
+[[station."207".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."207".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."208"]
+network = "NovaStar5"
+description = "AGUA CRUDA ALIMENTOS CARNICOS"
+
+[[station."208".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."208".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."209"]
+network = "NovaStar5"
+description = "AGUA CRUDA RIO INDIO MELO"
+
+[[station."209".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."209".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."210"]
+network = "NovaStar5"
+description = "AGUA CRUDA EL SALTO MELO"
+
+[[station."210".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."210".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."211"]
+network = "NovaStar5"
+description = "AGUA CRUDA ESCOBAL I"
+
+[[station."211".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."211".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."228"]
+network = "NovaStar5"
+description = "Boya 228"
+
+[[station."228".series]]
+tag = "22885"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."228".series]]
+tag = "22885"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."229"]
+network = "NovaStar5"
+description = "Boya 229"
+
+[[station."229".series]]
+tag = "22989"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."229".series]]
+tag = "22989"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."231"]
+network = "NovaStar5"
+description = "ROC BOCA DE URACILLO"
+
+[[station."231".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."231".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."231".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[[station."231".series]]
+tag = "23110"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."231".series]]
+tag = "23110"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."231".series]]
+tag = "23111"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."231".series]]
+tag = "23111"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."232"]
+network = "NovaStar5"
+description = "ROC TRES HERMANAS"
+
+[[station."232".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."232".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."232".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."307"]
+network = "NovaStar5"
+description = "Boya 227"
+
+[[station."307".series]]
+tag = "30784"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."307".series]]
+tag = "30784"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."307".series]]
+tag = "30788"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."307".series]]
+tag = "30788"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."318"]
+network = "NovaStar5"
+description = "Boya 101"
+
+[[station."318".series]]
+tag = "31880"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."318".series]]
+tag = "31880"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."318".series]]
+tag = "31884"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."318".series]]
+tag = "31884"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."320"]
+network = "NovaStar5"
+description = "Boya 209"
+
+[[station."320".series]]
+tag = "32080"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."320".series]]
+tag = "32080"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."320".series]]
+tag = "32084"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."320".series]]
+tag = "32084"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."340"]
+network = "NovaStar5"
+description = "COCOLI_LOCKHEAD_NORTE"
+
+[[station."340".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."340".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."341"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Alta_P1"
+
+[[station."341".series]]
+tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Fondo"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."341".series]]
+tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Fondo"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."341".series]]
+tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Superficie"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."341".series]]
+tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Superficie"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."342"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Alta_Fosa"
+
+[[station."342".series]]
+tag = "Cocoli_Camara_Alta_Fosa Pt water level"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."342".series]]
+tag = "Cocoli_Camara_Alta_Fosa Pt water level"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."342".series]]
+tag = "Cocoli_Camara_Alta_Fosa Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."342".series]]
+tag = "Cocoli_Camara_Alta_Fosa Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."343"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Alta_Tina"
+
+[[station."343".series]]
+tag = "Cocoli_Camara_Alta_Tina1_AqT_Depth_Sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."343".series]]
+tag = "Cocoli_Camara_Alta_Tina1_AqT_Depth_Sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."343".series]]
+tag = "Cocoli_Camara_Alta_Tina2_AqT_Depth_Sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."343".series]]
+tag = "Cocoli_Camara_Alta_Tina2_AqT_Depth_Sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."344"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Media_P1"
+
+[[station."344".series]]
+tag = "Cocoli_Camara_Media_P1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."344".series]]
+tag = "Cocoli_Camara_Media_P1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."344".series]]
+tag = "Cocoli_Camara_Media_P1 Depth of sonde Superficie"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."344".series]]
+tag = "Cocoli_Camara_Media_P1 Depth of sonde Superficie"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."345"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Media_Fosa"
+
+[[station."345".series]]
+tag = "Cocoli_Camara_Alta_Fosa Pt water level(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."345".series]]
+tag = "Cocoli_Camara_Alta_Fosa Pt water level(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."345".series]]
+tag = "Cocoli_Camara_Alta_Fosa Depth of sonde (1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."345".series]]
+tag = "Cocoli_Camara_Alta_Fosa Depth of sonde (1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."346"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Media_Tina"
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Media_Tina1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Media_Tina1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Alta_Tina2 Pt water level(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Alta_Tina2 Pt water level(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Alta_Tina3 Pt water level_3(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Alta_Tina3 Pt water level_3(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Alta_Tina1 Depth of sonde_T_1 (1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Alta_Tina1 Depth of sonde_T_1 (1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Media_Tina2 Depth of sonde_T_2(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Media_Tina2 Depth of sonde_T_2(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Media_Tina3 Depth of sonde_T_3(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."346".series]]
+tag = "Cocoli_Camara_Media_Tina3 Depth of sonde_T_3(1)"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."347"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Baja_P1"
+
+[[station."347".series]]
+tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."347".series]]
+tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."347".series]]
+tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."347".series]]
+tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."348"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Baja_Fosa"
+
+[[station."348".series]]
+tag = "Cocoli_Camara_Baja_Fosa Pt water level"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."348".series]]
+tag = "Cocoli_Camara_Baja_Fosa Pt water level"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."348".series]]
+tag = "Cocoli_Camara_Baja_Fosa Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."348".series]]
+tag = "Cocoli_Camara_Baja_Fosa Depth of sonde"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."349"]
+network = "NovaStar5"
+description = "Cocoli_Camara_Baja_Tinas"
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina1_Nivel_PT"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina1_Nivel_PT"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina2_Nivel_PT"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina2_Nivel_PT"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina3"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina3"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina1_PT_Profundidad"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina1_PT_Profundidad"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina2_Profundidad"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina2_Profundidad"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina3_Profundidad"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."349".series]]
+tag = "Cocoli_Camara_Baja_Tina3_Profundidad"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."350"]
+network = "NovaStar5"
+description = "COCOLI_LOCKHEAD_SUR"
+
+[[station."350".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."350".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."360"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_ALTA_LOCKHEAD"
+
+[[station."360".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."360".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."362"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_ALTA_FOSA"
+
+[[station."362".series]]
+tag = "36272"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."362".series]]
+tag = "36272"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."362".series]]
+tag = "36280"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."362".series]]
+tag = "36280"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."363"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_ALTA_TINAS"
+
+[[station."363".series]]
+tag = "36372"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36372"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36374"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36374"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36376"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36376"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36380"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36380"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36384"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36384"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36388"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."363".series]]
+tag = "36388"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."364"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_MEDIA_P1"
+
+[[station."364".series]]
+tag = "36480"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."364".series]]
+tag = "36480"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."364".series]]
+tag = "36484"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."364".series]]
+tag = "36484"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."365"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_MEDIA_FOSA"
+
+[[station."365".series]]
+tag = "36572"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."365".series]]
+tag = "36572"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."365".series]]
+tag = "36580"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."365".series]]
+tag = "36580"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."366"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_MEDIA_TINAS"
+
+[[station."366".series]]
+tag = "36672"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36672"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36674"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36674"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36676"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36676"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36680"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36680"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36684"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36684"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36688"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."366".series]]
+tag = "36688"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."367"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_BAJA_P1"
+
+[[station."367".series]]
+tag = "36780"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."367".series]]
+tag = "36780"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."367".series]]
+tag = "36784"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."367".series]]
+tag = "36784"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."368"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_BAJA_FOSA"
+
+[[station."368".series]]
+tag = "36872"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."368".series]]
+tag = "36872"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."368".series]]
+tag = "36880"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."368".series]]
+tag = "36880"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."369"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_BAJA_TINAS"
+
+[[station."369".series]]
+tag = "36972"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36972"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36974"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36974"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36976"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36976"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36980"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36980"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36984"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36984"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36988"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."369".series]]
+tag = "36988"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."370"]
+network = "NovaStar5"
+description = "AGUA_CLARA_CAMARA_BAJA_LOCKHEAD"
+
+[[station."370".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = false
+
+[[station."370".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = false
+
+[station."540"]
+network = "NovaStar5"
+description = "GATUN RAIN"
+
+[[station."540".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."540".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."540".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."5000"]
+network = "NovaStar5"
+description = "Virtual Madden Escorrentia"
+
+[[station."5000".series]]
+tag = "500050"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."5000".series]]
+tag = "500050"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[[station."5000".series]]
+tag = "500060"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = false
+
+[[station."5000".series]]
+tag = "500060"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = false
+
+[station."5300"]
+network = "NovaStar5"
+description = "Chagres Basin Average"
+
+[[station."5300".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."5300".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."5300".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
+
+[station."6000"]
+network = "NovaStar5"
+description = "Virtual Precipitation"
+
+[[station."6000".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "5Minute"
+units = "mm"
+enabled = false
+
+[[station."6000".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[[station."6000".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "1Hour"
+units = "mm"
+enabled = false
