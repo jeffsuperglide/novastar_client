@@ -6,6 +6,8 @@ timeout = 60
 level = "DEBUG"
 format = "%(asctime)s %(name)s %(levelname)s: %(message)s"
 file = "ztest_con_acq.logs"
+max_bytes = 100_000_000
+backup_count = 2
 
 [dss]
 file = "novastar.dss"

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 from typing import Any, Dict, Optional
 from urllib.parse import urlencode
 
@@ -100,14 +101,22 @@ class NovaStarSession:
 
             return response.json()
 
-        except requests.RequestException:
-            logger.exception(
-                "NovaStar HTTP request failed", extra={"url": url, "params": params}
+        except requests.RequestException as exc:
+            tb = exc.__traceback__
+            filename = Path(tb.tb_frame.f_code.co_filename).name
+            line = tb.tb_lineno
+            method = tb.tb_frame.f_code.co_name
+            logger.error(
+                "RuntimeError in %s:%s (%s): %s",
+                filename,
+                line,
+                method,
+                exc,
+                # exc_info=True,
             )
+            raise SystemExit(1) from exc
 
-            return None
+        except ValueError as exc:
+            logger.warning("NovaStar API returned invalid JSON")
 
-        except ValueError:
-            logger.exception("NovaStar API returned invalid JSON", extra={"url": url})
-
-            return None
+            raise SystemExit(1) from exc

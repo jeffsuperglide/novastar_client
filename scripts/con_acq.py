@@ -1,7 +1,9 @@
 """Continuous data extraction from the NovaStar API"""
 
+import logging.handlers
 import os
 import random
+import re
 import sys
 import tomllib
 from pathlib import Path
@@ -21,6 +23,8 @@ from novastar_client.transform.shef_lookup import get_shef_info
 
 logger = logging.getLogger("extract")
 
+DEFAULT_MAX_BYTES = 500_000
+
 
 def _exit_with_warning(msg: str, exc: Exception | None = None) -> None:
     logger.warning(msg)
@@ -29,7 +33,75 @@ def _exit_with_warning(msg: str, exc: Exception | None = None) -> None:
     raise SystemExit(1) from exc
 
 
-def _configure_log_level(cfg: dict) -> None:
+def _parse_max_bytes(value):
+    """
+    Parse maxBytes from an int or a human-readable string.
+
+    Accepted examples:
+      1048576
+      "1048576"
+      "1M", "1m", "1MB", "1mb"
+      "1K", "1k", "1KB", "1kb"
+      "1.5M"
+
+    Returns:
+      int: size in bytes
+
+    Raises:
+      TypeError: unsupported type
+      ValueError: invalid or negative size
+    """
+    _SIZE_RE = re.compile(
+        r"^\s*(?P<value>\d+(?:\.\d+)?)\s*(?P<unit>b|kb|k|mb|m|gb|g)?\s*$",
+        re.IGNORECASE,
+    )
+
+    _SIZE_UNITS = {
+        None: 1,
+        "b": 1,
+        "k": 1024,
+        "kb": 1024,
+        "m": 1024**2,
+        "mb": 1024**2,
+        # "g": 1024**3,
+        # "gb": 1024**3,
+    }
+
+    if isinstance(value, int):
+        return value
+
+    s = value.strip()
+    if not s:
+        logger.info("maxBytes cannot be empty.")
+        return DEFAULT_MAX_BYTES
+
+    if s.isdigit():
+        return int(s)
+
+    match = _SIZE_RE.match(s)
+    if not match:
+        logger.info(
+            "Invalid maxBytes value: %r.  "
+            "Use an integer or a size like 1KB, 10MB, 1.5G.  "
+            "Returning default max bytes %d",
+            value,
+            DEFAULT_MAX_BYTES,
+        )
+        return DEFAULT_MAX_BYTES
+
+    number = float(match.group("value"))
+    unit = match.group("unit")
+    multiplier = _SIZE_UNITS[unit.lower() if unit else None]
+
+    size = int(number * multiplier)
+    if size < 0:
+        logger.info("maxBytes must be >= 0")
+        return DEFAULT_MAX_BYTES
+
+    return size
+
+
+def _configure_logger(cfg: dict) -> None:
     # get the logger table.
     log_cfg = cfg.get("logger", {})
     if not isinstance(log_cfg, dict):
@@ -41,23 +113,22 @@ def _configure_log_level(cfg: dict) -> None:
     if level is not None:
         try:
             logger.setLevel(str(level).upper())
-        except Exception as exc:
+        except ValueError:
             logger.warning(
                 "Invalid logger level in config (%r); keeping existing level",
                 level,
-                exc_info=exc,
+                # exc_info=exc,
             )
 
     # set the logger format and fall back to default if not there.
-    fmt = log_cfg.get("format", "%(asctime)s %(name)s %(levelname)s: %(message)s")
-
+    fmt = log_cfg.get("format")
     try:
         formatter = logging.Formatter(fmt)
-    except Exception as exc:
+    except ValueError:
         logger.warning(
             "Invalid logger format in config (%r); using default format",
             fmt,
-            exc_info=exc,
+            # exc_info=exc,
         )
         formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
 
@@ -69,18 +140,28 @@ def _configure_log_level(cfg: dict) -> None:
     # Optional file handler
     log_file = log_cfg.get("file")
     if log_file is not None:
+        max_bytes = log_cfg.get("max_bytes", 500_000)
+        max_bytes_parsed = _parse_max_bytes(max_bytes)
+        backup_count = log_cfg.get("backup_count", 1)
         try:
             log_path = Path(log_file).expanduser().absolute()
             log_path.parent.mkdir(parents=True, exist_ok=True)
 
-            file_handler = logging.FileHandler(log_path, mode="w", encoding="utf-8")
+            file_handler = logging.handlers.RotatingFileHandler(
+                log_path,
+                mode="a",
+                maxBytes=max_bytes_parsed,
+                backupCount=backup_count,
+                encoding="utf-8",
+            )
+
             file_handler.setFormatter(formatter)
             logger.addHandler(file_handler)
-        except Exception as exc:
+        except (OSError, ValueError):
             logger.warning(
-                "Invalid logger file in config (%f); file logging not enabled",
+                "Invalid logger file in config (%r); file logging not enabled",
                 log_file,
-                exc_info=exc,
+                # exc_info=exc,
             )
 
 
@@ -139,7 +220,7 @@ def main():
     cfg = _load_toml_config(config_path)
 
     # get the logger setup from toml config
-    _configure_log_level(cfg)
+    _configure_logger(cfg)
 
     # setup NovaStar client and configurations
     client_timeout = cfg.get("client", {}).get("timeout", 30)
