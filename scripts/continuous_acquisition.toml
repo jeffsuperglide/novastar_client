@@ -4,8 +4,8 @@ timeout = 60
 
 [logger]
 level = "DEBUG"
-format = "%(asctime)s %(name)s %(levelname)s: %(message)s"
-file = "ztest_con_acq.logs"
+format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
+file = "ztest_con_acq.log"
 max_bytes = 100_000_000
 backup_count = 2
 
@@ -13,8 +13,8 @@ backup_count = 2
 file = "novastar.dss"
 
 [period]
-start = "now"
-end = "now_minus_1Day"
+start = "now_minus_1Day"
+end = "now"
 
 # Generated NovaStar5 time series configuration
 
@@ -36,7 +36,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "15Minute"
 units = "mm"
-enabled = false
+enabled = true
 
 [[station."2".series]]
 tag = ""
@@ -44,7 +44,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "1Hour"
 units = "mm"
-enabled = false
+enabled = true
 
 [[station."2".series]]
 tag = ""
@@ -52,7 +52,7 @@ parameter = "WaterLevelRiver"
 statistic = "Mean"
 interval = "15Minute"
 units = "ft"
-enabled = false
+enabled = true
 
 [[station."2".series]]
 tag = ""
@@ -60,7 +60,7 @@ parameter = "WaterLevelRiver"
 statistic = "Mean"
 interval = "1Hour"
 units = "ft"
-enabled = false
+enabled = true
 
 [station."3"]
 network = "NovaStar5"
@@ -72,7 +72,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "5Minute"
 units = "mm"
-enabled = false
+enabled = true
 
 [[station."3".series]]
 tag = ""
@@ -80,7 +80,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "15Minute"
 units = "mm"
-enabled = false
+enabled = true
 
 [[station."3".series]]
 tag = ""
@@ -88,7 +88,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "1Hour"
 units = "mm"
-enabled = false
+enabled = true
 
 [station."4"]
 network = "NovaStar5"
@@ -100,7 +100,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "5Minute"
 units = "mm"
-enabled = false
+enabled = true
 
 [[station."4".series]]
 tag = ""
@@ -108,7 +108,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "15Minute"
 units = "mm"
-enabled = false
+enabled = true
 
 [[station."4".series]]
 tag = ""
@@ -116,7 +116,7 @@ parameter = "Precip"
 statistic = "Total"
 interval = "1Hour"
 units = "mm"
-enabled = false
+enabled = true
 
 [station."6"]
 network = "NovaStar5"
