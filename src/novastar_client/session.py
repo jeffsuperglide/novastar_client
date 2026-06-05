@@ -114,9 +114,6 @@ class NovaStarSession:
                 exc,
                 # exc_info=True,
             )
-            raise SystemExit(1) from exc
 
-        except ValueError as exc:
+        except ValueError:
             logger.warning("NovaStar API returned invalid JSON")
-
-            raise SystemExit(1) from exc
