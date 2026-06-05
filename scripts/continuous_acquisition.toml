@@ -3,7 +3,7 @@
 timeout = 60
 
 [logger]
-level = "INFO"
+level = "DEBUG"
 format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
 file = "ztest_con_acq.log"
 max_bytes = 100_000_000

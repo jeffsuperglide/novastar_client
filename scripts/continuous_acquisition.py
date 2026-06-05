@@ -2,6 +2,7 @@
 
 import logging.handlers
 import os
+import platform
 import random
 import re
 import sys
@@ -22,6 +23,7 @@ from novastar_client.transform.dss_time_interval import DssTimeInterval
 from novastar_client.transform.shef_lookup import get_shef_info
 
 DEFAULT_MAX_BYTES = 500_000
+DEFAULT_LOG_FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
 
 _SIZE_RE = re.compile(
     r"^\s*(?P<value>\d+(?:\.\d+)?)\s*(?P<unit>b|kb|k|mb|m|gb|g)?\s*$",
@@ -223,9 +225,24 @@ def main():
 
     # setup NovaStar client and configurations
     client_timeout = cfg.get("client", {}).get("timeout", 30)
+    log_formatting = cfg.get("logger", {}).get("format", None)
     level_num = logger.getEffectiveLevel()
     level_name = logging.getLevelName(level_num)
-    ns_config = NovaStarConfig(timeout=client_timeout, log_level=level_name)
+
+    # startup logging
+    logger.setLevel("INFO")
+    logger.info("=== Starting script ===")
+    logger.info("Python version: %s", platform.python_version())
+    logger.info("Working directory: %s", Path.cwd())
+    logger.info("Loaded config from '%s'", config_path)
+    logger.setLevel(level_name)
+
+    ns_config = NovaStarConfig(
+        timeout=client_timeout,
+        log_level=level_name,
+        log_format=(log_formatting if log_formatting else DEFAULT_LOG_FORMAT),
+    )
+
     ns_client = NovaStarClient(ns_config)
     configure_package_logging(ns_config)
 
