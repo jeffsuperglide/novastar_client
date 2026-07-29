@@ -14,7 +14,7 @@ from typing import Any, Union
 
 import pandas as pd
 
-from hecdss.hecdss import HecDss, RegularTimeSeries
+from hecdss.hecdss import HecDss, RegularTimeSeries, IrregularTimeSeries
 from novastar_client.client import NovaStarClient
 from novastar_client.config import NovaStarConfig
 from novastar_client.logging_utils import configure_package_logging
@@ -235,6 +235,8 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
             tsid=ns_tsid,
             periodStart=period_start,
             periodEnd=period_end,
+            # includeEstimates="true",  # -- estimate missings more for stage/elevation and NOT for precipitation.
+            includeMissing="true",  # -- include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
         )
 
         if response is None:
@@ -300,9 +302,16 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         if len(dt_value) > 0:
             df = pd.DataFrame(dt_value)
             df["dt"] = pd.to_datetime(df["dt"])
-            df["dt"] = df["dt"].dt.tz_convert("UTC")
+            df = df.fillna(
+                0
+            )  # -- This is to replace 'None' values with this value.  -901.0 could be used to represent missing values in DSS.
+            df["dt"] = df["dt"].dt.tz_convert(
+                "UTC"
+            )  # -- The API will return times with a timezone based on the 'timezone' argument.
 
-            tsc = RegularTimeSeries()
+            tsc = (
+                RegularTimeSeries()
+            )  # -- missing values are needed to keep time shift from happening.  Basically, irregular as a regular timeseries will look compressed.
             tsc.id = path
             tsc.values = df["value"].to_list()  # type: ignore
             tsc.times = df["dt"].to_list()
