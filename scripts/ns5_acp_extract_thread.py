@@ -231,13 +231,16 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         logger.info("Get timeseries data for '%s'.", ns_tsid)
         ns_client = NovaStarClient(ns_config)
 
-        response = ns_client.timeseries.get(
-            tsid=ns_tsid,
-            periodStart=period_start,
-            periodEnd=period_end,
-            # includeEstimates="true",  # -- estimate missings more for stage/elevation and NOT for precipitation.
-            includeMissing="true",  # -- include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
-        )
+        # Using the 'includeMissing' argument creates a regular interval time series,
+        # which is needed for DSS put (RegularTimeSeries).
+        ts_get_arguments = {
+            "tsid": ns_tsid,
+            "periodStart": period_start,
+            "periodEnd": period_end,
+            # includeEstimates":"true",  # -- estimate missings more for stage/elevation and NOT for precipitation.
+            "includeMissing": "true",  # -- include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
+        }
+        response = ns_client.timeseries.get(**ts_get_arguments)
 
         if response is None:
             raise ValueError(
@@ -291,27 +294,33 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         logger.info("TSID: '%s'; DSS: '%s'", ns_tsid, path)
 
         dt_value = response.get_data_fields("dt", "value")
+
+        # Get a subset of datetime value pairs for debugger.
         fraction = 0.75
         n = max(1, int(len(dt_value) * fraction))
-        subset = random.sample(dt_value, n)
         logger.debug(
-            "Random sample of time/value (%d of %d): %s", n, len(dt_value), subset
+            "Random sample of time/value (%d of %d): %s",
+            n,
+            len(dt_value),
+            random.sample(dt_value, n),
         )
 
         rows_written = 0
         if len(dt_value) > 0:
             df = pd.DataFrame(dt_value)
             df["dt"] = pd.to_datetime(df["dt"])
-            df = df.fillna(
-                0
-            )  # -- This is to replace 'None' values with this value.  -901.0 could be used to represent missing values in DSS.
-            df["dt"] = df["dt"].dt.tz_convert(
-                "UTC"
-            )  # -- The API will return times with a timezone based on the 'timezone' argument.
 
-            tsc = (
-                RegularTimeSeries()
-            )  # -- missing values are needed to keep time shift from happening.  Basically, irregular as a regular timeseries will look compressed.
+            # -- This is to replace 'None' values with this value.  -901.0 could be used to represent missing values in DSS.
+            if "precip" in ns_tsid.lower():
+                df = df.fillna(0)
+            else:
+                df = df.fillna(-901.0)
+
+            # -- The API will return times with a timezone based on the 'timezone' argument.
+            df["dt"] = df["dt"].dt.tz_convert("UTC")
+
+            # -- missing values are needed to keep time shift from happening.  Basically, irregular as a regular timeseries will look compressed.
+            tsc = RegularTimeSeries()
             tsc.id = path
             tsc.values = df["value"].to_list()  # type: ignore
             tsc.times = df["dt"].to_list()

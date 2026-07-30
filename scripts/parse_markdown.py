@@ -1,9 +1,10 @@
 from collections import defaultdict
 
-input_path = "/Users/rdcrljsg/Documents/repositories/novastar_client/stations_returned_data.md"  # station, tag, parameter, interval, name
-output_toml = (
-    "/Users/rdcrljsg/Documents/repositories/novastar_client/stations_returned_data.out"
-)
+from pathlib import Path
+
+# The file name for the markdown and toml file in the same directory as this script.
+input_file = Path("stations_waterlevel.md")
+output_toml = Path("stations_waterlevel.toml")
 
 
 def split_markdown_row(line):
@@ -20,14 +21,15 @@ def split_markdown_row(line):
 
 stations = defaultdict(lambda: {"description": None, "series": []})
 
-with open(input_path, encoding="utf-8") as f:
+with input_file.open(mode="r", encoding="utf-8") as f:
     # Skip the very first line (header titles)
-    next(f, None)
+    for _ in range(3):
+        next(f, None)
 
     for line in f:
         # Skip the markdown separator line (e.g. "| :----: | :--- | ...")
-        # if ":" in line and "---" in line:
-        #     continue
+        if ":" in line and "---" in line:
+            continue
 
         cells = split_markdown_row(line)
         if not cells:
@@ -71,7 +73,7 @@ with open(input_path, encoding="utf-8") as f:
             }
         )
 
-with open(output_toml, "w", encoding="utf-8") as out:
+with output_toml.open("w", encoding="utf-8") as out:
     out.write("# Generated NovaStar5 time series configuration\n\n")
     for sid, data in sorted(stations.items(), key=lambda x: int(x[0])):
         out.write(f'[station."{sid}"]\n')

@@ -1,0 +1,564 @@
+# Continuous Acquisition Configurations
+[client]
+timeout = 60
+
+[logger]
+level = "DEBUG"
+format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
+file = "ztest_con_acq.log"
+max_bytes = 100_000_000
+backup_count = 2
+
+[dss]
+file = "novastar.dss"
+
+[period]
+start = "now_minus_1Day"
+end = "now"
+
+# Generated NovaStar5 time series configuration
+
+[station."7"]
+network = "NovaStar5"
+description = "CANO QUEBRADO ABAJO"
+
+  [[station."7".series]]
+  tag       = "711"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."7".series]]
+  tag       = "711"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."7".series]]
+  tag       = "799"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."7".series]]
+  tag       = "799"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."13"]
+network = "NovaStar5"
+description = "GUARUMAL"
+
+  [[station."13".series]]
+  tag       = "1310"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."13".series]]
+  tag       = "1310"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."13".series]]
+  tag       = "1311"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."18"]
+network = "NovaStar5"
+description = "LOS CAÑONES"
+
+  [[station."18".series]]
+  tag       = "1810"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."18".series]]
+  tag       = "1810"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."18".series]]
+  tag       = "1811"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."18".series]]
+  tag       = "1811"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."45"]
+network = "NovaStar5"
+description = "PELUCA"
+
+  [[station."45".series]]
+  tag       = "4510"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."45".series]]
+  tag       = "4510"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."45".series]]
+  tag       = "PEL WL"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."45".series]]
+  tag       = "PEL WL"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."48"]
+network = "NovaStar5"
+description = "CHORRO"
+
+  [[station."48".series]]
+  tag       = "4811"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."48".series]]
+  tag       = "4811"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."51"]
+network = "NovaStar5"
+description = "CANDELARIA Campbell scientific"
+
+  [[station."51".series]]
+  tag       = "5110"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."51".series]]
+  tag       = "5110"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."51".series]]
+  tag       = "5111"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."51".series]]
+  tag       = "5111"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."53"]
+network = "NovaStar5"
+description = "CHICO"
+
+  [[station."53".series]]
+  tag       = "5310"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5310"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5311"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5311"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5350"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5350"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."54"]
+network = "NovaStar5"
+description = "GATUN LAKE"
+
+  [[station."54".series]]
+  tag       = "5425"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5425"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5450"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5450"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5460"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5460"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5400"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5400"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5480"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5480"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."55"]
+network = "NovaStar5"
+description = "ALHAJUELA"
+
+  [[station."55".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."55".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."203"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA RIO GATUN"
+
+  [[station."203".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."203".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."204"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA CHILIBRE"
+
+  [[station."204".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."204".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."205"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA SABANITAS II"
+
+  [[station."205".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."205".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."207"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA LAGUNA ALTA"
+
+  [[station."207".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."207".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."208"]
+network = "NovaStar5"
+description = "AGUA CRUDA ALIMENTOS CARNICOS"
+
+  [[station."208".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."208".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."209"]
+network = "NovaStar5"
+description = "AGUA CRUDA RIO INDIO MELO"
+
+  [[station."209".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."209".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."210"]
+network = "NovaStar5"
+description = "AGUA CRUDA EL SALTO MELO"
+
+  [[station."210".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."210".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."211"]
+network = "NovaStar5"
+description = "AGUA CRUDA ESCOBAL I"
+
+  [[station."211".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."211".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+[station."5000"]
+network = "NovaStar5"
+description = "Virtual Madden Escorrentia"
+
+  [[station."5000".series]]
+  tag       = "500050"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."5000".series]]
+  tag       = "500050"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."5000".series]]
+  tag       = "500060"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "15Minute"
+  units     = "cfs"
+  enabled   = true
+
+  [[station."5000".series]]
+  tag       = "500060"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval  = "1Hour"
+  units     = "cfs"
+  enabled   = true
+

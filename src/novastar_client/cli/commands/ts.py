@@ -6,6 +6,8 @@ import json
 import logging
 import pprint
 
+from datetime import datetime, timedelta, timezone
+
 import click
 
 from novastar_client.cli.helpers import output_pretty_json
@@ -20,6 +22,10 @@ logger = logging.getLogger(__name__)
 pass_app = click.make_pass_decorator(AppContext)
 
 pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
+
+
+def truncate_to_minute(dt: datetime) -> datetime:
+    return dt.replace(second=0, microsecond=0)
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
@@ -40,6 +46,17 @@ pp = pprint.PrettyPrinter(indent=4, width=80, compact=False)
     help="Period end date/time using format YYYY-MM-DDThh:mm:ss or "
     "YYYY-MM-DDThh:mm:ss-06:00 (default is the current time).",
 )
+@click.option(
+    "--include-estimates",
+    is_flag=True,
+    help="Whether to include estimated values for interval data. "
+    "Values can be estimted if within the no report interval. (default=False)",
+)
+@click.option(
+    "--include-missing",
+    is_flag=True,
+    help="Whether to include missing values for interval data (will increase the size of the response), which requires consuming software to insert missing values. (default=False)",
+)
 @click.option("--pretty-print", is_flag=True, help="Pretty print the json response.")
 @click.option("--stream", is_flag=True, help="Stream the json response per line.")
 @pass_app
@@ -48,6 +65,8 @@ def ts(
     tsid: str,
     period_start: str,
     period_end: str,
+    include_estimates: bool,
+    include_missing: bool,
     pretty_print: bool,
     stream: bool,
 ) -> None:
@@ -64,11 +83,16 @@ def ts(
     args = {
         "raw": False,
         "tsid": tsid,
+        "includeEstimates": include_estimates,
+        "includeMissing": include_missing,
     }
+    # If start/end times defined, add to the args.
     if period_start is not None:
         args["periodStart"] = period_start
     if period_end is not None:
         args["periodEnd"] = period_end
+
+    logger.debug(f"Arguments: {args}")
 
     resp = client.timeseries.get(**args)
 

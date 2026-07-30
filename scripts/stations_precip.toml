@@ -1,0 +1,1240 @@
+# Continuous Acquisition Configurations
+[client]
+timeout = 60
+
+[logger]
+level = "DEBUG"
+format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
+file = "ztest_con_acq.log"
+max_bytes = 100_000_000
+backup_count = 2
+
+[dss]
+file = "novastar.dss"
+
+[period]
+start = "now_minus_1Day"
+end = "now"
+
+# Generated NovaStar5 time series configuration
+
+[station."2"]
+network = "NovaStar5"
+description = "AMADOR"
+
+  [[station."2".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."2".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."3"]
+network = "NovaStar5"
+description = "ISLA BRUJA CHIQUITA RAIN AND WIND"
+
+  [[station."3".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."3".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."4"]
+network = "NovaStar5"
+description = "BARRO COLORADO"
+
+  [[station."4".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."4".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."6"]
+network = "NovaStar5"
+description = "DIABLO HEIGHTS"
+
+  [[station."6".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."6".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."8"]
+network = "NovaStar5"
+description = "SANTA ROSA"
+
+  [[station."8".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."8".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."9"]
+network = "NovaStar5"
+description = "GATUN WEST-CAMPBELL"
+
+  [[station."9".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."9".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."10"]
+network = "NovaStar5"
+description = "CULEBRA"
+
+  [[station."10".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."10".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."14"]
+network = "NovaStar5"
+description = "ESCANDALOSA"
+
+  [[station."14".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."14".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."16"]
+network = "NovaStar5"
+description = "GAMBOA"
+
+  [[station."16".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."16".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."18"]
+network = "NovaStar5"
+description = "LOS CAÑONES"
+
+  [[station."18".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."18".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."19"]
+network = "NovaStar5"
+description = "SANTA CLARA"
+
+  [[station."19".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."19".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."20"]
+network = "NovaStar5"
+description = "CHICO CABECERA"
+
+  [[station."20".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."20".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."22"]
+network = "NovaStar5"
+description = "GASPARILLAL"
+
+  [[station."22".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."22".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."23"]
+network = "NovaStar5"
+description = "ZANGUENGA"
+
+  [[station."23".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."23".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."24"]
+network = "NovaStar5"
+description = "GOLD HILL"
+
+  [[station."24".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."24".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."25"]
+network = "NovaStar5"
+description = "ISLA BARBACOA RAIN AND WIND"
+
+  [[station."25".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."25".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."29"]
+network = "NovaStar5"
+description = "RIO PIEDRAS ARRIBA"
+
+  [[station."29".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."29".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."30"]
+network = "NovaStar5"
+description = "CASCADAS"
+
+  [[station."30".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."30".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."34"]
+network = "NovaStar5"
+description = "PUNTA FRIJOLES RAIN AND WIND"
+
+  [[station."34".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."34".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."42"]
+network = "NovaStar5"
+description = "MONTE LIRIO"
+
+  [[station."42".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."42".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."43"]
+network = "NovaStar5"
+description = "HUMEDAD"
+
+  [[station."43".series]]
+  tag       = "4312"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."43".series]]
+  tag       = "4312"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."44"]
+network = "NovaStar5"
+description = "RAICES"
+
+  [[station."44".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."44".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."45"]
+network = "NovaStar5"
+description = "PELUCA"
+
+  [[station."45".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."45".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."46"]
+network = "NovaStar5"
+description = "GUACHA"
+
+  [[station."46".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."46".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."47"]
+network = "NovaStar5"
+description = "SALAMANCA"
+
+  [[station."47".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."47".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."48"]
+network = "NovaStar5"
+description = "CHORRO"
+
+  [[station."48".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."48".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."49"]
+network = "NovaStar5"
+description = "SAN MIGUEL"
+
+  [[station."49".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."49".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."50"]
+network = "NovaStar5"
+description = "AGUA CLARA"
+
+  [[station."50".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."50".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."51"]
+network = "NovaStar5"
+description = "CANDELARIA Campbell scientific"
+
+  [[station."51".series]]
+  tag       = "5112"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."51".series]]
+  tag       = "5112"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."52"]
+network = "NovaStar5"
+description = "CIENTO"
+
+  [[station."52".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."52".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."53"]
+network = "NovaStar5"
+description = "CHICO"
+
+  [[station."53".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."55"]
+network = "NovaStar5"
+description = "ALHAJUELA"
+
+  [[station."55".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."55".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."56"]
+network = "NovaStar5"
+description = "PUNTA BOHIO RAIN AND WIND"
+
+  [[station."56".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."56".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."58"]
+network = "NovaStar5"
+description = "MIRAFLORES"
+
+  [[station."58".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."58".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."59"]
+network = "NovaStar5"
+description = "CANO"
+
+  [[station."59".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."59".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."60"]
+network = "NovaStar5"
+description = "BALBOA_HEIGHTS_PREC_ALERT2"
+
+  [[station."60".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."60".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."61"]
+network = "NovaStar5"
+description = "PEDRO MIGUEL METEREOLOGICA"
+
+  [[station."61".series]]
+  tag       = "6112"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."61".series]]
+  tag       = "6112"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."62"]
+network = "NovaStar5"
+description = "BUENOS AIRES"
+
+  [[station."62".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."62".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."63"]
+network = "NovaStar5"
+description = "FAA"
+
+  [[station."63".series]]
+  tag       = "6312"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."63".series]]
+  tag       = "6312"
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."64"]
+network = "NovaStar5"
+description = "EMPIRE HILL"
+
+  [[station."64".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."64".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."67"]
+network = "NovaStar5"
+description = "JAGUA"
+
+  [[station."67".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."67".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."68"]
+network = "NovaStar5"
+description = "VISTAMARES"
+
+  [[station."68".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."68".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."69"]
+network = "NovaStar5"
+description = "FRIJOLITO"
+
+  [[station."69".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."69".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."70"]
+network = "NovaStar5"
+description = "LIMON BAY"
+
+  [[station."70".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."70".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."71"]
+network = "NovaStar5"
+description = "ESPERANZA"
+
+  [[station."71".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."71".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."72"]
+network = "NovaStar5"
+description = "VALLE CENTRAL GATUN"
+
+  [[station."72".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."72".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."74"]
+network = "NovaStar5"
+description = "COCOLI 326"
+
+  [[station."74".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."74".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."75"]
+network = "NovaStar5"
+description = "AGUA SALUD"
+
+  [[station."75".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."75".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."76"]
+network = "NovaStar5"
+description = "CHAGRECITO"
+
+  [[station."76".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."76".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."77"]
+network = "NovaStar5"
+description = "ARCA SONIA"
+
+  [[station."77".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."77".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."78"]
+network = "NovaStar5"
+description = "CERRO CAMA"
+
+  [[station."78".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."78".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."79"]
+network = "NovaStar5"
+description = "CHAMON"
+
+  [[station."79".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."79".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."80"]
+network = "NovaStar5"
+description = "TRANQUILLA"
+
+  [[station."80".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."80".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."81"]
+network = "NovaStar5"
+description = "DOS BOCAS"
+
+  [[station."81".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."81".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."114"]
+network = "NovaStar5"
+description = "Virtual Madden Basin average"
+
+  [[station."114".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."114".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."117"]
+network = "NovaStar5"
+description = "COROZAL OESTE Campbell Scientific"
+
+  [[station."117".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."117".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."231"]
+network = "NovaStar5"
+description = "ROC BOCA DE URACILLO"
+
+  [[station."231".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."231".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."232"]
+network = "NovaStar5"
+description = "ROC TRES HERMANAS"
+
+  [[station."232".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."232".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."540"]
+network = "NovaStar5"
+description = "GATUN RAIN"
+
+  [[station."540".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."540".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."5300"]
+network = "NovaStar5"
+description = "Chagres Basin Average"
+
+  [[station."5300".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."5300".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
+[station."6000"]
+network = "NovaStar5"
+description = "Virtual Precipitation"
+
+  [[station."6000".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "15Minute"
+  units     = "mm"
+  enabled   = true
+
+  [[station."6000".series]]
+  tag       = ""
+  parameter = "Precip"
+  statistic = "Total"
+  interval  = "1Hour"
+  units     = "mm"
+  enabled   = true
+
