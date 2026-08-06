@@ -38,7 +38,14 @@ class TimeSeriesAPI:
             TimeSeriesResponse dataclass defined in the models module.
         """
 
-        params: Dict[str, str] = {**self.default_params, **kwargs}
+        # Handle the input parameters that are truthy.
+        params: Dict[str, str] = {
+            **self.default_params,
+            **{
+                k: (str(v).lower() if isinstance(v, bool) else v)
+                for k, v in kwargs.items()
+            },
+        }
         data: Any = self.session.get(self.path, params=params)
 
         if data is None:

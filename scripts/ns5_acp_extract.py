@@ -1,29 +1,32 @@
 """Continuous data extraction from the NovaStar API"""
 
+import logging
 import logging.handlers
 import os
 import platform
-import random
 import re
 import sys
 import tomllib
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-import logging
-from typing import Union
+from typing import Any, Union
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import pandas as pd
 
-from hecdss.hecdss import HecDss, RegularTimeSeries
-from novastar_client.config import NovaStarConfig
+from hecdss.hecdss import HecDss, RegularTimeSeries, IrregularTimeSeries
 from novastar_client.client import NovaStarClient
+from novastar_client.config import NovaStarConfig
 from novastar_client.logging_utils import configure_package_logging
-
 from novastar_client.transform.dss_data_type import ns5_type_to_dss
 from novastar_client.transform.dss_time_interval import DssTimeInterval
 from novastar_client.transform.shef_lookup import get_shef_info
 
+MAX_THREADING = 4
 DEFAULT_MAX_BYTES = 500_000
 DEFAULT_LOG_FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
+
+logger = logging.getLogger("extract")
 
 _SIZE_RE = re.compile(
     r"^\s*(?P<value>\d+(?:\.\d+)?)\s*(?P<unit>b|kb|k|mb|m|gb|g)?\s*$",
@@ -37,11 +40,7 @@ _SIZE_UNITS = {
     "kb": 1024,
     "m": 1024**2,
     "mb": 1024**2,
-    # "g": 1024**3,
-    # "gb": 1024**3,
 }
-
-logger = logging.getLogger("extract")
 
 
 def _exit_with_warning(msg: str, exc: Exception | None = None) -> None:
@@ -52,23 +51,6 @@ def _exit_with_warning(msg: str, exc: Exception | None = None) -> None:
 
 
 def _parse_max_bytes(value):
-    """
-    Parse maxBytes from an int or a human-readable string.
-
-    Accepted examples:
-      1048576
-      "1048576"
-      "1M", "1m", "1MB", "1mb"
-      "1K", "1k", "1KB", "1kb"
-      "1.5M"
-
-    Returns:
-      int: size in bytes
-
-    Raises:
-      TypeError: unsupported type
-      ValueError: invalid or negative size
-    """
     if isinstance(value, int):
         return value
 
@@ -83,8 +65,7 @@ def _parse_max_bytes(value):
     match = _SIZE_RE.match(s)
     if not match:
         logger.info(
-            "Invalid maxBytes value: %r.  "
-            "Use an integer or a size like 1KB, 10MB, 1.5G.  "
+            "Invalid maxBytes value: %r. Use an integer or a size like 1KB, 10MB. "
             "Returning default max bytes %d",
             value,
             DEFAULT_MAX_BYTES,
@@ -94,8 +75,8 @@ def _parse_max_bytes(value):
     number = float(match.group("value"))
     unit = match.group("unit")
     multiplier = _SIZE_UNITS[unit.lower() if unit else None]
-
     size = int(number * multiplier)
+
     if size < 0:
         logger.info("maxBytes must be >= 0")
         return DEFAULT_MAX_BYTES
@@ -108,7 +89,6 @@ def _configure_logger(cfg: dict) -> None:
         logger.warning("Invalid logger config; expected a table.")
         return
 
-    # get the defined log level.
     level = cfg.get("level")
     if level is not None:
         try:
@@ -117,10 +97,8 @@ def _configure_logger(cfg: dict) -> None:
             logger.warning(
                 "Invalid logger level in config (%r); keeping existing level",
                 level,
-                # exc_info=exc,
             )
 
-    # set the logger format and fall back to default if not there.
     fmt = cfg.get("format")
     try:
         formatter = logging.Formatter(fmt)
@@ -128,19 +106,12 @@ def _configure_logger(cfg: dict) -> None:
         logger.warning(
             "Invalid logger format in config (%r); using default format",
             fmt,
-            # exc_info=exc,
         )
-        formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
+        formatter = logging.Formatter(DEFAULT_LOG_FORMAT)
 
-    # console formatter
-    console = logging.StreamHandler()
-    console.setFormatter(formatter)
-    logger.addHandler(console)
-
-    # Optional file handler
     log_file = cfg.get("file")
     if log_file is not None:
-        max_bytes = cfg.get("max_bytes", 500_000)
+        max_bytes = cfg.get("max_bytes", DEFAULT_MAX_BYTES)
         max_bytes_parsed = _parse_max_bytes(max_bytes)
         backup_count = cfg.get("backup_count", 1)
         try:
@@ -154,67 +125,296 @@ def _configure_logger(cfg: dict) -> None:
                 backupCount=backup_count,
                 encoding="utf-8",
             )
-
             file_handler.setFormatter(formatter)
             logger.addHandler(file_handler)
         except (OSError, ValueError):
             logger.warning(
                 "Invalid logger file in config (%r); file logging not enabled",
                 log_file,
-                # exc_info=exc,
             )
 
 
 def _dss_file_path(cfg: dict) -> Path:
     default_dssfile = Path("timeseries.dss")
-
-    # get the dss table.
-    log_cfg = cfg.get("dss", {})
-    if not isinstance(log_cfg, dict):
+    dss_cfg = cfg.get("dss", {})
+    if not isinstance(dss_cfg, dict):
         logger.warning("Invalid dss config; expected a table.")
         return default_dssfile
 
-    # get the defined dsss file.
-    dssfile = log_cfg.get("file")
+    dssfile = dss_cfg.get("file")
     if dssfile is not None:
-        dss_file_path = Path(dssfile)
-        return dss_file_path.expanduser().absolute()
+        return Path(dssfile).expanduser().absolute()
 
     return default_dssfile
 
 
-def _load_toml_config(path: Union[str, Path]) -> dict:
-    """load_toml_config"""
+def _load_toml_config(path: Union[str, Path]) -> dict[str, Any]:
     path = Path(path)
 
     try:
-        with path.open("rb") as f:  # use Path.open
+        with path.open("rb") as f:
             config = tomllib.load(f)
     except FileNotFoundError as exc:
-        msg = f"Config file not found: {path}"
-        _exit_with_warning(msg, exc)
+        _exit_with_warning(f"Config file not found: {path}", exc)
     except PermissionError as exc:
-        msg = f"No permission to read config file: {path}"
-        _exit_with_warning(msg, exc)
+        _exit_with_warning(f"No permission to read config file: {path}", exc)
     except tomllib.TOMLDecodeError as exc:
-        msg = f"Invalid TOML in config file {path}: {exc}"
-        _exit_with_warning(msg, exc)
+        _exit_with_warning(f"Invalid TOML in config file {path}: {exc}", exc)
 
     return config
 
 
+def _apply_fill_config(df: pd.DataFrame, config: dict) -> pd.DataFrame:
+    out = df.copy()
+
+    for method_name in config.get("order", []):
+        opts = dict(config.get(method_name, {}))
+        if not opts.pop("enabled", False):
+            continue
+
+        if method_name == "ffill":
+            out = out.ffill(**opts)
+
+        elif method_name == "interpolate":
+            out = out.interpolate(**opts)
+
+        elif method_name == "fillna":
+            out = out.fillna(**opts)
+
+        else:
+            raise ValueError(f"Unknown fill method in config: {method_name}")
+
+    return out
+
+
+def _safe_tz_convert(df: pd.DataFrame, col: str, timezone: str | None) -> pd.DataFrame:
+    if timezone is None:
+        return df
+
+    try:
+        tz = ZoneInfo(timezone)
+        series = df[col]
+
+        if not pd.api.types.is_datetime64_any_dtype(series):
+            series = pd.to_datetime(series, errors="raise")
+
+        if series.dt.tz is None:
+            raise ValueError(f"column {col!r} is timezone-naive, cannot tz_convert")
+
+        df[col] = series.dt.tz_convert(tz)
+
+    except (ZoneInfoNotFoundError, ValueError, TypeError, KeyError) as e:
+        logger.warning(
+            f"tz_convert skipped for column {col!r} with timezone {timezone!r}: {e}"
+        )
+        # df[col] left unchanged
+
+    return df
+
+
+def build_tasks(
+    cfg: dict[str, Any], ns_config: NovaStarConfig, dssfile: Path
+) -> list[tuple]:
+    tasks = []
+
+    cfg_period = cfg["period"]
+    period_start = cfg_period.get("start")
+    period_end = cfg_period.get("end")
+    logger.info(
+        "NovaStar Client Timewindow: start '%s', end '%s'", period_start, period_end
+    )
+
+    # The global parameters
+    global_parameters = cfg.get("timeseries_parameters", {})
+    global_fill_options = cfg.get("fill", {})
+
+    for station_id, station_data in cfg["station"].items():
+        network = station_data["network"]
+        station_parameters = station_data.get("timeseries_parameters", {})
+        for ts in station_data["series"]:
+            if not ts.get("enabled", False):
+                continue
+
+            # series parameters resolved down from global
+            series_parameters = ts.get("timeseries_parameters", {})
+            resolved_parameters = {
+                **global_parameters,
+                **station_parameters,
+                **series_parameters,
+            }
+
+            station_tag = ts.get("tag")
+            station_id_tag = (
+                f"{station_id}-{station_tag}" if len(station_tag) > 0 else station_id
+            )
+
+            parameter = ts.get("parameter")
+            statistic = ts.get("statistic")
+            parameter_statistic = (
+                f"{parameter}-{statistic}" if len(statistic) > 0 else parameter
+            )
+
+            interval = ts.get("interval")
+            ns_tsid = f"{station_id_tag}.{network}.{parameter_statistic}.{interval}"
+            logger.info("NovaStar time series ID: %s", ns_tsid)
+
+            tasks.append(
+                (
+                    ns_tsid,
+                    period_start,
+                    period_end,
+                    parameter,
+                    statistic,
+                    interval,
+                    station_id_tag,
+                    ns_config,
+                    resolved_parameters,
+                    global_fill_options,
+                    dssfile.as_posix(),
+                )
+            )
+
+    return tasks
+
+
+def process_timeseries(task: tuple) -> dict[str, Any]:
+    (
+        ns_tsid,
+        period_start,
+        period_end,
+        parameter,
+        statistic,
+        interval,
+        station_id_tag,
+        ns_config,
+        resolved_parameters,
+        global_fill_options,
+        dssfile,
+    ) = task
+
+    try:
+        logger.info("Get timeseries data for '%s'.", ns_tsid)
+        ns_client = NovaStarClient(ns_config)
+
+        # Using the 'includeMissing' argument creates a regular interval time series,
+        # which is needed for DSS put (RegularTimeSeries).
+        ts_get_arguments = {
+            "tsid": ns_tsid,
+            "periodStart": period_start,
+            "periodEnd": period_end,
+            **resolved_parameters,
+        }
+        response = ns_client.timeseries.get(**ts_get_arguments)
+
+        if response is None:
+            raise ValueError(
+                f"Client response for time series '{ns_tsid}' returned None."
+            )
+
+        timeseries_properties = response.get_properties()
+        logger.debug("TimeSeriesProperties: %s", response.get_properties_asdict())
+
+        ts_properties_shef_code = timeseries_properties.point_type_shef_parameter_code
+        shef_lookup_info = get_shef_info(ts_properties_shef_code)
+        shef_lookup_parameter = shef_lookup_info.parameter
+
+        logger.info(
+            "Parameter lookup from SHEF '%s' translates to '%s'; first try.",
+            ts_properties_shef_code,
+            shef_lookup_parameter,
+        )
+
+        if shef_lookup_parameter == "" or len(shef_lookup_parameter) <= 0:
+            datatype = ns_client.datatypes.get(name=parameter)
+            if datatype is not None:
+                shef_code = datatype.datatypes[0].shef_physical_element
+                shef_lookup_info = get_shef_info(shef_code)
+                shef_lookup_parameter = shef_lookup_info.parameter
+                logger.info(
+                    "Parameter lookup from SHEF '%s' translates to '%s'; second try.",
+                    shef_code,
+                    shef_lookup_parameter,
+                )
+            # if shef_lookup_parameter == "" or len(shef_lookup_parameter) <= 0:
+            raise ValueError(f"No parameter found for TSID '{ns_tsid}'.")
+
+        # Getting the timeseries data from the response.
+        timeseries = response.timeseries
+
+        # Change unit name if pies.
+        timeseries.units = "ft" if timeseries.units == "pies" else timeseries.units
+        logger.info("Time series units 'pies' found and converting to 'ft'.")
+
+        dt_value = response.get_data_fields("dt", "value")
+
+        rows_written = 0
+        if len(dt_value) > 0:
+            # create the data frame, convert datetimes, and remove seconds and microseconds.
+            df = pd.DataFrame(dt_value)
+
+            df["dt"] = pd.to_datetime(df["dt"])
+            df.sort_values("dt", inplace=True)
+
+            timezone = resolved_parameters.get("timezone", None)
+            df = _safe_tz_convert(df, "dt", timezone)
+
+            df.set_index("dt", inplace=True)
+
+            # Apply fill configurations
+            df = _apply_fill_config(df, global_fill_options)
+
+            # Build the DSS pathname.
+            dss_interval = DssTimeInterval.validate_time_string(interval)
+            dsspath = (
+                f"/{station_id_tag}/{timeseries_properties.station_name}/"
+                f"{shef_lookup_parameter}//{dss_interval}/{timeseries.data_type}/"
+            )
+            logger.info("TSID: '%s'; DSS: '%s'", ns_tsid, dsspath)
+
+            # Put the data into DSS
+            with HecDss(dssfile) as dss:
+                tsc = RegularTimeSeries.create(
+                    values=df["value"].to_list(),
+                    times=df.index.to_list(),
+                    units=timeseries.units,
+                    data_type=ns5_type_to_dss(statistic),
+                    path=dsspath,
+                )
+                dss.put(tsc)
+
+            rows_written = len(dt_value)
+            logger.info("Put %d values into DSS path %s.", rows_written, dsspath)
+
+        return {
+            "ns_tsid": ns_tsid,
+            "path": dsspath,
+            "rows_written": rows_written,
+            "ok": True,
+            "error": None,
+        }
+
+    except Exception as exc:
+        logger.warning("Failed processing '%s': %s", ns_tsid, exc)
+        return {
+            "ns_tsid": ns_tsid,
+            "path": None,
+            "rows_written": 0,
+            "ok": False,
+            "error": str(exc),
+        }
+
+
 def main():
-    """main"""
-    # check the first argument and get that argument
-    # the first argument should be the toml config
     if len(sys.argv) < 2:
         msg = (
-            f"Missing required configuration file.\n\n"
-            f"Usage: python {os.path.basename(sys.argv[0])} /path/to/config.toml"
+            f"{'*~' * 40}"
+            f"\nMissing required configuration file.\n\n"
+            f"Usage: python {os.path.basename(sys.argv[0])} /path/to/config.toml\n"
+            f"{'*~' * 40}"
         )
         _exit_with_warning(msg)
 
-    config_path = Path(sys.argv[1])
+    config_path = Path(sys.argv[1]).expanduser().absolute()
 
     # load the configurations
     cfg = _load_toml_config(config_path)
@@ -243,161 +443,35 @@ def main():
         log_format=(log_formatting if log_formatting else DEFAULT_LOG_FORMAT),
     )
 
-    ns_client = NovaStarClient(ns_config)
     configure_package_logging(ns_config)
 
-    # open the DSS file to write to
     dssfile = _dss_file_path(cfg)
-    dss = HecDss(dssfile.as_posix())
+    logger.info("DSS file open at '%s'", dssfile)
 
-    # NovaStar beginning and ending times
-    cfg_period = cfg["period"]
-    period_start = cfg_period.get("start")
-    period_end = cfg_period.get("end")
+    tasks = build_tasks(cfg, ns_config, dssfile)
+    logger.info("Prepared %d tasks for execution.", len(tasks))
+
+    results = []
+    with ThreadPoolExecutor(
+        max_workers=min(MAX_THREADING, max(1, len(tasks)))
+    ) as executor:
+        futures = {executor.submit(process_timeseries, task): task for task in tasks}
+
+        for future in as_completed(futures):
+            result = future.result()
+            results.append(result)
+
+    ok_count = sum(1 for r in results if r["ok"])
+    fail_count = len(results) - ok_count
+    total_rows = sum(r["rows_written"] for r in results)
+
     logger.info(
-        "NovaStar Client Timewindow: start '%s', end '%s'", period_start, period_end
+        "Finished processing %d tasks: %d succeeded, %d failed, %d total rows written.",
+        len(results),
+        ok_count,
+        fail_count,
+        total_rows,
     )
-
-    # loop through the stations from the toml config
-    # building the time series id from the configurations
-    for station_id, station_data in cfg["station"].items():
-        network = station_data["network"]
-        for ts in station_data["series"]:
-            # check that it is enabled first
-            is_enabled = ts.get("enabled", False)
-            if not is_enabled:
-                continue
-
-            station_tag = ts.get("tag")
-            station_id_tag = (
-                f"{station_id}-{station_tag}" if len(station_tag) > 0 else station_id
-            )
-
-            parameter = ts.get("parameter")
-            statistic = ts.get("statistic")
-            parameter_statistic = (
-                f"{parameter}-{statistic}" if len(statistic) > 0 else parameter
-            )
-
-            interval = ts.get("interval")
-
-            ns_tsid = f"{station_id_tag}.{network}.{parameter_statistic}.{interval}"
-            logger.info("NovaStar time series ID: %s", ns_tsid)
-
-            # get the time series using the toml config tsid build and time window
-
-            # Using the 'includeMissing' argument creates a regular interval time series,
-            # which is needed for DSS put (RegularTimeSeries).
-            ts_get_arguments = {
-                "tsid": ns_tsid,
-                "periodStart": period_start,
-                "periodEnd": period_end,
-                # includeEstimates":"true",  # -- estimate missings more for stage/elevation and NOT for precipitation.
-                "includeMissing": "true",  # -- include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
-            }
-
-            response = ns_client.timeseries.get(**ts_get_arguments)
-
-            # continue to the next time series if the response is None
-            if response is None:
-                logger.warning(
-                    "Client response for time series '%s' returned None; "
-                    "time series will be skipped.",
-                    ns_tsid,
-                )
-                continue
-
-            # getting the shef paramter from NWSLI
-            timeseries_properties = response.get_properties()
-            logger.debug(
-                "TimeSeriesProperties: %s",
-                response.get_properties_asdict(),
-            )
-
-            # parameter lookup from shef code; first try
-            ts_properties_shef_code = (
-                timeseries_properties.point_type_shef_parameter_code
-            )
-            shef_lookup_info = get_shef_info(ts_properties_shef_code)
-            shef_lookup_parameter = shef_lookup_info.parameter
-            logger.info(
-                "Parameter lookup from SHEF '%s' translates to '%s'; first try.",
-                ts_properties_shef_code,
-                shef_lookup_parameter,
-            )
-
-            # Check the shef parameter and try another method if string is empty.
-            # Get it from the NovaStar name.
-            # Ultimately, not parameter from shef we have to continue.
-            if shef_lookup_parameter == "" or len(shef_lookup_parameter) <= 0:
-                datatype = ns_client.datatypes.get(name=parameter)
-                if datatype is not None:
-                    shef_code = datatype.datatypes[0].shef_physical_element
-                    shef_lookup_info = get_shef_info(shef_code)
-                    shef_lookup_parameter = shef_lookup_info.parameter
-                    logger.info(
-                        "Parameter lookup from SHEF '%s' translates to '%s'; second try.",
-                        shef_code,
-                        shef_lookup_parameter,
-                    )
-
-            # parameter lookup from shef code; second try
-            if shef_lookup_parameter == "" or len(shef_lookup_parameter) <= 0:
-                logger.warning("No parameter found for TSID '%s'.", ns_tsid)
-                continue
-
-            # check the units
-            timeseries = response.timeseries
-            if timeseries.units == "pies":
-                logger.info("Time series units 'pies' found and converting to 'ft'.")
-                timeseries.units = "ft"
-
-            # getting dss parts
-            dss_interval = DssTimeInterval.validate_time_string(interval)
-            logger.info(
-                "NovaStar interval '%s' converted to DSS interval '%s'.",
-                interval,
-                dss_interval,
-            )
-
-            # Build the DSS path.
-            path = (
-                f"/{station_id_tag}/{timeseries_properties.station_name}/"
-                f"{shef_lookup_parameter}//{dss_interval}/{timeseries.data_type}/"
-            )
-            logger.info("TSID: '%s'; DSS: '%s'", ns_tsid, path)
-
-            dt_value = response.get_data_fields("dt", "value")
-
-            # Get a subset of datetime value pairs for debugger.
-            fraction = 0.75
-            n = max(1, int(len(dt_value) * fraction))
-            logger.debug(
-                "Random sample of time/value (%d of %d): %s",
-                n,
-                len(dt_value),
-                random.sample(dt_value, n),
-            )
-
-            if len(dt_value) > 0:
-                # load the DataFrame
-                df = pd.DataFrame(dt_value)
-                # convert dt to datetime
-                df["dt"] = pd.to_datetime(df["dt"])
-                # convert datetime to UTC
-                df["dt"] = df["dt"].dt.tz_convert("UTC")
-
-                tsc = RegularTimeSeries()
-                tsc.id = path
-                tsc.values = df["value"].to_list()  # type: ignore
-                tsc.times = df["dt"].to_list()
-                tsc.units = timeseries.units  # type: ignore
-                tsc.data_type = ns5_type_to_dss(statistic)
-
-                dss.put(tsc)
-                logger.info("Put %d values into DSS path %s.", len(dt_value), path)
-
-    dss.close()
 
 
 if __name__ == "__main__":
