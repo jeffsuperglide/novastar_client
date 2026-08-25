@@ -1,32 +1,25 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
+    requires = ["uv_build>=0.12.5,<0.13"]
+    build-backend = "uv_build"
 
 [project]
-name = "novastar-client"
-version = "1.1.0"
-description = "Python client for NovaStar REST endpoints (Stations)"
-authors = [{ name = "jeffsuperglide" }]
-license = "MIT"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = ["requests>=2.31.0", "click", "pandas", "hecdss"]
-
-[project.optional-dependencies]
-dev = ["pytest>=7.0", "pytest-cov>=4.0", "mypy>=1.0", "ruff>=0.4.0", "pdocs"]
-
-# version set at highest __init__.py
-# [tool.setuptools.dynamic]
-# version = { attr = "novastar_client.__version__" }
-
-[tool.setuptools]
-package-dir = { "" = "src" }
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-"novastar_client.data" = ["*.csv"]
+    name = "novastar-client"
+    version = "2.0.0"
+    description = "Python client for NovaStar REST endpoints (Stations)"
+    authors = [{ name = "Jeff Gregory", email = "jeffrey.s.gregory@usace.army.mil" }]
+    license = "MIT"
+    readme = "README.md"
+    requires-python = ">=3.12"
+    dependencies = ["requests>=2.31.0", "click", "pandas", "hecdss"]
 
 [project.scripts]
-ns5acp = "novastar_client.cli.ns5acp:cli"
+    ns5acp = "novastar_client.cli.ns5acp:cli"
+
+[dependency-groups]
+    dev = [
+        "pytest>=7.0",
+        "pytest-cov>=4.0",
+        "mypy>=1.0",
+        "ruff>=0.4.0",
+        "pdocs",
+    ]

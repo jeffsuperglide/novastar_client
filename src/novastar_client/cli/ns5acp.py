@@ -8,7 +8,6 @@ from novastar_client import __version__
 
 from .commands.stations import stations
 from .commands.ts import ts
-
 from .commands.tscatalog import tscatalog
 from .context import AppContext
 from .logging import configure_cli_logging, logging_options
