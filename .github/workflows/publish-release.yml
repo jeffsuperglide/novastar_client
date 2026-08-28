@@ -1,0 +1,289 @@
+name: "Publish release to PyPI and GitHub"
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      # Publish on version tags, e.g. v0.1.0
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+rc[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+[ab][0-9]+"
+    paths-ignore:
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Build + test always run (main pushes, tags, manual dispatch).
+    # Publishing/deploy jobs below gate on ref type so a plain push to
+    # main never tries to publish to PyPI or cut a GitHub release.
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: actions/checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ignore-empty-workdir: true
+
+      - name: astral-sh/setup-uv
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+        with:
+          enable-cache: false
+
+      - name: Build
+        run: uv build --no-sources
+
+      - name: Capture artifact names
+        id: files
+        shell: bash
+        run: |
+          SDIST_FILE="$(basename dist/*.tar.gz)"
+          WHEEL_FILE="$(basename dist/*.whl)"
+
+          echo "sdist_file=$SDIST_FILE" >> "$GITHUB_OUTPUT"
+          echo "wheel_file=$WHEEL_FILE" >> "$GITHUB_OUTPUT"
+
+      # Sync the "dev" dependency-group (pytest, pytest-cov, mypy, ruff,
+      # pdocs) from pyproject.toml, without installing the local project
+      # itself, then install the actual built wheel on top so tests run
+      # against exactly what will be published.
+      - name: Sync dev dependencies
+        run: uv sync --group dev --no-install-project
+
+      - name: Install built wheel
+        run: uv pip install "dist/${{ steps.files.outputs.wheel_file }}"
+
+      - name: Test installed wheel with pytest
+        run: uv run pytest tests/ --cov
+
+      # Optional: also test the sdist to catch packaging issues that only
+      # show up when installing from source (e.g. missing files in the
+      # sdist that happen to be present in the wheel).
+      # - name: Install built sdist
+      #   run: uv pip install "dist/${{ steps.files.outputs.sdist_file }}" --reinstall
+      # - name: Test installed sdist with pytest
+      #   run: uv run pytest tests/
+
+      - name: Build docs with pdoc
+        run: uv run pdoc --output-directory ./docs/ novastar_client novastar_client.cli
+
+      - name: actions/upload-pages-artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs/
+
+      - name: Compute SHA256
+        id: sha
+        shell: bash
+        run: |
+          SDIST_PATH="dist/${{ steps.files.outputs.sdist_file }}"
+          WHEEL_PATH="dist/${{ steps.files.outputs.wheel_file }}"
+
+          SDIST_SHA256="$(sha256sum "$SDIST_PATH" | awk '{print $1}')"
+          WHEEL_SHA256="$(sha256sum "$WHEEL_PATH" | awk '{print $1}')"
+
+          echo "sdist_sha256=$SDIST_SHA256" >> "$GITHUB_OUTPUT"
+          echo "wheel_sha256=$WHEEL_SHA256" >> "$GITHUB_OUTPUT"
+
+      - name: actions/upload-artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+    outputs:
+      sdist_file: ${{ steps.files.outputs.sdist_file }}
+      wheel_file: ${{ steps.files.outputs.wheel_file }}
+      sdist_sha256: ${{ steps.sha.outputs.sdist_sha256 }}
+      wheel_sha256: ${{ steps.sha.outputs.wheel_sha256 }}
+
+  deploy-docs:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: actions/deploy-pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  publish-pypi:
+    needs:
+      - build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/novastar-client
+    permissions:
+      id-token: write # required for Trusted Publishing (OIDC) - no secrets needed
+      contents: read # for actions/checkout, if you're in a private repo
+    steps:
+      - name: astral-sh/setup-uv
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+        with:
+          enable-cache: false
+
+      - name: actions/download-artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: astral-sh/attest-action
+        uses: astral-sh/attest-action@f589a42a7efb6fe400b4f400de60b4bc90390027 # v0.0.6
+        with:
+          subject-path: "dist/*"
+
+      - name: Publish to PyPI
+        run: uv publish
+
+  publish-github:
+    needs:
+      - build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # required to create the GitHub release
+    steps:
+      - name: actions/download-artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Set release variables
+        id: vars
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSIONING="${TAG#v}"
+
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          echo "VERSIONING=$VERSIONING" >> "$GITHUB_ENV"
+
+      - name: Write release notes
+        shell: bash
+        run: |
+          SDIST_FILE="${{ needs.build.outputs.sdist_file }}"
+          WHEEL_FILE="${{ needs.build.outputs.wheel_file }}"
+          SDIST_SHA256="${{ needs.build.outputs.sdist_sha256 }}"
+          WHEEL_SHA256="${{ needs.build.outputs.wheel_sha256 }}"
+          TAG="${{ env.TAG }}"
+
+          cat > release-notes.md <<EOF
+          ## Install
+
+          ### Option 1: PyPI (recommended)
+
+          This is the easiest and most reliable way to install \`novastar-client\`. It pulls the package straight from PyPI, resolves dependencies automatically, and works the same way on Windows, macOS, and Linux.
+
+          \`\`\`bash
+          pip install novastar-client==${VERSIONING}
+          \`\`\`
+
+          Or, to get the latest release without pinning a version:
+
+          \`\`\`bash
+          pip install novastar-client
+          \`\`\`
+
+          Using \`uv\`?
+
+          \`\`\`bash
+          uv add novastar-client==${VERSIONING}
+          \`\`\`
+
+          This release is published to PyPI via [Trusted Publishing](https://docs.pypi.org/trusted-publishers/), meaning it was built and signed directly by this repository's GitHub Actions workflow with no manually-handled credentials involved.
+
+          ### Option 2: Install directly from this release
+
+          If you can't reach PyPI (e.g. an offline or restricted environment) or want the exact artifact attached to this GitHub release, install the wheel or source tarball directly:
+
+          \`\`\`bash
+          pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/${TAG}/${WHEEL_FILE}"
+          \`\`\`
+
+          \`\`\`bash
+          pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/${TAG}/${SDIST_FILE}"
+          \`\`\`
+
+          Or download \`${WHEEL_FILE}\` / \`${SDIST_FILE}\` below and install from disk:
+
+          \`\`\`bash
+          pip install ./${WHEEL_FILE}
+          \`\`\`
+
+          ### Option 3: Build from source
+
+          \`\`\`bash
+          git clone https://github.com/jeffsuperglide/novastar_client.git
+          cd novastar_client
+          git checkout ${TAG}
+          pip install .
+          \`\`\`
+
+          ## Verify your download
+
+          Every asset attached to this release is signed with build provenance (via [astral-sh/attest-action](https://github.com/astral-sh/attest-action)) and its checksum is published below. If you installed from PyPI, verification happens automatically and you can skip this section.
+
+          Expected SHA256:
+
+          - Wheel (\`${WHEEL_FILE}\`): \`${WHEEL_SHA256}\`
+          - Source tarball (\`${SDIST_FILE}\`): \`${SDIST_SHA256}\`
+
+          **Linux / macOS**
+          \`\`\`bash
+          shasum -a 256 ${WHEEL_FILE}
+          shasum -a 256 ${SDIST_FILE}
+          \`\`\`
+
+          **Windows (PowerShell)**
+          \`\`\`powershell
+          Get-FileHash ".\\${WHEEL_FILE}" -Algorithm SHA256
+          Get-FileHash ".\\${SDIST_FILE}" -Algorithm SHA256
+          \`\`\`
+
+          **Windows (CMD)**
+          \`\`\`cmd
+          certutil -hashfile "${WHEEL_FILE}" SHA256
+          certutil -hashfile "${SDIST_FILE}" SHA256
+          \`\`\`
+
+          To verify the attestation directly with the GitHub CLI instead of comparing hashes by hand:
+
+          \`\`\`bash
+          gh attestation verify ${WHEEL_FILE} --owner jeffsuperglide
+          \`\`\`
+          EOF
+
+      - name: Create or update GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ env.TAG }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ env.TAG }}
+          body_path: release-notes.md
+          generate_release_notes: true
+          files: |
+            dist/${{ needs.build.outputs.sdist_file }}
+            dist/${{ needs.build.outputs.wheel_file }}
+          overwrite_files: true
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
