@@ -1,10 +1,10 @@
 [build-system]
-    requires = ["uv_build>=0.12.5,<0.13"]
-    build-backend = "uv_build"
+    requires = ["hatchling", "uv-dynamic-versioning"]
+    build-backend = "hatchling.build"
 
 [project]
     name = "novastar-client"
-    version = "1.2.0"
+    dynamic = ["version"]
     description = "Python client for NovaStar REST endpoints (Stations)"
     authors = [
         { name = "Jeff Gregory", email = "jeffrey.s.gregory@usace.army.mil" },
@@ -17,11 +17,18 @@
 [project.scripts]
     ns5acp = "novastar_client.cli.ns5acp:cli"
 
+[tool.hatch.version]
+    source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+    vcs = "git"
+    style = "pep440"
+
 [dependency-groups]
     dev = [
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "mypy>=1.0",
-    "ruff>=0.4.0",
-    "pdoc>=16.0.0",
-]
+        "pytest>=7.0",
+        "pytest-cov>=4.0",
+        "mypy>=1.0",
+        "ruff>=0.4.0",
+        "pdoc>=16.0.0",
+    ]
