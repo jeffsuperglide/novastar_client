@@ -6,7 +6,9 @@
     name = "novastar-client"
     version = "1.2.0"
     description = "Python client for NovaStar REST endpoints (Stations)"
-    authors = [{ name = "Jeff Gregory", email = "jeffrey.s.gregory@usace.army.mil" }]
+    authors = [
+        { name = "Jeff Gregory", email = "jeffrey.s.gregory@usace.army.mil" },
+    ]
     license = "MIT"
     readme = "README.md"
     requires-python = ">=3.12"
@@ -17,9 +19,9 @@
 
 [dependency-groups]
     dev = [
-        "pytest>=7.0",
-        "pytest-cov>=4.0",
-        "mypy>=1.0",
-        "ruff>=0.4.0",
-        "pdocs",
-    ]
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "mypy>=1.0",
+    "ruff>=0.4.0",
+    "pdoc>=16.0.0",
+]
