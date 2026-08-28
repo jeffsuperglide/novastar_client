@@ -287,3 +287,154 @@ jobs:
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  update-readme:
+    needs:
+      - build
+      - publish-pypi
+      - publish-github
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Update versioned README blocks
+        env:
+          TAG: ${{ github.ref_name }}
+          SDIST_FILE: ${{ needs.build.outputs.sdist_file }}
+          WHEEL_FILE: ${{ needs.build.outputs.wheel_file }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          import re
+          import sys
+
+          path = Path("README.md")
+          text = path.read_text(encoding="utf-8")
+
+          tag = os.environ["TAG"]
+          version = tag.removeprefix("v")
+          wheel_file = os.environ["WHEEL_FILE"]
+          sdist_file = os.environ["SDIST_FILE"]
+
+          release_base = (
+              "https://github.com/jeffsuperglide/novastar_client/"
+              f"releases/download/{tag}"
+          )
+
+          replacements = {
+              "pip": (
+                  "```bash\n"
+                  f"pip install novastar-client=={version}\n"
+                  "```"
+              ),
+              "uv": (
+                  "```bash\n"
+                  f"uv add novastar-client=={version}\n"
+                  "```"
+              ),
+              "whl": (
+                  "```bash\n"
+                  f'pip install "{release_base}/{wheel_file}"\n'
+                  "```"
+              ),
+              "dist": (
+                  "```bash\n"
+                  f'pip install "{release_base}/{sdist_file}"\n'
+                  "```"
+              ),
+              "dl": (
+                  f"Or download `{wheel_file}` / `{sdist_file}` from "
+                  "[Releases](https://github.com/jeffsuperglide/"
+                  "novastar_client/releases) and install from disk:"
+              ),
+              "disk": (
+                  "```bash\n"
+                  f"pip install ./{wheel_file}\n"
+                  "```"
+              ),
+              "clone": (
+                  "```bash\n"
+                  "git clone https://github.com/jeffsuperglide/"
+                  "novastar_client.git\n"
+                  "cd novastar_client\n"
+                  f"git checkout {tag}\n"
+                  "pip install .\n"
+                  "```"
+              ),
+          }
+
+          pattern = re.compile(
+              r"<!-- latest-release:(?P<kind>"
+              + "|".join(replacements)
+              + r"):start -->\n"
+              + r"(?P<content>.*?)\n"
+              + r"<!-- latest-release:(?P=kind):end -->",
+              flags=re.DOTALL,
+          )
+
+          counts = {kind: 0 for kind in replacements}
+
+          def replace(match):
+              kind = match.group("kind")
+              counts[kind] += 1
+              return (
+                  f"<!-- latest-release:{kind}:start -->\n"
+                  f"{replacements[kind]}\n"
+                  f"<!-- latest-release:{kind}:end -->"
+              )
+
+          updated, total = pattern.subn(replace, text)
+
+          missing = [kind for kind, count in counts.items() if count == 0]
+          repeated = {
+              kind: count
+              for kind, count in counts.items()
+              if count > 1
+          }
+
+          if missing:
+              sys.exit(
+                  "README.md is missing expected latest-release marker(s): "
+                  + ", ".join(missing)
+              )
+
+          if repeated:
+              print(
+                  "Updated repeated marker blocks: "
+                  + ", ".join(
+                      f"{kind}={count}" for kind, count in repeated.items()
+                  )
+              )
+
+          if total == 0:
+              sys.exit("No latest-release blocks were updated in README.md.")
+
+          path.write_text(updated, encoding="utf-8")
+          print(f"Updated {total} versioned README block(s) for {tag}.")
+          PY
+
+      - name: Commit and push README update
+        shell: bash
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "README.md already matches ${GITHUB_REF_NAME}; nothing to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+          git commit -m "docs: update README for ${GITHUB_REF_NAME}"
+          git push origin HEAD:main

@@ -18,27 +18,72 @@ A Python client library for working with the NovaStar API, with documentation pu
 
 Install from the repository's [Releases](https://github.com/jeffsuperglide/novastar_client/releases) using the package file provided on the GitHub release page.  Release assets include a tarball and wheel.  Download to install with pip, or install directly from the release version.  It is suggested to use the wheel for installation because it will be a quicker install.
 
-### pip install wheel, Windows CMD
+### Option 1: PyPI (recommended)
 
-```cmd
-pip install .\novastar_client-0.1.0-py3-none-any.whl
+This is the easiest and most reliable way to install \`novastar-client\`. It pulls the package straight from PyPI, resolves dependencies automatically, and works the same way on Windows, macOS, and Linux.
+
+<!-- latest-release:pip:start -->
+```bash
+pip install novastar-client==1.2.3
+```
+<!-- /latest-release:pip:end -->
+
+Or, to get the latest release without pinning a version:
+
+```bash
+pip install novastar-client
 ```
 
-### pip install tarball, Windows CMD
+Using `uv`?
 
-```cmd
-pip install .\novastar_client-0.1.0.tar.gz
+<!-- latest-release:uv:start -->
+```bash
+uv add novastar-client==1.2.3
 ```
+<!-- /latest-release:uv:end -->
 
-### Direct pip install whl, Windows CMD
+This release is published to PyPI via [Trusted Publishing](https://docs.pypi.org/trusted-publishers/), meaning it was built and signed directly by this repository's GitHub Actions workflow with no manually-handled credentials involved.
 
-```cmd
-pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v0.1.0/novastar_client-0.1.0-py3-none-any.whl"
+### Option 2: Install directly from this release
+
+If you can't reach PyPI (e.g. an offline or restricted environment) or want the exact artifact attached to this GitHub release, install the wheel or source tarball directly:
+
+<!-- latest-release:whl:start -->
+```bash
+pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v1.2.3/novastar_client-1.2.3-py3-none-any.whl"
 ```
+<!-- /latest-release:whl:end -->
+
+<!-- latest-release:dist:start -->
+```bash
+pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v1.2.3/novastar_client-1.2.3.tar.gz"
+```
+<!-- /latest-release:dist:end -->
+
+<!-- latest-release:dl:start -->
+Or download `novastar_client-1.2.3-py3-none-any.whl` / `novastar_client-1.2.3.tar.gz` from [Releases](https://github.com/jeffsuperglide/novastar_client/releases) and install from disk:
+<!-- /latest-release:dl:end -->
+
+<!-- latest-release:disk:start -->
+```bash
+pip install ./novastar_client-1.2.3-py3-none-any.whl
+```
+<!-- /latest-release:disk:end -->
+
+### Option 3: Build from source
+
+<!-- latest-release:clone:start -->
+```bash
+git clone https://github.com/jeffsuperglide/novastar_client.git
+cd novastar_client
+git checkout v1.2.3
+pip install .
+```
+<!-- /latest-release:clone:end -->
 
 ## Documentation
 
-The full API reference is published at https://jeffsuperglide.github.io/novastar_client/.  Reference for:
+The full API reference is published at [client docs](https://jeffsuperglide.github.io/novastar_client/).  Reference for:
 
 - Module and class names.
 - Method signatures.
