@@ -9,7 +9,7 @@ import sys
 import tomllib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import pandas as pd
@@ -148,7 +148,7 @@ def _dss_file_path(cfg: dict) -> Path:
     return default_dssfile
 
 
-def _load_toml_config(path: Union[str, Path]) -> dict[str, Any]:
+def _load_toml_config(path: str | Path) -> dict[str, Any]:
     path = Path(path)
 
     try:
