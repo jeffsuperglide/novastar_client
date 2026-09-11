@@ -13,8 +13,8 @@ from typing import Any, Union
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import pandas as pd
+from hecdss.hecdss import HecDss, RegularTimeSeries
 
-from hecdss.hecdss import HecDss, RegularTimeSeries, IrregularTimeSeries
 from novastar_client.client import NovaStarClient
 from novastar_client.config import NovaStarConfig
 from novastar_client.logging_utils import configure_package_logging
@@ -378,6 +378,7 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
                     times=df.index.to_list(),
                     units=timeseries.units,
                     data_type=ns5_type_to_dss(statistic),
+                    time_zone_name=timezone if timezone else "EST",
                     path=dsspath,
                 )
                 dss.put(tsc)
@@ -393,7 +394,7 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
             "error": None,
         }
 
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         logger.warning("Failed processing '%s': %s", ns_tsid, exc)
         return {
             "ns_tsid": ns_tsid,
