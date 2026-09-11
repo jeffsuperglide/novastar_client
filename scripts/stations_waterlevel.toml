@@ -30,7 +30,7 @@ description = "AMADOR"
 [[station."2".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -38,7 +38,7 @@ enabled = false
 [[station."2".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -50,7 +50,7 @@ description = "DIABLO HEIGHTS"
 [[station."6".series]]
 tag = "610"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -58,7 +58,7 @@ enabled = false
 [[station."6".series]]
 tag = "610"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -70,7 +70,7 @@ description = "SANTA ROSA"
 [[station."8".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -78,7 +78,7 @@ enabled = false
 [[station."8".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -90,7 +90,7 @@ description = "BOYA 199"
 [[station."11".series]]
 tag = "1185"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -98,7 +98,7 @@ enabled = false
 [[station."11".series]]
 tag = "1185"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -106,7 +106,7 @@ enabled = false
 [[station."11".series]]
 tag = "1189"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -114,7 +114,7 @@ enabled = false
 [[station."11".series]]
 tag = "1189"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -126,7 +126,7 @@ description = "GUARUMAL"
 [[station."13".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -134,7 +134,7 @@ enabled = false
 [[station."13".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -146,7 +146,7 @@ description = "GAMBOA"
 [[station."16".series]]
 tag = "1610"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -154,7 +154,7 @@ enabled = false
 [[station."16".series]]
 tag = "1610"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -162,7 +162,7 @@ enabled = false
 [[station."16".series]]
 tag = "1611"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -170,7 +170,7 @@ enabled = false
 [[station."16".series]]
 tag = "1611"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -182,7 +182,7 @@ description = "LOS CAÑONES"
 [[station."18".series]]
 tag = "1810"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -190,7 +190,7 @@ enabled = false
 [[station."18".series]]
 tag = "1810"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -198,7 +198,7 @@ enabled = false
 [[station."18".series]]
 tag = "1811"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -206,7 +206,7 @@ enabled = false
 [[station."18".series]]
 tag = "1811"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -218,7 +218,7 @@ description = "RAICES"
 [[station."44".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -226,7 +226,7 @@ enabled = false
 [[station."44".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -238,7 +238,7 @@ description = "PELUCA"
 [[station."45".series]]
 tag = "PEL WL"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -246,7 +246,7 @@ enabled = false
 [[station."45".series]]
 tag = "PEL WL"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -258,7 +258,7 @@ description = "GUACHA"
 [[station."46".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -266,7 +266,7 @@ enabled = false
 [[station."46".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -278,7 +278,7 @@ description = "CHORRO"
 [[station."48".series]]
 tag = "4810"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -286,7 +286,7 @@ enabled = false
 [[station."48".series]]
 tag = "4810"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -294,7 +294,7 @@ enabled = false
 [[station."48".series]]
 tag = "4811"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -302,7 +302,7 @@ enabled = false
 [[station."48".series]]
 tag = "4811"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -314,7 +314,7 @@ description = "CANDELARIA Campbell scientific"
 [[station."51".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -322,7 +322,7 @@ enabled = false
 [[station."51".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -334,7 +334,7 @@ description = "GATUN LAKE"
 [[station."54".series]]
 tag = "5400"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = true
@@ -386,7 +386,7 @@ description = "ALHAJUELA"
 [[station."55".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -394,7 +394,7 @@ enabled = false
 [[station."55".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -406,7 +406,7 @@ description = "MADDEN"
 [[station."57".series]]
 tag = "5710"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -414,7 +414,7 @@ enabled = false
 [[station."57".series]]
 tag = "5710"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -422,7 +422,7 @@ enabled = false
 [[station."57".series]]
 tag = "5711"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -430,7 +430,7 @@ enabled = false
 [[station."57".series]]
 tag = "5711"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -438,7 +438,7 @@ enabled = false
 [[station."57".series]]
 tag = "5717"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -446,7 +446,7 @@ enabled = false
 [[station."57".series]]
 tag = "5717"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -458,7 +458,7 @@ description = "MIRAFLORES"
 [[station."58".series]]
 tag = "5810"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -466,7 +466,7 @@ enabled = false
 [[station."58".series]]
 tag = "5810"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -474,7 +474,7 @@ enabled = false
 [[station."58".series]]
 tag = "5811"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -482,7 +482,7 @@ enabled = false
 [[station."58".series]]
 tag = "5811"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -490,7 +490,7 @@ enabled = false
 [[station."58".series]]
 tag = "PROFUNDIDAD DE SONDA SUPERFICIE"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -498,7 +498,7 @@ enabled = false
 [[station."58".series]]
 tag = "PROFUNDIDAD DE SONDA SUPERFICIE"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -510,7 +510,7 @@ description = "LIMON BAY"
 [[station."70".series]]
 tag = "7010"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -518,7 +518,7 @@ enabled = false
 [[station."70".series]]
 tag = "7010"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -526,7 +526,7 @@ enabled = false
 [[station."70".series]]
 tag = "7011"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -534,7 +534,7 @@ enabled = false
 [[station."70".series]]
 tag = "7011"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -546,7 +546,7 @@ description = "Boya 221"
 [[station."90".series]]
 tag = "9085"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -554,7 +554,7 @@ enabled = false
 [[station."90".series]]
 tag = "9085"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -566,7 +566,7 @@ description = "BOYA D"
 [[station."94".series]]
 tag = "9485"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -574,7 +574,7 @@ enabled = false
 [[station."94".series]]
 tag = "9485"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -582,7 +582,7 @@ enabled = false
 [[station."94".series]]
 tag = "9489"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -590,7 +590,7 @@ enabled = false
 [[station."94".series]]
 tag = "9489"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -602,7 +602,7 @@ description = "BOYA E"
 [[station."95".series]]
 tag = "9585"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -610,7 +610,7 @@ enabled = false
 [[station."95".series]]
 tag = "9585"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -622,7 +622,7 @@ description = "BOYA 126"
 [[station."96".series]]
 tag = "9680"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -630,7 +630,7 @@ enabled = false
 [[station."96".series]]
 tag = "9680"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -638,7 +638,7 @@ enabled = false
 [[station."96".series]]
 tag = "9683"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -646,7 +646,7 @@ enabled = false
 [[station."96".series]]
 tag = "9683"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -658,7 +658,7 @@ description = "BOYA 23"
 [[station."98".series]]
 tag = "9885"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -666,7 +666,7 @@ enabled = false
 [[station."98".series]]
 tag = "9885"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -674,7 +674,7 @@ enabled = false
 [[station."98".series]]
 tag = "9889"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -682,7 +682,7 @@ enabled = false
 [[station."98".series]]
 tag = "9889"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -694,7 +694,7 @@ description = "TOMA DE AGUA DE PARAISO"
 [[station."99".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -702,7 +702,7 @@ enabled = false
 [[station."99".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -714,7 +714,7 @@ description = "BOYA 231"
 [[station."110".series]]
 tag = "11085"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -722,7 +722,7 @@ enabled = false
 [[station."110".series]]
 tag = "11085"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -734,7 +734,7 @@ description = "BOYA 44"
 [[station."119".series]]
 tag = "11985"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -742,7 +742,7 @@ enabled = false
 [[station."119".series]]
 tag = "11985"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -750,7 +750,7 @@ enabled = false
 [[station."119".series]]
 tag = "11989"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -758,7 +758,7 @@ enabled = false
 [[station."119".series]]
 tag = "11989"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -770,7 +770,7 @@ description = "BOYA 179"
 [[station."120".series]]
 tag = "12080"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -778,7 +778,7 @@ enabled = false
 [[station."120".series]]
 tag = "12080"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -786,7 +786,7 @@ enabled = false
 [[station."120".series]]
 tag = "12084"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -794,7 +794,7 @@ enabled = false
 [[station."120".series]]
 tag = "12084"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -806,7 +806,7 @@ description = "COCOLI_GUPC_LAKE"
 [[station."141".series]]
 tag = "14180"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -814,7 +814,7 @@ enabled = false
 [[station."141".series]]
 tag = "14180"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -826,7 +826,7 @@ description = "GUPC-OCEAN_COCOLI_CS"
 [[station."142".series]]
 tag = "14285"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -834,7 +834,7 @@ enabled = false
 [[station."142".series]]
 tag = "14285"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -846,7 +846,7 @@ description = "COCOLI_CAMARA_BAJA_TINAS"
 [[station."201".series]]
 tag = "20180"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -854,7 +854,7 @@ enabled = false
 [[station."201".series]]
 tag = "20180"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -862,7 +862,7 @@ enabled = false
 [[station."201".series]]
 tag = "20184"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -870,7 +870,7 @@ enabled = false
 [[station."201".series]]
 tag = "20184"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -878,7 +878,7 @@ enabled = false
 [[station."201".series]]
 tag = "20188"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -886,7 +886,7 @@ enabled = false
 [[station."201".series]]
 tag = "20188"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -898,7 +898,7 @@ description = "Boya 228"
 [[station."228".series]]
 tag = "22885"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -906,7 +906,7 @@ enabled = false
 [[station."228".series]]
 tag = "22885"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -918,7 +918,7 @@ description = "Boya 229"
 [[station."229".series]]
 tag = "22989"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -926,7 +926,7 @@ enabled = false
 [[station."229".series]]
 tag = "22989"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -938,7 +938,7 @@ description = "ROC BOCA DE URACILLO"
 [[station."231".series]]
 tag = "23110"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -946,7 +946,7 @@ enabled = false
 [[station."231".series]]
 tag = "23110"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -954,7 +954,7 @@ enabled = false
 [[station."231".series]]
 tag = "23111"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -962,7 +962,7 @@ enabled = false
 [[station."231".series]]
 tag = "23111"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -974,7 +974,7 @@ description = "Boya 227"
 [[station."307".series]]
 tag = "30784"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -982,7 +982,7 @@ enabled = false
 [[station."307".series]]
 tag = "30784"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -990,7 +990,7 @@ enabled = false
 [[station."307".series]]
 tag = "30788"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -998,7 +998,7 @@ enabled = false
 [[station."307".series]]
 tag = "30788"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1010,7 +1010,7 @@ description = "Boya 101"
 [[station."318".series]]
 tag = "31880"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1018,7 +1018,7 @@ enabled = false
 [[station."318".series]]
 tag = "31880"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1026,7 +1026,7 @@ enabled = false
 [[station."318".series]]
 tag = "31884"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1034,7 +1034,7 @@ enabled = false
 [[station."318".series]]
 tag = "31884"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1046,7 +1046,7 @@ description = "Boya 209"
 [[station."320".series]]
 tag = "32080"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1054,7 +1054,7 @@ enabled = false
 [[station."320".series]]
 tag = "32080"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1062,7 +1062,7 @@ enabled = false
 [[station."320".series]]
 tag = "32084"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1070,7 +1070,7 @@ enabled = false
 [[station."320".series]]
 tag = "32084"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1082,7 +1082,7 @@ description = "COCOLI_LOCKHEAD_NORTE"
 [[station."340".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1090,7 +1090,7 @@ enabled = false
 [[station."340".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1102,7 +1102,7 @@ description = "Cocoli_Camara_Alta_P1"
 [[station."341".series]]
 tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Fondo"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1110,7 +1110,7 @@ enabled = false
 [[station."341".series]]
 tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Fondo"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1118,7 +1118,7 @@ enabled = false
 [[station."341".series]]
 tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Superficie"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1126,7 +1126,7 @@ enabled = false
 [[station."341".series]]
 tag = "Cocoli_Camara_Alta_P1 Depth of sonde_Superficie"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1138,7 +1138,7 @@ description = "Cocoli_Camara_Alta_Fosa"
 [[station."342".series]]
 tag = "Cocoli_Camara_Alta_Fosa Pt water level"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1146,7 +1146,7 @@ enabled = false
 [[station."342".series]]
 tag = "Cocoli_Camara_Alta_Fosa Pt water level"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1154,7 +1154,7 @@ enabled = false
 [[station."342".series]]
 tag = "Cocoli_Camara_Alta_Fosa Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1162,7 +1162,7 @@ enabled = false
 [[station."342".series]]
 tag = "Cocoli_Camara_Alta_Fosa Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1174,7 +1174,7 @@ description = "Cocoli_Camara_Alta_Tina"
 [[station."343".series]]
 tag = "Cocoli_Camara_Alta_Tina1_AqT_Depth_Sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1182,7 +1182,7 @@ enabled = false
 [[station."343".series]]
 tag = "Cocoli_Camara_Alta_Tina1_AqT_Depth_Sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1190,7 +1190,7 @@ enabled = false
 [[station."343".series]]
 tag = "Cocoli_Camara_Alta_Tina2_AqT_Depth_Sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1198,7 +1198,7 @@ enabled = false
 [[station."343".series]]
 tag = "Cocoli_Camara_Alta_Tina2_AqT_Depth_Sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1210,7 +1210,7 @@ description = "Cocoli_Camara_Media_P1"
 [[station."344".series]]
 tag = "Cocoli_Camara_Media_P1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1218,7 +1218,7 @@ enabled = false
 [[station."344".series]]
 tag = "Cocoli_Camara_Media_P1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1226,7 +1226,7 @@ enabled = false
 [[station."344".series]]
 tag = "Cocoli_Camara_Media_P1 Depth of sonde Superficie"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1234,7 +1234,7 @@ enabled = false
 [[station."344".series]]
 tag = "Cocoli_Camara_Media_P1 Depth of sonde Superficie"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1246,7 +1246,7 @@ description = "Cocoli_Camara_Media_Fosa"
 [[station."345".series]]
 tag = "Cocoli_Camara_Alta_Fosa Pt water level(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1254,7 +1254,7 @@ enabled = false
 [[station."345".series]]
 tag = "Cocoli_Camara_Alta_Fosa Pt water level(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1262,7 +1262,7 @@ enabled = false
 [[station."345".series]]
 tag = "Cocoli_Camara_Alta_Fosa Depth of sonde (1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1270,7 +1270,7 @@ enabled = false
 [[station."345".series]]
 tag = "Cocoli_Camara_Alta_Fosa Depth of sonde (1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1282,7 +1282,7 @@ description = "Cocoli_Camara_Media_Tina"
 [[station."346".series]]
 tag = "Cocoli_Camara_Media_Tina1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1290,7 +1290,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Media_Tina1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1298,7 +1298,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Alta_Tina2 Pt water level(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1306,7 +1306,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Alta_Tina2 Pt water level(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1314,7 +1314,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Alta_Tina3 Pt water level_3(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1322,7 +1322,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Alta_Tina3 Pt water level_3(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1330,7 +1330,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Alta_Tina1 Depth of sonde_T_1 (1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1338,7 +1338,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Alta_Tina1 Depth of sonde_T_1 (1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1346,7 +1346,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Media_Tina2 Depth of sonde_T_2(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1354,7 +1354,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Media_Tina2 Depth of sonde_T_2(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1362,7 +1362,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Media_Tina3 Depth of sonde_T_3(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1370,7 +1370,7 @@ enabled = false
 [[station."346".series]]
 tag = "Cocoli_Camara_Media_Tina3 Depth of sonde_T_3(1)"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1382,7 +1382,7 @@ description = "Cocoli_Camara_Baja_P1"
 [[station."347".series]]
 tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1390,7 +1390,7 @@ enabled = false
 [[station."347".series]]
 tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1398,7 +1398,7 @@ enabled = false
 [[station."347".series]]
 tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1406,7 +1406,7 @@ enabled = false
 [[station."347".series]]
 tag = "Cocoli_Camara_Baja_P1 Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1418,7 +1418,7 @@ description = "Cocoli_Camara_Baja_Fosa"
 [[station."348".series]]
 tag = "Cocoli_Camara_Baja_Fosa Pt water level"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1426,7 +1426,7 @@ enabled = false
 [[station."348".series]]
 tag = "Cocoli_Camara_Baja_Fosa Pt water level"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1434,7 +1434,7 @@ enabled = false
 [[station."348".series]]
 tag = "Cocoli_Camara_Baja_Fosa Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1442,7 +1442,7 @@ enabled = false
 [[station."348".series]]
 tag = "Cocoli_Camara_Baja_Fosa Depth of sonde"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1454,7 +1454,7 @@ description = "Cocoli_Camara_Baja_Tinas"
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina1_Nivel_PT"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1462,7 +1462,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina1_Nivel_PT"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1470,7 +1470,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina2_Nivel_PT"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1478,7 +1478,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina2_Nivel_PT"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1486,7 +1486,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina3"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1494,7 +1494,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina3"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1502,7 +1502,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina1_PT_Profundidad"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1510,7 +1510,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina1_PT_Profundidad"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1518,7 +1518,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina2_Profundidad"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1526,7 +1526,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina2_Profundidad"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1534,7 +1534,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina3_Profundidad"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1542,7 +1542,7 @@ enabled = false
 [[station."349".series]]
 tag = "Cocoli_Camara_Baja_Tina3_Profundidad"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1554,7 +1554,7 @@ description = "COCOLI_LOCKHEAD_SUR"
 [[station."350".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1562,7 +1562,7 @@ enabled = false
 [[station."350".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1574,7 +1574,7 @@ description = "AGUA_CLARA_CAMARA_ALTA_LOCKHEAD"
 [[station."360".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1582,7 +1582,7 @@ enabled = false
 [[station."360".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1594,7 +1594,7 @@ description = "AGUA_CLARA_CAMARA_ALTA_FOSA"
 [[station."362".series]]
 tag = "36272"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1602,7 +1602,7 @@ enabled = false
 [[station."362".series]]
 tag = "36272"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1610,7 +1610,7 @@ enabled = false
 [[station."362".series]]
 tag = "36280"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1618,7 +1618,7 @@ enabled = false
 [[station."362".series]]
 tag = "36280"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1630,7 +1630,7 @@ description = "AGUA_CLARA_CAMARA_ALTA_TINAS"
 [[station."363".series]]
 tag = "36372"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1638,7 +1638,7 @@ enabled = false
 [[station."363".series]]
 tag = "36372"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1646,7 +1646,7 @@ enabled = false
 [[station."363".series]]
 tag = "36374"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1654,7 +1654,7 @@ enabled = false
 [[station."363".series]]
 tag = "36374"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1662,7 +1662,7 @@ enabled = false
 [[station."363".series]]
 tag = "36376"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1670,7 +1670,7 @@ enabled = false
 [[station."363".series]]
 tag = "36376"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1678,7 +1678,7 @@ enabled = false
 [[station."363".series]]
 tag = "36380"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1686,7 +1686,7 @@ enabled = false
 [[station."363".series]]
 tag = "36380"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1694,7 +1694,7 @@ enabled = false
 [[station."363".series]]
 tag = "36384"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1702,7 +1702,7 @@ enabled = false
 [[station."363".series]]
 tag = "36384"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1710,7 +1710,7 @@ enabled = false
 [[station."363".series]]
 tag = "36388"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1718,7 +1718,7 @@ enabled = false
 [[station."363".series]]
 tag = "36388"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1730,7 +1730,7 @@ description = "AGUA_CLARA_CAMARA_MEDIA_P1"
 [[station."364".series]]
 tag = "36480"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1738,7 +1738,7 @@ enabled = false
 [[station."364".series]]
 tag = "36480"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1746,7 +1746,7 @@ enabled = false
 [[station."364".series]]
 tag = "36484"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1754,7 +1754,7 @@ enabled = false
 [[station."364".series]]
 tag = "36484"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1766,7 +1766,7 @@ description = "AGUA_CLARA_CAMARA_MEDIA_FOSA"
 [[station."365".series]]
 tag = "36572"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1774,7 +1774,7 @@ enabled = false
 [[station."365".series]]
 tag = "36572"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1782,7 +1782,7 @@ enabled = false
 [[station."365".series]]
 tag = "36580"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1790,7 +1790,7 @@ enabled = false
 [[station."365".series]]
 tag = "36580"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1802,7 +1802,7 @@ description = "AGUA_CLARA_CAMARA_MEDIA_TINAS"
 [[station."366".series]]
 tag = "36672"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1810,7 +1810,7 @@ enabled = false
 [[station."366".series]]
 tag = "36672"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1818,7 +1818,7 @@ enabled = false
 [[station."366".series]]
 tag = "36674"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1826,7 +1826,7 @@ enabled = false
 [[station."366".series]]
 tag = "36674"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1834,7 +1834,7 @@ enabled = false
 [[station."366".series]]
 tag = "36676"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1842,7 +1842,7 @@ enabled = false
 [[station."366".series]]
 tag = "36676"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1850,7 +1850,7 @@ enabled = false
 [[station."366".series]]
 tag = "36680"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1858,7 +1858,7 @@ enabled = false
 [[station."366".series]]
 tag = "36680"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1866,7 +1866,7 @@ enabled = false
 [[station."366".series]]
 tag = "36684"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1874,7 +1874,7 @@ enabled = false
 [[station."366".series]]
 tag = "36684"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1882,7 +1882,7 @@ enabled = false
 [[station."366".series]]
 tag = "36688"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1890,7 +1890,7 @@ enabled = false
 [[station."366".series]]
 tag = "36688"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1902,7 +1902,7 @@ description = "AGUA_CLARA_CAMARA_BAJA_P1"
 [[station."367".series]]
 tag = "36780"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1910,7 +1910,7 @@ enabled = false
 [[station."367".series]]
 tag = "36780"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1918,7 +1918,7 @@ enabled = false
 [[station."367".series]]
 tag = "36784"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1926,7 +1926,7 @@ enabled = false
 [[station."367".series]]
 tag = "36784"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1938,7 +1938,7 @@ description = "AGUA_CLARA_CAMARA_BAJA_FOSA"
 [[station."368".series]]
 tag = "36872"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1946,7 +1946,7 @@ enabled = false
 [[station."368".series]]
 tag = "36872"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1954,7 +1954,7 @@ enabled = false
 [[station."368".series]]
 tag = "36880"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1962,7 +1962,7 @@ enabled = false
 [[station."368".series]]
 tag = "36880"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1974,7 +1974,7 @@ description = "AGUA_CLARA_CAMARA_BAJA_TINAS"
 [[station."369".series]]
 tag = "36972"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1982,7 +1982,7 @@ enabled = false
 [[station."369".series]]
 tag = "36972"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -1990,7 +1990,7 @@ enabled = false
 [[station."369".series]]
 tag = "36974"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -1998,7 +1998,7 @@ enabled = false
 [[station."369".series]]
 tag = "36974"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -2006,7 +2006,7 @@ enabled = false
 [[station."369".series]]
 tag = "36976"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -2014,7 +2014,7 @@ enabled = false
 [[station."369".series]]
 tag = "36976"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -2022,7 +2022,7 @@ enabled = false
 [[station."369".series]]
 tag = "36980"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -2030,7 +2030,7 @@ enabled = false
 [[station."369".series]]
 tag = "36980"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -2038,7 +2038,7 @@ enabled = false
 [[station."369".series]]
 tag = "36984"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -2046,7 +2046,7 @@ enabled = false
 [[station."369".series]]
 tag = "36984"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -2054,7 +2054,7 @@ enabled = false
 [[station."369".series]]
 tag = "36988"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -2062,7 +2062,7 @@ enabled = false
 [[station."369".series]]
 tag = "36988"
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
@@ -2074,7 +2074,7 @@ description = "AGUA_CLARA_CAMARA_BAJA_LOCKHEAD"
 [[station."370".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "15Minute"
 units = "ft"
 enabled = false
@@ -2082,7 +2082,7 @@ enabled = false
 [[station."370".series]]
 tag = ""
 parameter = "WaterLevelRiver"
-statistic = "TimeWeightedMean"
+statistic = "Last"
 interval = "1Hour"
 units = "ft"
 enabled = false
