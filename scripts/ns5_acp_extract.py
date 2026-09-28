@@ -42,6 +42,9 @@ _SIZE_UNITS = {
     "mb": 1024**2,
 }
 
+MESSAGE_LEVEL = 1
+HecDss.set_global_debug_level(MESSAGE_LEVEL)
+
 
 def _exit_with_warning(msg: str, exc: Exception | None = None) -> None:
     logger.warning(msg)
@@ -254,7 +257,12 @@ def build_tasks(
                 f"{parameter}-{statistic}" if len(statistic) > 0 else parameter
             )
 
+            # set the interval from config
             interval = ts.get("interval")
+
+            # override the cpart
+            cpart = ts.get("cpart", None)
+
             ns_tsid = f"{station_id_tag}.{network}.{parameter_statistic}.{interval}"
             logger.info("NovaStar time series ID: %s", ns_tsid)
 
@@ -266,6 +274,7 @@ def build_tasks(
                     parameter,
                     statistic,
                     interval,
+                    cpart,
                     station_id_tag,
                     ns_config,
                     resolved_parameters,
@@ -285,6 +294,7 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         parameter,
         statistic,
         interval,
+        cpart,
         station_id_tag,
         ns_config,
         resolved_parameters,
@@ -317,6 +327,9 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         ts_properties_shef_code = timeseries_properties.point_type_shef_parameter_code
         shef_lookup_info = get_shef_info(ts_properties_shef_code)
         shef_lookup_parameter = shef_lookup_info.parameter
+
+        if cpart is not None:
+            shef_lookup_parameter = cpart
 
         logger.info(
             "Parameter lookup from SHEF '%s' translates to '%s'; first try.",

@@ -28,6 +28,7 @@ description = "CANO QUEBRADO ABAJO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
+  cpart = "Flow"
   enabled   = true
 
   [[station."7".series]]
@@ -44,7 +45,7 @@ description = "CANO QUEBRADO ABAJO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."7".series]]
   tag       = "799"
@@ -52,7 +53,7 @@ description = "CANO QUEBRADO ABAJO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."13"]
 network = "NovaStar5"
@@ -64,7 +65,7 @@ description = "GUARUMAL"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."13".series]]
   tag       = "1310"
@@ -72,7 +73,7 @@ description = "GUARUMAL"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."13".series]]
   tag       = "1311"
@@ -80,7 +81,7 @@ description = "GUARUMAL"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."18"]
 network = "NovaStar5"
@@ -92,7 +93,7 @@ description = "LOS CAÑONES"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."18".series]]
   tag       = "1810"
@@ -100,7 +101,7 @@ description = "LOS CAÑONES"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."18".series]]
   tag       = "1811"
@@ -108,7 +109,7 @@ description = "LOS CAÑONES"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."18".series]]
   tag       = "1811"
@@ -116,7 +117,7 @@ description = "LOS CAÑONES"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."45"]
 network = "NovaStar5"
@@ -128,7 +129,7 @@ description = "PELUCA"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."45".series]]
   tag       = "4510"
@@ -136,7 +137,7 @@ description = "PELUCA"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."45".series]]
   tag       = "PEL WL"
@@ -144,7 +145,7 @@ description = "PELUCA"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."45".series]]
   tag       = "PEL WL"
@@ -152,7 +153,7 @@ description = "PELUCA"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."48"]
 network = "NovaStar5"
@@ -164,7 +165,7 @@ description = "CHORRO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."48".series]]
   tag       = "4811"
@@ -172,7 +173,7 @@ description = "CHORRO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."51"]
 network = "NovaStar5"
@@ -184,7 +185,7 @@ description = "CANDELARIA Campbell scientific"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."51".series]]
   tag       = "5110"
@@ -192,7 +193,7 @@ description = "CANDELARIA Campbell scientific"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."51".series]]
   tag       = "5111"
@@ -200,7 +201,7 @@ description = "CANDELARIA Campbell scientific"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."51".series]]
   tag       = "5111"
@@ -208,7 +209,7 @@ description = "CANDELARIA Campbell scientific"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."53"]
 network = "NovaStar5"
@@ -220,7 +221,7 @@ description = "CHICO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."53".series]]
   tag       = "5310"
@@ -228,7 +229,7 @@ description = "CHICO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."53".series]]
   tag       = "5311"
@@ -236,7 +237,7 @@ description = "CHICO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."53".series]]
   tag       = "5311"
@@ -244,7 +245,7 @@ description = "CHICO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."53".series]]
   tag       = "5350"
@@ -252,7 +253,7 @@ description = "CHICO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."53".series]]
   tag       = "5350"
@@ -260,7 +261,7 @@ description = "CHICO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."54"]
 network = "NovaStar5"
@@ -272,7 +273,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5425"
@@ -280,7 +281,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5450"
@@ -288,7 +289,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5450"
@@ -296,7 +297,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5460"
@@ -304,7 +305,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5460"
@@ -312,7 +313,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5400"
@@ -320,7 +321,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5400"
@@ -328,7 +329,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5480"
@@ -336,7 +337,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."54".series]]
   tag       = "5480"
@@ -344,7 +345,7 @@ description = "GATUN LAKE"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."55"]
 network = "NovaStar5"
@@ -356,7 +357,7 @@ description = "ALHAJUELA"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."55".series]]
   tag       = ""
@@ -364,7 +365,7 @@ description = "ALHAJUELA"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."203"]
 network = "NovaStar5"
@@ -376,7 +377,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA RIO GATUN"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."203".series]]
   tag       = ""
@@ -384,7 +385,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA RIO GATUN"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."204"]
 network = "NovaStar5"
@@ -396,7 +397,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA CHILIBRE"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."204".series]]
   tag       = ""
@@ -404,7 +405,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA CHILIBRE"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."205"]
 network = "NovaStar5"
@@ -416,7 +417,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA SABANITAS II"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."205".series]]
   tag       = ""
@@ -424,7 +425,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA SABANITAS II"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."207"]
 network = "NovaStar5"
@@ -436,7 +437,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA LAGUNA ALTA"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."207".series]]
   tag       = ""
@@ -444,7 +445,7 @@ description = "AGUA CRUDA PLANTA POTABILIZADORA LAGUNA ALTA"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."208"]
 network = "NovaStar5"
@@ -456,7 +457,7 @@ description = "AGUA CRUDA ALIMENTOS CARNICOS"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."208".series]]
   tag       = ""
@@ -464,7 +465,7 @@ description = "AGUA CRUDA ALIMENTOS CARNICOS"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."209"]
 network = "NovaStar5"
@@ -476,7 +477,7 @@ description = "AGUA CRUDA RIO INDIO MELO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."209".series]]
   tag       = ""
@@ -484,7 +485,7 @@ description = "AGUA CRUDA RIO INDIO MELO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."210"]
 network = "NovaStar5"
@@ -496,7 +497,7 @@ description = "AGUA CRUDA EL SALTO MELO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."210".series]]
   tag       = ""
@@ -504,7 +505,7 @@ description = "AGUA CRUDA EL SALTO MELO"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."211"]
 network = "NovaStar5"
@@ -516,7 +517,7 @@ description = "AGUA CRUDA ESCOBAL I"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."211".series]]
   tag       = ""
@@ -524,7 +525,7 @@ description = "AGUA CRUDA ESCOBAL I"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
 [station."5000"]
 network = "NovaStar5"
@@ -536,7 +537,7 @@ description = "Virtual Madden Escorrentia"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."5000".series]]
   tag       = "500050"
@@ -544,7 +545,7 @@ description = "Virtual Madden Escorrentia"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."5000".series]]
   tag       = "500060"
@@ -552,7 +553,7 @@ description = "Virtual Madden Escorrentia"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
   [[station."5000".series]]
   tag       = "500060"
@@ -560,5 +561,5 @@ description = "Virtual Madden Escorrentia"
   statistic = "Mean"
   interval  = "1Hour"
   units     = "cfs"
-  enabled   = true
+  enabled   = false
 
