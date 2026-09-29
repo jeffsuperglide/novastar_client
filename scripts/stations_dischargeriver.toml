@@ -28,7 +28,7 @@ description = "CANO QUEBRADO ABAJO"
   statistic = "Mean"
   interval  = "15Minute"
   units     = "cfs"
-  cpart = "Flow"
+  cpart = "flow"
   enabled   = true
 
   [[station."7".series]]

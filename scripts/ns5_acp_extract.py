@@ -329,7 +329,7 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         shef_lookup_parameter = shef_lookup_info.parameter
 
         if cpart is not None:
-            shef_lookup_parameter = cpart
+            shef_lookup_parameter = cpart.title()
 
         logger.info(
             "Parameter lookup from SHEF '%s' translates to '%s'; first try.",
