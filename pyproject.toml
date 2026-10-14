@@ -12,7 +12,13 @@
     license = "MIT"
     readme = "README.md"
     requires-python = ">=3.12"
-    dependencies = ["requests>=2.31.0", "click", "pandas", "hecdss"]
+    dependencies = [
+    "requests>=2.31.0",
+    "click",
+    "pandas",
+    "hecdss",
+    "packaging>=26.3",
+]
 
 [project.scripts]
     ns5acp = "novastar_client.cli.ns5acp:cli"

@@ -622,6 +622,7 @@ source = { editable = "." }
 dependencies = [
     { name = "click" },
     { name = "hecdss" },
+    { name = "packaging" },
     { name = "pandas" },
     { name = "requests" },
 ]
@@ -639,6 +640,7 @@ dev = [
 requires-dist = [
     { name = "click" },
     { name = "hecdss" },
+    { name = "packaging", specifier = ">=26.3" },
     { name = "pandas" },
     { name = "requests", specifier = ">=2.31.0" },
 ]
