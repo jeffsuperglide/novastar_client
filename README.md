@@ -24,7 +24,7 @@ This is the easiest and most reliable way to install \`novastar-client\`. It pul
 
 <!-- latest-release:pip:start -->
 ```bash
-pip install novastar-client==1.2.3
+pip install novastar-client==1.2.5
 ```
 <!-- /latest-release:pip:end -->
 
@@ -38,7 +38,7 @@ Using `uv`?
 
 <!-- latest-release:uv:start -->
 ```bash
-uv add novastar-client==1.2.3
+uv add novastar-client==1.2.5
 ```
 <!-- /latest-release:uv:end -->
 
@@ -50,23 +50,23 @@ If you can't reach PyPI (e.g. an offline or restricted environment) or want the 
 
 <!-- latest-release:whl:start -->
 ```bash
-pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v1.2.3/novastar_client-1.2.3-py3-none-any.whl"
+pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v1.2.5/novastar_client-1.2.5-py3-none-any.whl"
 ```
 <!-- /latest-release:whl:end -->
 
 <!-- latest-release:dist:start -->
 ```bash
-pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v1.2.3/novastar_client-1.2.3.tar.gz"
+pip install "https://github.com/jeffsuperglide/novastar_client/releases/download/v1.2.5/novastar_client-1.2.5.tar.gz"
 ```
 <!-- /latest-release:dist:end -->
 
 <!-- latest-release:dl:start -->
-Or download `novastar_client-1.2.3-py3-none-any.whl` / `novastar_client-1.2.3.tar.gz` from [Releases](https://github.com/jeffsuperglide/novastar_client/releases) and install from disk:
+Or download `novastar_client-1.2.5-py3-none-any.whl` / `novastar_client-1.2.5.tar.gz` from [Releases](https://github.com/jeffsuperglide/novastar_client/releases) and install from disk:
 <!-- /latest-release:dl:end -->
 
 <!-- latest-release:disk:start -->
 ```bash
-pip install ./novastar_client-1.2.3-py3-none-any.whl
+pip install ./novastar_client-1.2.5-py3-none-any.whl
 ```
 <!-- /latest-release:disk:end -->
 
@@ -76,7 +76,7 @@ pip install ./novastar_client-1.2.3-py3-none-any.whl
 ```bash
 git clone https://github.com/jeffsuperglide/novastar_client.git
 cd novastar_client
-git checkout v1.2.3
+git checkout v1.2.5
 pip install .
 ```
 <!-- /latest-release:clone:end -->
