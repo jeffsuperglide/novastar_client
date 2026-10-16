@@ -5,14 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: ns5_acp_extract",
+            "name": "Python Debugger: ns5_da",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/scripts/ns5_acp_extract.py",
+            "program": "${workspaceFolder}/scripts/ns5_da.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/scripts",
             "args": [
-                "stations_waterlevel.toml"
+                "rivers.toml"
             ]
         }
     ]

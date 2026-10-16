@@ -3,22 +3,22 @@
 timeout = 60
 
 [logger]
-level = "DEBUG"
+level = "INFO"
 format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
-file = "ztest_con_acq.log"
+file = "C:\\Users\\Public\\RTS\\share\\precip.log"
 max_bytes = 100_000_000
 backup_count = 2
 
 [dss]
-file = "novastar.dss"
+file = "C:\\Users\\Public\\RTS\\database\\PrecipDataV7.dss"
 
 [period]
-start = "now_minus_1Day"
-end = "now"
+start = "2026-05-01T00:00"
+end = "2026-05-31T08:00"
 
 [timeseries_parameters]  # NovaStar API parameters for time series (ts)
 includeMissing = true # estimate missings more for stage/elevation and NOT for precipitation.
-includeEstimates = false # include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
+includeEstimates = true # include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
 # timezone = "UTC"
 
 [fill]  # Panda DataFrame fill options; works with includeMissing
@@ -58,15 +58,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."2".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."3"]
 network = "NovaStar5"
@@ -78,15 +70,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."3".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."4"]
 network = "NovaStar5"
@@ -98,15 +82,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."4".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."6"]
 network = "NovaStar5"
@@ -118,15 +94,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."6".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."8"]
 network = "NovaStar5"
@@ -138,15 +106,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."8".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."9"]
 network = "NovaStar5"
@@ -158,15 +118,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."9".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."10"]
 network = "NovaStar5"
@@ -178,15 +130,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."10".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."14"]
 network = "NovaStar5"
@@ -198,15 +142,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."14".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."16"]
 network = "NovaStar5"
@@ -218,15 +154,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."16".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."18"]
 network = "NovaStar5"
@@ -238,15 +166,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."18".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."19"]
 network = "NovaStar5"
@@ -258,15 +178,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."19".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."20"]
 network = "NovaStar5"
@@ -278,15 +190,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."20".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."22"]
 network = "NovaStar5"
@@ -298,15 +202,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."22".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."23"]
 network = "NovaStar5"
@@ -318,15 +214,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."23".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."24"]
 network = "NovaStar5"
@@ -338,15 +226,8 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
+enabled   = true
 
-[[station."24".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
 
 [station."25"]
 network = "NovaStar5"
@@ -358,15 +239,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."25".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."29"]
 network = "NovaStar5"
@@ -378,15 +251,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."29".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."30"]
 network = "NovaStar5"
@@ -398,15 +263,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."30".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."34"]
 network = "NovaStar5"
@@ -418,15 +275,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."34".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."42"]
 network = "NovaStar5"
@@ -438,15 +287,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."42".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."43"]
 network = "NovaStar5"
@@ -458,15 +299,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."43".series]]
-tag       = "4312"
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."44"]
 network = "NovaStar5"
@@ -478,15 +311,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."44".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."45"]
 network = "NovaStar5"
@@ -498,15 +323,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."45".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."46"]
 network = "NovaStar5"
@@ -518,15 +335,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."46".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."47"]
 network = "NovaStar5"
@@ -538,15 +347,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."47".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."48"]
 network = "NovaStar5"
@@ -558,15 +359,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."48".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."49"]
 network = "NovaStar5"
@@ -578,15 +371,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."49".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."50"]
 network = "NovaStar5"
@@ -598,15 +383,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."50".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."51"]
 network = "NovaStar5"
@@ -618,15 +395,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."51".series]]
-tag       = "5112"
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."52"]
 network = "NovaStar5"
@@ -638,15 +407,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."52".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."53"]
 network = "NovaStar5"
@@ -658,15 +419,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."53".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."55"]
 network = "NovaStar5"
@@ -678,15 +431,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."55".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."56"]
 network = "NovaStar5"
@@ -698,15 +443,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."56".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."58"]
 network = "NovaStar5"
@@ -718,15 +455,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."58".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."59"]
 network = "NovaStar5"
@@ -738,15 +467,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."59".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."60"]
 network = "NovaStar5"
@@ -758,15 +479,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."60".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."61"]
 network = "NovaStar5"
@@ -778,15 +491,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."61".series]]
-tag       = "6112"
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."62"]
 network = "NovaStar5"
@@ -798,15 +503,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."62".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."63"]
 network = "NovaStar5"
@@ -818,15 +515,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."63".series]]
-tag       = "6312"
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."64"]
 network = "NovaStar5"
@@ -838,15 +527,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."64".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."67"]
 network = "NovaStar5"
@@ -858,15 +539,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."67".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."68"]
 network = "NovaStar5"
@@ -878,15 +551,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."68".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."69"]
 network = "NovaStar5"
@@ -898,15 +563,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."69".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."70"]
 network = "NovaStar5"
@@ -918,15 +575,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."70".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."71"]
 network = "NovaStar5"
@@ -940,14 +589,6 @@ interval  = "15Minute"
 units     = "mm"
 enabled   = true
 
-[[station."71".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = true
-
 [station."72"]
 network = "NovaStar5"
 description = "VALLE CENTRAL GATUN"
@@ -958,15 +599,8 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
+enabled   = true
 
-[[station."72".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
 
 [station."74"]
 network = "NovaStar5"
@@ -978,15 +612,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."74".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."75"]
 network = "NovaStar5"
@@ -998,15 +624,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."75".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."76"]
 network = "NovaStar5"
@@ -1018,15 +636,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."76".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."77"]
 network = "NovaStar5"
@@ -1038,15 +648,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."77".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."78"]
 network = "NovaStar5"
@@ -1058,15 +660,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."78".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."79"]
 network = "NovaStar5"
@@ -1078,15 +672,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."79".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."80"]
 network = "NovaStar5"
@@ -1098,15 +684,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."80".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."81"]
 network = "NovaStar5"
@@ -1118,15 +696,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."81".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."114"]
 network = "NovaStar5"
@@ -1138,15 +708,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."114".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."117"]
 network = "NovaStar5"
@@ -1158,15 +720,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."117".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."231"]
 network = "NovaStar5"
@@ -1178,15 +732,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."231".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."232"]
 network = "NovaStar5"
@@ -1198,15 +744,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."232".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."540"]
 network = "NovaStar5"
@@ -1218,15 +756,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."540".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."5300"]
 network = "NovaStar5"
@@ -1238,15 +768,7 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."5300".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
+enabled   = true
 
 [station."6000"]
 network = "NovaStar5"
@@ -1258,13 +780,4 @@ parameter = "Precip"
 statistic = "Total"
 interval  = "15Minute"
 units     = "mm"
-enabled   = false
-
-[[station."6000".series]]
-tag       = ""
-parameter = "Precip"
-statistic = "Total"
-interval  = "1Hour"
-units     = "mm"
-enabled   = false
-
+enabled   = true

@@ -1,0 +1,515 @@
+# Continuous Acquisition Configurations
+[client]
+timeout = 60
+
+[logger]
+level = "INFO"
+format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
+file = "C:\\Users\\Public\\RTS\\share\\rivers.log"
+max_bytes = 100_000_000
+backup_count = 2
+
+[dss]
+file = "C:\\Users\\Public\\RTS\\database\\dischargeriver.dss"
+
+[period]
+start = "2026-05-01T00:00"
+end = "2026-05-31T08:00"
+
+[timeseries_parameters]  # NovaStar API parameters for time series (ts)
+includeMissing = true # estimate missings more for stage/elevation and NOT for precipitation.
+includeEstimates = true # include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
+# timezone = "UTC"
+
+[fill]  # Panda DataFrame fill options; works with includeMissing
+order = ["ffill", "interpolate", "fillna"]
+
+[fill.ffill]
+enabled = false
+axis = 0                  # 0 = down columns, 1 = across rows
+# limit = 5                 # max consecutive NaNs to fill; omit/None = no limit
+# limit_area = "inside"     # "inside" | "outside" | omit/None
+
+[fill.interpolate]
+enabled = false
+method = "linear"             # linear, time, index, nearest, polynomial, spline, pchip, akima...
+# order = 2                     # required for "polynomial" / "spline" methods
+# axis = 0                      # 0 interpolates column-by-column, 1 row-by-row.
+# limit = 10                    # maximum number of consecutive NaNs to fill.
+# limit_direction = "forward"   # "forward" | "backward" | "both"
+# limit_area = "inside"         # "inside" | "outside" | omit/None
+
+[fill.fillna]
+enabled = true
+value = 0         # a scalar
+# axis = 0            # 0 or 1, the axis along which to fill.
+# limit = 3           # max number of NaNs to fill.
+
+
+# Generated NovaStar5 time series configuration
+
+[station."7"]
+network = "NovaStar5"
+description = "CANO QUEBRADO ABAJO"
+
+  [[station."7".series]]
+  tag       = "799"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."7".series]]
+  tag = "799"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "ft"
+  enabled = true
+
+  [[station."7".series]]
+  tag = "711"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "cfs"
+  cpart = "Flow"
+  enabled = true
+
+[station."13"]
+network = "NovaStar5"
+description = "GUARUMAL"
+
+  [[station."13".series]]
+  tag       = "1311"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[[station."13".series]]
+tag = "1311"
+parameter = "WaterLevelRiver"
+statistic = "Last"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."13".series]]
+tag = "1310"
+parameter = "DischargeRiver"
+statistic = "Last"
+interval = "15Minute"
+units = "cfs"
+cpart = "Flow"
+enabled = true
+
+[station."18"]
+network = "NovaStar5"
+description = "LOS CAÑONES"
+
+  [[station."18".series]]
+  tag       = "1810"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."18".series]]
+  tag       = "1811"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."18".series]]
+  tag       = "1811"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "ft"
+  enabled   = true
+
+[station."45"]
+network = "NovaStar5"
+description = "PELUCA"
+
+  [[station."45".series]]
+  tag       = "4510"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."45".series]]
+  tag       = "4510"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "ft"
+  enabled   = true
+
+[station."48"]
+network = "NovaStar5"
+description = "CHORRO"
+
+  [[station."48".series]]
+  tag       = "4811"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+  
+  [[station."48".series]]
+  tag       = "4811"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "ft"
+  enabled   = true
+
+[station."51"]
+network = "NovaStar5"
+description = "CANDELARIA Campbell scientific"
+
+  [[station."51".series]]
+  tag       = "5110"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."51".series]]
+  tag       = "5110"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "ft"
+  enabled   = true
+
+  [[station."51".series]]
+  tag = "5111"
+  parameter = "DischargeRiver"
+  statistic = "Mean"
+  interval = "15Minute"
+  units = "cfs"
+  cpart = "Flow"
+  enabled = true
+
+[station."54"]
+network = "NovaStar5"
+description = "GATUN LAKE"
+
+  [[station."54".series]]
+  tag       = "5425"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5450"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5460"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5400"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."54".series]]
+  tag       = "5480"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."55"]
+network = "NovaStar5"
+description = "ALHAJUELA"
+
+  [[station."55".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."203"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA RIO GATUN"
+
+  [[station."203".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."204"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA CHILIBRE"
+
+  [[station."204".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."205"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA SABANITAS II"
+
+  [[station."205".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."207"]
+network = "NovaStar5"
+description = "AGUA CRUDA PLANTA POTABILIZADORA LAGUNA ALTA"
+
+  [[station."207".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."208"]
+network = "NovaStar5"
+description = "AGUA CRUDA ALIMENTOS CARNICOS"
+
+  [[station."208".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."209"]
+network = "NovaStar5"
+description = "AGUA CRUDA RIO INDIO MELO"
+
+  [[station."209".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."210"]
+network = "NovaStar5"
+description = "AGUA CRUDA EL SALTO MELO"
+
+  [[station."210".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."211"]
+network = "NovaStar5"
+description = "AGUA CRUDA ESCOBAL I"
+
+  [[station."211".series]]
+  tag       = ""
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."5000"]
+network = "NovaStar5"
+description = "Virtual Madden Escorrentia"
+
+  [[station."5000".series]]
+  tag       = "500050"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."5000".series]]
+  tag       = "500060"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."53"]
+network = "NovaStar5"
+description = "CHICO"
+
+  [[station."53".series]]
+  tag       = "5310"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+
+  [[station."53".series]]
+  tag       = "5310"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "ft"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5311"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+  [[station."53".series]]
+  tag       = "5350"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+[station."52"]
+network = "NovaStar5"
+description = "CIENTO"
+
+  [[station."52".series]]
+  tag       = "5210"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "cfs"
+  cpart = "Flow"
+  enabled   = true
+
+    [[station."52".series]]
+  tag       = "5210"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval  = "15Minute"
+  units     = "ft"
+  enabled   = true
+
+[station."231"]
+network = "NovaStar5"
+description = "ROC BOCA DE URACILLO"
+
+  [[station."231".series]]
+  tag = "23111"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "cfs"
+  cpart = "Flow"
+  enabled = true
+
+  [[station."231".series]]
+  tag = "23111"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "ft"
+  enabled = true
+
+[station."233"]
+network = "NovaStar5"
+description = "ROC LAS MARIAS"
+
+  [[station."233".series]]
+  tag = "23311"
+  parameter = "DischargeRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "cfs"
+  cpart = "Flow"
+  enabled = true
+
+  [[station."233".series]]
+  tag = "23311"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "ft"
+  enabled = true
+
+[station."232"]
+network = "NovaStar5"
+description = "ROC TRES HERMANAS"
+
+  [[station."232".series]]
+  tag = "23210"
+  parameter = "WaterLevelRiver"
+  statistic = "Last"
+  interval = "15Minute"
+  units = "ft"
+  enabled = true
+  

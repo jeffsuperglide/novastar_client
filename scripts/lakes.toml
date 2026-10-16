@@ -1,0 +1,293 @@
+# Continuous Acquisition Configurations
+[client]
+timeout = 60
+
+[logger]
+level = "INFO"
+format = "%(asctime)s %(name)s %(levelname)s : %(message)s"
+file = "C:\\Users\\Public\\RTS\\share\\lakes.log"
+max_bytes = 100_000_000
+backup_count = 2
+
+[dss]
+file = "C:\\Users\\Public\\RTS\\database\\lakelevels.dss"
+
+[period]
+start = "2026-05-01T00:00"
+end = "2026-05-31T08:00"
+
+[timeseries_parameters]  # NovaStar API parameters for time series (ts)
+includeMissing = true # estimate missings more for stage/elevation and NOT for precipitation.
+includeEstimates = false # include missings will return a None for TimeSeriesPoint values.  Use Panda df.fillna() to replace those 'None' values.
+#timezone = "EST"
+
+[fill]  # Panda DataFrame fill options; works with includeMissing
+order = ["ffill", "interpolate", "fillna"]
+
+[fill.ffill]
+enabled = false
+axis = 0                  # 0 = down columns, 1 = across rows
+# limit = 5                 # max consecutive NaNs to fill; omit/None = no limit
+# limit_area = "inside"     # "inside" | "outside" | omit/None
+
+[fill.interpolate]
+enabled = false
+method = "linear"             # linear, time, index, nearest, polynomial, spline, pchip, akima...
+# order = 2                     # required for "polynomial" / "spline" methods
+# axis = 0                      # 0 interpolates column-by-column, 1 row-by-row.
+# limit = 10                    # maximum number of consecutive NaNs to fill.
+# limit_direction = "forward"   # "forward" | "backward" | "both"
+# limit_area = "inside"         # "inside" | "outside" | omit/None
+
+[fill.fillna]
+enabled = true
+value = 0         # a scalar
+# axis = 0            # 0 or 1, the axis along which to fill.
+# limit = 3           # max number of NaNs to fill.
+
+
+# Generated NovaStar5 time series configuration
+
+[station."2"]
+network = "NovaStar5"
+description = "AMADOR"
+
+[[station."2".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[station."3"]
+network = "NovaStar5"
+description = "ISLA BRUJA CHIQUITA RAIN AND WIND"
+
+[[station."3".series]]
+tag = ""
+parameter = "Precip"
+statistic = "Total"
+interval = "15Minute"
+units = "mm"
+enabled = false
+
+[station."54"]
+network = "NovaStar5"
+description = "GATUN LAKE"
+
+[[station."54".series]]
+tag = "5425"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5425"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5450"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5450"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5460"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5460"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5400"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5400"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5480"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5480"
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = true
+
+[[station."54".series]]
+tag = "5400"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."54".series]]
+tag = "5400"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = true
+
+[[station."54".series]]
+tag = "5411"
+parameter = "WaterLevelRiver"
+statistic = "Last"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."54".series]]
+tag = "5411"
+parameter = "WaterLevelRiver"
+statistic = "Last"
+interval = "1Hour"
+units = "ft"
+enabled = true
+
+[[station."54".series]]
+tag = "5480"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."54".series]]
+tag = "5480"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = true
+
+[station."55"]
+network = "NovaStar5"
+description = "ALHAJUELA"
+
+[[station."55".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "cfs"
+enabled = true
+
+[[station."55".series]]
+tag = ""
+parameter = "DischargeRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "cfs"
+enabled = true
+
+[[station."55".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."55".series]]
+tag = ""
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = true
+
+[station."57"]
+network = "NovaStar5"
+description = "MADDEN"
+
+[[station."57".series]]
+tag = "5710"
+parameter = "WaterLevelRiver"
+statistic = "Last"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."57".series]]
+tag = "5710"
+parameter = "WaterLevelRiver"
+statistic = "Last"
+interval = "1Hour"
+units = "ft"
+enabled = true
+
+[[station."57".series]]
+tag = "5711"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."57".series]]
+tag = "5711"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = true
+
+[[station."57".series]]
+tag = "5717"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "15Minute"
+units = "ft"
+enabled = true
+
+[[station."57".series]]
+tag = "5717"
+parameter = "WaterLevelRiver"
+statistic = "Mean"
+interval = "1Hour"
+units = "ft"
+enabled = true

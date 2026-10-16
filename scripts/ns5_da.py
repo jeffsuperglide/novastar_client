@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import pandas as pd
 from hecdss.hecdss import HecDss, RegularTimeSeries
+from hecdss.location_info import LocationInfo
 
 from novastar_client.client import NovaStarClient
 from novastar_client.config import NovaStarConfig
@@ -215,6 +216,39 @@ def _safe_tz_convert(df: pd.DataFrame, col: str, timezone: str | None) -> pd.Dat
     return df
 
 
+def _location_info(
+    x_values: float | str,
+    y_values: float | str,
+    z_values: float | str,
+    coordinate_system: int,
+    coordinate_id: int,
+    horizontal_units: int,
+    horizontal_datum: int,
+    vertical_units: int,
+    vertical_datum: int,
+    time_zone_name: str,
+    supplemental: str,
+    path: str,
+):
+    resolved_x_values = x_values if not isinstance(x_values, str) else 0
+    resolved_y_values = y_values if not isinstance(y_values, str) else 0
+    resolved_z_values = z_values if not isinstance(z_values, str) else 0
+    return LocationInfo.create(
+        x_values=[resolved_x_values],
+        y_values=[resolved_y_values],
+        z_values=[resolved_z_values],
+        coordinate_system=coordinate_system,
+        coordinate_id=coordinate_id,
+        horizontal_units=horizontal_units,
+        horizontal_datum=horizontal_datum,
+        vertical_units=vertical_units,
+        vertical_datum=vertical_datum,
+        time_zone_name=time_zone_name if time_zone_name else "EST",
+        supplemental=supplemental,
+        path=path,
+    )
+
+
 def build_tasks(
     cfg: dict[str, Any], ns_config: NovaStarConfig, dssfile: Path
 ) -> list[tuple]:
@@ -286,7 +320,7 @@ def build_tasks(
     return tasks
 
 
-def process_timeseries(task: tuple) -> dict[str, Any]:
+def process_timeseries(task: tuple) -> dict[str, Any] | None:
     (
         ns_tsid,
         period_start,
@@ -357,6 +391,8 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
         # Change unit name if pies.
         timeseries.units = "ft" if timeseries.units == "pies" else timeseries.units
         logger.info("Time series units 'pies' found and converting to 'ft'.")
+        timeseries.units = "ft3/s" if timeseries.units == "cfs" else timeseries.units
+        logger.info("Time series units 'ft3/s' found and converting to 'cfs'.")
 
         dt_value = response.get_data_fields("dt", "value")
 
@@ -368,7 +404,7 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
             df["dt"] = pd.to_datetime(df["dt"])
             df.sort_values("dt", inplace=True)
 
-            timezone = resolved_parameters.get("timezone", None)
+            timezone = resolved_parameters.get("timezone", "EST")
             df = _safe_tz_convert(df, "dt", timezone)
 
             df.set_index("dt", inplace=True)
@@ -384,28 +420,80 @@ def process_timeseries(task: tuple) -> dict[str, Any]:
             )
             logger.info("TSID: '%s'; DSS: '%s'", ns_tsid, dsspath)
 
-            # Put the data into DSS
-            with HecDss(dssfile) as dss:
-                tsc = RegularTimeSeries.create(
-                    values=df["value"].to_list(),
-                    times=df.index.to_list(),
-                    units=timeseries.units,
-                    data_type=ns5_type_to_dss(statistic),
-                    time_zone_name=timezone if timezone else "EST",
+            if dsspath is not None:
+                # build the location information
+                location = _location_info(
+                    x_values=timeseries_properties.station_longitude,
+                    y_values=timeseries_properties.station_latitude,
+                    z_values=timeseries_properties.station_elevation,
+                    coordinate_system=2,
+                    coordinate_id=0,
+                    horizontal_units=3,
+                    horizontal_datum=3,
+                    vertical_units=2,
+                    vertical_datum=0,
+                    time_zone_name=timezone,
+                    supplemental=timeseries_properties.station_description,
                     path=dsspath,
                 )
-                dss.put(tsc)
+                # location = LocationInfo.create(
+                #     x_values=[
+                #         (
+                #             timeseries_properties.station_longitude
+                #             if type(timeseries_properties.station_longitude) is str
+                #             else 0
+                #         )
+                #     ],
+                #     y_values=[
+                #         (
+                #             timeseries_properties.station_latitude
+                #             if type(timeseries_properties.station_latitude) is str
+                #             else 0
+                #         )
+                #     ],
+                #     z_values=[
+                #         (
+                #             timeseries_properties.station_elevation
+                #             if type(timeseries_properties.station_elevation) is str
+                #             else 0
+                #         )
+                #     ],
+                #     coordinate_system=1,
+                #     coordinate_id=0,
+                #     horizontal_units=3,
+                #     horizontal_datum=3,
+                #     vertical_units=2,
+                #     vertical_datum=0,
+                #     time_zone_name=timezone if timezone else "EST",
+                #     supplemental=timeseries_properties.station_description,
+                #     path=dsspath,
+                # )
+                # Put the data into DSS
+                with HecDss(dssfile) as dss:
+                    # create the location info
+                    tsc = RegularTimeSeries.create(
+                        values=df["value"].to_list(),
+                        times=df.index.to_list(),
+                        units=timeseries.units,
+                        data_type=ns5_type_to_dss(statistic),
+                        time_zone_name=timezone,
+                        path=dsspath,
+                        location_info=location,
+                    )
+                    # tsc.location_info = location_info # type: ignore
+                    # logger.info(f"Location Info: {tsc.location_info.__dict__}")
+                    dss.put(tsc)
 
-            rows_written = len(dt_value)
-            logger.info("Put %d values into DSS path %s.", rows_written, dsspath)
+                rows_written = tsc.get_length()
+                logger.info("Put %d values into DSS path %s.", rows_written, dsspath)
 
-        return {
-            "ns_tsid": ns_tsid,
-            "path": dsspath,
-            "rows_written": rows_written,
-            "ok": True,
-            "error": None,
-        }
+            return {
+                "ns_tsid": ns_tsid,
+                "path": dsspath,
+                "rows_written": rows_written,
+                "ok": True,
+                "error": None,
+            }
 
     except Exception as exc:  # noqa: BLE001
         logger.warning("Failed processing '%s': %s", ns_tsid, exc)
